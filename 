@@ -1,0 +1,1472 @@
+arch/alpha/kernel/traps.c <unknown> 709 static int unauser_reg_offsets[32] = {
+arch/alpha/kernel/traps.c <unknown> 762 			  ((char *)regs + unauser_reg_offsets[reg]);
+arch/arm/mach-omap2/control.c <unknown> 617 static unsigned long am43xx_control_reg_offsets[] = {
+arch/arm/mach-omap2/control.c <unknown> 688 				omap_ctrl_readl(am43xx_control_reg_offsets[i]);
+arch/arm/mach-omap2/control.c <unknown> 702 				 am43xx_control_reg_offsets[i]);
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3228 	if (data->offsets[SYSC_REVISION] >= 0)
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3229 		*rev_offs = data->offsets[SYSC_REVISION];
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3231 	if (data->offsets[SYSC_SYSCONFIG] >= 0)
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3232 		*sysc_offs = data->offsets[SYSC_SYSCONFIG];
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3234 	if (data->offsets[SYSC_SYSSTATUS] >= 0)
+arch/arm/mach-omap2/omap_hwmod.c <unknown> 3235 		*syss_offs = data->offsets[SYSC_SYSSTATUS];
+arch/arm/net/bpf_jit_32.c <unknown> 387 	offset =  ctx->offsets[ctx->prog->len - 1] * 4;
+arch/arm/net/bpf_jit_32.c <unknown> 417 	to = ctx->offsets[bpf_to];
+arch/arm/net/bpf_jit_32.c <unknown> 418 	from = ctx->offsets[bpf_from];
+arch/arm/net/bpf_jit_32.c <unknown> 1859 				ctx->offsets[i] = ctx->idx;
+arch/arm/net/bpf_jit_32.c <unknown> 1864 			ctx->offsets[i] = ctx->idx;
+arch/arm/net/bpf_jit_32.c <unknown> 1928 	/* Not able to allocate memory for offsets[] , then
+arch/arm64/kvm/hyp/exception.c <unknown> 260 static const u8 return_offsets[8][2] = {
+arch/arm64/kvm/hyp/exception.c <unknown> 280 	return_address  += return_offsets[vect_offset >> 2][is_thumb];
+arch/ia64/kernel/ptrace.c <unknown> 1276 static const ptrdiff_t pt_offsets[32] =
+arch/ia64/kernel/ptrace.c <unknown> 1293 	ptrdiff_t d = pt_offsets[reg];
+arch/ia64/kernel/unwind.c <unknown> 104 	short pt_regs_offsets[32];
+arch/ia64/kernel/unwind.c <unknown> 257 		off = unw.pt_regs_offsets[reg];
+arch/mips/mm/init.c <unknown> 552 		__per_cpu_offset[cpu] = delta + pcpu_unit_offsets[cpu];
+arch/mips/net/bpf_jit.c <unknown> 477 	return ctx->offsets[tgt] -
+arch/mips/net/bpf_jit.c <unknown> 688 			ctx->offsets[i] = ctx->idx * 4;
+arch/mips/net/bpf_jit.c <unknown> 1231 		ctx->offsets[i] = ctx->idx * 4;
+arch/mips/net/ebpf_jit.c <unknown> 150 	target_va = base_va + (ctx->offsets[target_idx] & ~OFFSETS_B_CONV);
+arch/mips/net/ebpf_jit.c <unknown> 176 	return (ctx->offsets[tgt] & ~OFFSETS_B_CONV) -
+arch/mips/net/ebpf_jit.c <unknown> 1111 				if (!(ctx->offsets[this_idx] & OFFSETS_B_CONV)) {
+arch/mips/net/ebpf_jit.c <unknown> 1112 					ctx->offsets[this_idx] |= OFFSETS_B_CONV;
+arch/mips/net/ebpf_jit.c <unknown> 1122 			if (ctx->offsets[this_idx] & OFFSETS_B_CONV) {
+arch/mips/net/ebpf_jit.c <unknown> 1135 			if (!(ctx->offsets[this_idx] & OFFSETS_B_CONV)) {
+arch/mips/net/ebpf_jit.c <unknown> 1136 				ctx->offsets[this_idx] |= OFFSETS_B_CONV;
+arch/mips/net/ebpf_jit.c <unknown> 1146 		if (ctx->offsets[this_idx] & OFFSETS_B_CONV) {
+arch/mips/net/ebpf_jit.c <unknown> 1541 			ctx->offsets[i] = (ctx->offsets[i] & OFFSETS_B_CONV) | (ctx->idx * 4);
+arch/mips/net/ebpf_jit.c <unknown> 1550 		ctx->offsets[i] = ctx->idx * 4;
+arch/mips/net/ebpf_jit.c <unknown> 1561 				ctx->offsets[i] = ctx->idx * 4;
+arch/nios2/kernel/misaligned.c <unknown> 49 static int reg_offsets[32];
+arch/nios2/kernel/misaligned.c <unknown> 53 	u8 *p = ((u8 *)fp) + reg_offsets[reg];
+arch/nios2/kernel/misaligned.c <unknown> 59 	u8 *p = ((u8 *)fp) + reg_offsets[reg];
+arch/nios2/kernel/misaligned.c <unknown> 214 		reg_offsets[r] = offset;
+arch/nios2/kernel/misaligned.c <unknown> 222 		reg_offsets[r] = offset;
+arch/powerpc/include/asm/kvm_book3s.h <unknown> 463  * (The offsets for each block are stored in block_offsets[], indexed by the
+arch/powerpc/include/asm/kvm_book3s.h <unknown> 470 	const int block_offsets[MAX_SMT_THREADS] = {0, 4, 2, 6, 1, 5, 3, 7};
+arch/powerpc/include/asm/kvm_book3s.h <unknown> 477 	packed_id = (id % KVM_MAX_VCPUS) + block_offsets[block];
+arch/powerpc/kernel/setup_64.c <unknown> 911                 __per_cpu_offset[cpu] = delta + pcpu_unit_offsets[cpu];
+arch/sh/boards/board-polaris.c <unknown> 124 static unsigned long ipr_offsets[] = {
+arch/sh/boards/mach-se/770x/irq.c <unknown> 73 static unsigned long ipr_offsets[] = {
+arch/sh/boards/mach-se/7751/irq.c <unknown> 23 static unsigned long ipr_offsets[] = {
+arch/sh/kernel/cpu/irq/ipr.c <unknown> 33 	unsigned long addr = get_ipr_desc(data)->ipr_offsets[p->ipr_idx];
+arch/sh/kernel/cpu/irq/ipr.c <unknown> 42 	unsigned long addr = get_ipr_desc(data)->ipr_offsets[p->ipr_idx];
+arch/sh/kernel/cpu/irq/ipr.c <unknown> 64 		BUG_ON(!desc->ipr_offsets[p->ipr_idx]);
+arch/sparc/kernel/prom_irqtrans.c <unknown> 590 static unsigned long sysio_irq_offsets[] = {
+arch/sparc/kernel/prom_irqtrans.c <unknown> 667 	imap = sysio_irq_offsets[ino];
+arch/sparc/kernel/sbus.c <unknown> 154 static unsigned long sysio_irq_offsets[] = {
+arch/sparc/kernel/sbus.c <unknown> 217 	imap = sysio_irq_offsets[ino];
+arch/sparc/kernel/smp_64.c <unknown> 1647 		__per_cpu_offset(cpu) = delta + pcpu_unit_offsets[cpu];
+arch/um/drivers/ubd_kern.c <unknown> 62 	unsigned long offsets[2];
+arch/um/drivers/ubd_kern.c <unknown> 1310 	io_req->offsets[0] = 0;
+arch/um/drivers/ubd_kern.c <unknown> 1311 	io_req->offsets[1] = dev->cow.data_offset;
+arch/um/drivers/ubd_kern.c <unknown> 1496 		off = req->offset + req->offsets[bit] +
+arch/x86/events/amd/core.c <unknown> 271 static unsigned int event_offsets[X86_PMC_IDX_MAX] __read_mostly;
+arch/x86/events/amd/core.c <unknown> 272 static unsigned int count_offsets[X86_PMC_IDX_MAX] __read_mostly;
+arch/x86/events/amd/core.c <unknown> 289 		offset = event_offsets[index];
+arch/x86/events/amd/core.c <unknown> 291 		offset = count_offsets[index];
+arch/x86/events/amd/core.c <unknown> 302 		event_offsets[index] = offset;
+arch/x86/events/amd/core.c <unknown> 304 		count_offsets[index] = offset;
+arch/x86/events/intel/uncore.c <unknown> 1068 				box_ctl = type->box_ctls[die] + type->pci_offsets[i];
+arch/x86/events/intel/uncore.c <unknown> 1361 				box_ctl = type->box_ctls[die] + type->pci_offsets[i];
+arch/x86/events/intel/uncore.h <unknown> 292 		pmu->type->msr_offsets[pmu->pmu_idx] :
+arch/x86/events/intel/uncore.h <unknown> 367 	        pmu->type->freerunning[type].box_offsets[pmu->pmu_idx] :
+arch/x86/events/intel/uncore_discovery.c <unknown> 466 	return type->box_ctls[box->dieid] + type->mmio_offsets[box->pmu->pmu_idx];
+arch/x86/events/intel/uncore_nhmex.c <unknown> 309 static unsigned nhmex_cbox_msr_offsets[] = {
+arch/x86/events/intel/uncore_snbep.c <unknown> 5057 static unsigned icx_cha_msr_offsets[] = {
+arch/x86/events/intel/uncore_snbep.c <unknown> 5072 			    icx_cha_msr_offsets[box->pmu->pmu_idx];
+arch/x86/events/intel/uncore_snbep.c <unknown> 5105 static unsigned icx_msr_offsets[] = {
+arch/x86/events/intel/uncore_snbep.c <unknown> 5240 static unsigned icx_iio_clk_freerunning_box_offsets[] = {
+arch/x86/events/intel/uncore_snbep.c <unknown> 5244 static unsigned icx_iio_bw_freerunning_box_offsets[] = {
+arch/x86/kernel/apic/apic.c <unknown> 393 static atomic_t eilvt_offsets[APIC_EILVT_NR_MAX];
+arch/x86/kernel/apic/apic.c <unknown> 409 	rsvd = atomic_read(&eilvt_offsets[offset]);
+arch/x86/kernel/apic/apic.c <unknown> 415 	} while (!atomic_try_cmpxchg(&eilvt_offsets[offset], &rsvd, new));
+arch/x86/kernel/fpu/xstate.c <unknown> 70 static unsigned int xstate_offsets[XFEATURE_MAX] __ro_after_init =
+arch/x86/kernel/fpu/xstate.c <unknown> 74 static unsigned int xstate_comp_offsets[XFEATURE_MAX] __ro_after_init =
+arch/x86/kernel/fpu/xstate.c <unknown> 76 static unsigned int xstate_supervisor_only_offsets[XFEATURE_MAX] __ro_after_init =
+arch/x86/kernel/fpu/xstate.c <unknown> 184 	xstate_offsets[XFEATURE_FP]	= 0;
+arch/x86/kernel/fpu/xstate.c <unknown> 188 	xstate_offsets[XFEATURE_SSE]	= xstate_sizes[XFEATURE_FP];
+arch/x86/kernel/fpu/xstate.c <unknown> 207 		xstate_offsets[i] = ebx;
+arch/x86/kernel/fpu/xstate.c <unknown> 214 		WARN_ONCE(last_good_offset > xstate_offsets[i],
+arch/x86/kernel/fpu/xstate.c <unknown> 217 		last_good_offset = xstate_offsets[i];
+arch/x86/kernel/fpu/xstate.c <unknown> 295 	xstate_comp_offsets[XFEATURE_FP] = 0;
+arch/x86/kernel/fpu/xstate.c <unknown> 296 	xstate_comp_offsets[XFEATURE_SSE] = offsetof(struct fxregs_state,
+arch/x86/kernel/fpu/xstate.c <unknown> 302 				xstate_comp_offsets[i] = xstate_offsets[i];
+arch/x86/kernel/fpu/xstate.c <unknown> 316 		xstate_comp_offsets[i] = next_offset;
+arch/x86/kernel/fpu/xstate.c <unknown> 324  * The offsets stored in xstate_comp_offsets[] only work for one specific
+arch/x86/kernel/fpu/xstate.c <unknown> 343 		xstate_supervisor_only_offsets[i] = next_offset;
+arch/x86/kernel/fpu/xstate.c <unknown> 359 			 i, xstate_comp_offsets[i], i, xstate_sizes[i]);
+arch/x86/kernel/fpu/xstate.c <unknown> 871 	return (void *)xsave + xstate_comp_offsets[xfeature_nr];
+arch/x86/kernel/fpu/xstate.c <unknown> 1065 		if (zerofrom < xstate_offsets[i])
+arch/x86/kernel/fpu/xstate.c <unknown> 1066 			membuf_zero(&to, xstate_offsets[i] - zerofrom);
+arch/x86/kernel/fpu/xstate.c <unknown> 1087 		zerofrom = xstate_offsets[i] + xstate_sizes[i];
+arch/x86/kernel/fpu/xstate.c <unknown> 1172 			offset = xstate_offsets[i];
+arch/x86/kernel/setup_percpu.c <unknown> 223 		per_cpu_offset(cpu) = delta + pcpu_unit_offsets[cpu];
+arch/x86/kvm/svm/nested.c <unknown> 217 		if (msrpm_offsets[i] == 0xffffffff)
+arch/x86/kvm/svm/nested.c <unknown> 220 		p      = msrpm_offsets[i];
+arch/x86/kvm/svm/svm.c <unknown> 79 u32 msrpm_offsets[MSRPM_OFFSETS] __read_mostly;
+arch/x86/kvm/svm/svm.c <unknown> 772 		if (msrpm_offsets[i] == offset)
+arch/x86/kvm/svm/svm.c <unknown> 776 		if (msrpm_offsets[i] != MSR_INVALID)
+arch/x86/kvm/svm/svm.c <unknown> 780 		msrpm_offsets[i] = offset;
+arch/x86/kvm/svm/svm.h <unknown> 34 extern u32 msrpm_offsets[MSRPM_OFFSETS] __read_mostly;
+arch/x86/um/ptrace_32.c <unknown> 55 static const int reg_offsets[] = {
+arch/x86/um/ptrace_32.c <unknown> 120 	child->thread.regs.regs.gp[reg_offsets[regno]] = value;
+arch/x86/um/ptrace_32.c <unknown> 172 	return mask & child->thread.regs.regs.gp[reg_offsets[regno]];
+arch/x86/um/ptrace_64.c <unknown> 22 static const int reg_offsets[] =
+arch/x86/um/ptrace_64.c <unknown> 106 	child->thread.regs.regs.gp[reg_offsets[regno >> 3]] = value;
+arch/x86/um/ptrace_64.c <unknown> 167 	return mask & child->thread.regs.regs.gp[reg_offsets[regno >> 3]];
+crypto/async_tx/async_pq.c <unknown> 124 			srcs[i] = page_address(blocks[i]) + offsets[i];
+crypto/async_tx/async_pq.c <unknown> 214 						offsets[i], len, DMA_TO_DEVICE);
+crypto/async_tx/async_pq.c <unknown> 327 							      offsets[i], len,
+drivers/accessibility/speakup/keyhelp.c <unknown> 17 static u_short key_offsets[MAXFUNCS], key_data[MAXKEYS];
+drivers/accessibility/speakup/keyhelp.c <unknown> 20 static short letter_offsets[26] = {
+drivers/accessibility/speakup/keyhelp.c <unknown> 72 		key_offsets[i] = offset;
+drivers/accessibility/speakup/keyhelp.c <unknown> 91 			offset = key_offsets[ch1];
+drivers/accessibility/speakup/keyhelp.c <unknown> 127 		letter_offsets[(start & 31) - 1] = i;
+drivers/accessibility/speakup/keyhelp.c <unknown> 139 	if (letter_offsets[0] == -1)
+drivers/accessibility/speakup/keyhelp.c <unknown> 150 		if (letter_offsets[ch - 'a'] == -1) {
+drivers/accessibility/speakup/keyhelp.c <unknown> 155 		cur_item = letter_offsets[ch - 'a'];
+drivers/accessibility/speakup/keyhelp.c <unknown> 197 	if (key_offsets[func] == 0) {
+drivers/accessibility/speakup/keyhelp.c <unknown> 201 	p_keys = key_data + key_offsets[func];
+drivers/acpi/battery.c <unknown> 388 static const struct acpi_offsets state_offsets[] = {
+drivers/acpi/battery.c <unknown> 395 static const struct acpi_offsets info_offsets[] = {
+drivers/acpi/battery.c <unknown> 411 static const struct acpi_offsets extended_info_offsets[] = {
+drivers/acpi/battery.c <unknown> 447 		if (offsets[i].mode) {
+drivers/acpi/battery.c <unknown> 448 			u8 *ptr = (u8 *)battery + offsets[i].offset;
+drivers/acpi/battery.c <unknown> 460 			int *x = (int *)((u8 *)battery + offsets[i].offset);
+drivers/base/arch_numa.c <unknown> 190 		__per_cpu_offset[cpu] = delta + pcpu_unit_offsets[cpu];
+drivers/base/regmap/regmap-irq.c <unknown> 62 		subreg = &chip->sub_reg_offsets[i];
+drivers/base/regmap/regmap-irq.c <unknown> 387 		subreg = &chip->sub_reg_offsets[b];
+drivers/base/regmap/regmap-irq.c <unknown> 659 			if (chip->sub_reg_offsets[i].num_regs != 1)
+drivers/bus/brcmstb_gisb.c <unknown> 142 	int offset = gdev->gisb_offsets[reg];
+drivers/bus/brcmstb_gisb.c <unknown> 180 	int offset = gdev->gisb_offsets[reg];
+drivers/bus/ti-sysc.c <unknown> 132 	int offsets[SYSC_MAX_REGS];
+drivers/bus/ti-sysc.c <unknown> 167 		if (ddata->offsets[SYSC_REVISION] >= 0 &&
+drivers/bus/ti-sysc.c <unknown> 168 		    offset == ddata->offsets[SYSC_REVISION]) {
+drivers/bus/ti-sysc.c <unknown> 188 		if (ddata->offsets[SYSC_REVISION] >= 0 &&
+drivers/bus/ti-sysc.c <unknown> 189 		    offset == ddata->offsets[SYSC_REVISION]) {
+drivers/bus/ti-sysc.c <unknown> 208 	int offset = ddata->offsets[SYSC_REVISION];
+drivers/bus/ti-sysc.c <unknown> 218 	int offset = ddata->offsets[SYSC_SYSCONFIG];
+drivers/bus/ti-sysc.c <unknown> 228 	int offset = ddata->offsets[SYSC_SYSSTATUS];
+drivers/bus/ti-sysc.c <unknown> 297 	syss_offset = ddata->offsets[SYSC_SYSSTATUS];
+drivers/bus/ti-sysc.c <unknown> 844 		ddata->offsets[reg] = -ENODEV;
+drivers/bus/ti-sysc.c <unknown> 849 	ddata->offsets[reg] = res->start - ddata->module_pa;
+drivers/bus/ti-sysc.c <unknown> 878 		if (ddata->offsets[i] < 0)
+drivers/bus/ti-sysc.c <unknown> 881 		if (ddata->offsets[i] > (ddata->module_size - 4)) {
+drivers/bus/ti-sysc.c <unknown> 888 			if (ddata->offsets[j] < 0)
+drivers/bus/ti-sysc.c <unknown> 891 			if (ddata->offsets[i] == ddata->offsets[j])
+drivers/bus/ti-sysc.c <unknown> 922 	if (ddata->offsets[SYSC_REVISION] < 0 &&
+drivers/bus/ti-sysc.c <unknown> 923 	    ddata->offsets[SYSC_SYSCONFIG] < 0 &&
+drivers/bus/ti-sysc.c <unknown> 924 	    ddata->offsets[SYSC_SYSSTATUS] < 0) {
+drivers/bus/ti-sysc.c <unknown> 927 		size = max3(ddata->offsets[SYSC_REVISION],
+drivers/bus/ti-sysc.c <unknown> 928 			    ddata->offsets[SYSC_SYSCONFIG],
+drivers/bus/ti-sysc.c <unknown> 929 			    ddata->offsets[SYSC_SYSSTATUS]);
+drivers/bus/ti-sysc.c <unknown> 993 	if (ddata->offsets[SYSC_REVISION] < 0)
+drivers/bus/ti-sysc.c <unknown> 1004 	if (ddata->offsets[reg] < 0)
+drivers/bus/ti-sysc.c <unknown> 1007 	return sprintf(bufp, ":%x", ddata->offsets[reg]);
+drivers/bus/ti-sysc.c <unknown> 1049 	sysc_write(ddata, ddata->offsets[SYSC_SYSCONFIG], value);
+drivers/bus/ti-sysc.c <unknown> 1098 	if (ddata->offsets[SYSC_SYSCONFIG] == -ENODEV)
+drivers/bus/ti-sysc.c <unknown> 1102 	reg = sysc_read(ddata, ddata->offsets[SYSC_SYSCONFIG]);
+drivers/bus/ti-sysc.c <unknown> 1171 	sysc_read(ddata, ddata->offsets[SYSC_SYSCONFIG]);
+drivers/bus/ti-sysc.c <unknown> 1202 	if (ddata->offsets[SYSC_SYSCONFIG] == -ENODEV)
+drivers/bus/ti-sysc.c <unknown> 1209 	reg = sysc_read(ddata, ddata->offsets[SYSC_SYSCONFIG]);
+drivers/bus/ti-sysc.c <unknown> 1261 	sysc_read(ddata, ddata->offsets[SYSC_SYSCONFIG]);
+drivers/bus/ti-sysc.c <unknown> 1690 		if (q->rev_offset != ddata->offsets[SYSC_REVISION])
+drivers/bus/ti-sysc.c <unknown> 1693 		if (q->sysc_offset != ddata->offsets[SYSC_SYSCONFIG])
+drivers/bus/ti-sysc.c <unknown> 1696 		if (q->syss_offset != ddata->offsets[SYSC_SYSSTATUS])
+drivers/bus/ti-sysc.c <unknown> 1716 		if (q->rev_offset != ddata->offsets[SYSC_REVISION])
+drivers/bus/ti-sysc.c <unknown> 1719 		if (q->sysc_offset != ddata->offsets[SYSC_SYSCONFIG])
+drivers/bus/ti-sysc.c <unknown> 1722 		if (q->syss_offset != ddata->offsets[SYSC_SYSSTATUS])
+drivers/bus/ti-sysc.c <unknown> 1979 	reg = sysc_read(ddata, ddata->offsets[SYSC_SYSCONFIG]);
+drivers/bus/ti-sysc.c <unknown> 1981 	sysc_write(ddata, ddata->offsets[SYSC_SYSCONFIG], reg);
+drivers/bus/ti-sysc.c <unknown> 2091 	sysc_offset = ddata->offsets[SYSC_SYSCONFIG];
+drivers/bus/ti-sysc.c <unknown> 3232 	ddata->offsets[SYSC_REVISION] = -ENODEV;
+drivers/bus/ti-sysc.c <unknown> 3233 	ddata->offsets[SYSC_SYSCONFIG] = -ENODEV;
+drivers/bus/ti-sysc.c <unknown> 3234 	ddata->offsets[SYSC_SYSSTATUS] = -ENODEV;
+drivers/clk/qcom/apss-ipq-pll.c <unknown> 10 static const u8 ipq_pll_offsets[] = {
+drivers/clocksource/sh_mtu2.c <unknown> 335 static const unsigned int sh_mtu2_channel_offsets[] = {
+drivers/clocksource/sh_mtu2.c <unknown> 364 	ch->base = mtu->mapbase + sh_mtu2_channel_offsets[index];
+drivers/cpufreq/mediatek-cpufreq-hw.c <unknown> 44 static const u16 cpufreq_mtk_offsets[REG_ARRAY_SIZE] = {
+drivers/cpufreq/mediatek-cpufreq-hw.c <unknown> 180 		data->reg_bases[i] = base + offsets[i];
+drivers/crypto/ccree/cc_driver.c <unknown> 55 static const u32 pidr_0124_offsets[CC_NUM_IDRS] = {
+drivers/crypto/ccree/cc_driver.c <unknown> 60 static const u32 cidr_0123_offsets[CC_NUM_IDRS] = {
+drivers/crypto/ccree/cc_driver.c <unknown> 164 		idr.regs[i] = cc_ioread(drvdata, idr_offsets[i]);
+drivers/crypto/hisilicon/hpre/hpre_main.c <unknown> 184 static const u64 hpre_cluster_offsets[] = {
+drivers/crypto/hisilicon/hpre/hpre_main.c <unknown> 867 		regset->base = qm->io_base + hpre_cluster_offsets[i];
+drivers/crypto/hisilicon/zip/zip_main.c <unknown> 198 static const u64 core_offsets[] = {
+drivers/crypto/hisilicon/zip/zip_main.c <unknown> 611 		regset->base = qm->io_base + core_offsets[i];
+drivers/crypto/hisilicon/zip/zip_main.c <unknown> 695 			readl(qm->io_base + core_offsets[i] +
+drivers/edac/i10nm_base.c <unknown> 150 	log0 = I10NM_GET_REG32(imc, res->channel, offsets[0]);
+drivers/edac/i10nm_base.c <unknown> 151 	log1 = I10NM_GET_REG32(imc, res->channel, offsets[1]);
+drivers/edac/i10nm_base.c <unknown> 152 	log3 = I10NM_GET_REG32(imc, res->channel, offsets[3]);
+drivers/edac/i10nm_base.c <unknown> 153 	log4 = I10NM_GET_REG32(imc, res->channel, offsets[4]);
+drivers/edac/i10nm_base.c <unknown> 154 	log5 = I10NM_GET_REG64(imc, res->channel, offsets[5]);
+drivers/edac/i10nm_base.c <unknown> 157 		log2a = I10NM_GET_REG64(imc, res->channel, offsets[2]);
+drivers/edac/i10nm_base.c <unknown> 161 		log2 = I10NM_GET_REG32(imc, res->channel, offsets[2]);
+drivers/edac/i10nm_base.c <unknown> 182 		I10NM_SET_REG32(imc, res->channel, offsets[0], log0);
+drivers/edac/qcom_edac.c <unknown> 216 		ret = regmap_read(drv->regmap, drv->offsets[bank] + synd_reg,
+drivers/edac/qcom_edac.c <unknown> 226 			  drv->offsets[bank] + reg_data.count_status_reg,
+drivers/edac/qcom_edac.c <unknown> 237 			  drv->offsets[bank] + reg_data.ways_status_reg,
+drivers/edac/qcom_edac.c <unknown> 300 				  drv->offsets[i] + DRP_INTERRUPT_STATUS,
+drivers/edac/qcom_edac.c <unknown> 316 				  drv->offsets[i] + TRP_INTERRUPT_0_STATUS,
+drivers/gpio/gpio-msc313.c <unknown> 215 static const unsigned int msc313_offsets[] = {
+drivers/gpio/gpio-msc313.c <unknown> 235 	u8 gpioreg = readb_relaxed(gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 242 	writeb_relaxed(gpioreg, gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 249 	return readb_relaxed(gpio->base + gpio->gpio_data->offsets[offset]) & MSC313_GPIO_IN;
+drivers/gpio/gpio-msc313.c <unknown> 255 	u8 gpioreg = readb_relaxed(gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 258 	writeb_relaxed(gpioreg, gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 266 	u8 gpioreg = readb_relaxed(gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 273 	writeb_relaxed(gpioreg, gpio->base + gpio->gpio_data->offsets[offset]);
+drivers/gpio/gpio-msc313.c <unknown> 322 	unsigned int offset = priv->gpio_data->offsets[child];
+drivers/gpio/gpio-msc313.c <unknown> 432 		gpio->saved[i] = readb_relaxed(gpio->base + gpio->gpio_data->offsets[i]) & MSC313_GPIO_BITSTOSAVE;
+drivers/gpio/gpio-msc313.c <unknown> 443 		writeb_relaxed(gpio->saved[i], gpio->base + gpio->gpio_data->offsets[i]);
+drivers/gpio/gpiolib-cdev.c <unknown> 385 		u32 offset = handlereq.lineoffsets[i];
+drivers/gpio/gpiolib-cdev.c <unknown> 1471 		u32 offset = ulr.offsets[i];
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 786 			afb->base.offsets[1] = dcc_offset * 256 + afb->base.offsets[0];
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 801 			    render_dcc_offset != afb->base.offsets[1] &&
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 806 				afb->base.offsets[2] = render_dcc_offset;
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 931 	if (rfb->base.offsets[plane] % block_size) {
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 934 			    rfb->base.offsets[plane], plane, block_size);
+drivers/gpu/drm/amd/amdgpu/amdgpu_display.c <unknown> 938 	size = rfb->base.offsets[plane] +
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 47 static const u32 sdma_offsets[SDMA_MAX_INSTANCE] =
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 183 	return (RREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me]) & 0x3fffc) >> 2;
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 197 	WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 322 		rb_cntl = RREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 324 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 325 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 379 		f32_cntl = RREG32(mmSDMA0_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 384 				WREG32(mmSDMA0_PHASE0_QUANTUM + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 386 				WREG32(mmSDMA0_PHASE1_QUANTUM + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 394 		WREG32(mmSDMA0_CNTL + sdma_offsets[i], f32_cntl);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 417 		me_cntl = RREG32(mmSDMA0_F32_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 422 		WREG32(mmSDMA0_F32_CNTL + sdma_offsets[i], me_cntl);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 450 			WREG32(mmSDMA0_GFX_VIRTUAL_ADDR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 451 			WREG32(mmSDMA0_GFX_APE1_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 457 		WREG32(mmSDMA0_TILING_CONFIG + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 460 		WREG32(mmSDMA0_SEM_INCOMPLETE_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 461 		WREG32(mmSDMA0_SEM_WAIT_FAIL_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 470 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 473 		WREG32(mmSDMA0_GFX_RB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 474 		WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 475 		WREG32(mmSDMA0_GFX_IB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 476 		WREG32(mmSDMA0_GFX_IB_OFFSET + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 479 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_HI + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 481 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_LO + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 486 		WREG32(mmSDMA0_GFX_RB_BASE + sdma_offsets[i], ring->gpu_addr >> 8);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 487 		WREG32(mmSDMA0_GFX_RB_BASE_HI + sdma_offsets[i], ring->gpu_addr >> 40);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 490 		WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[i], lower_32_bits(ring->wptr) << 2);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 493 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 501 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 565 		WREG32(mmSDMA0_UCODE_ADDR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 567 			WREG32(mmSDMA0_UCODE_DATA + sdma_offsets[i], le32_to_cpup(fw_data++));
+drivers/gpu/drm/amd/amdgpu/cik_sdma.c <unknown> 568 		WREG32(mmSDMA0_UCODE_ADDR + sdma_offsets[i], adev->sdma.instance[i].fw_version);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 53 static const u32 crtc_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 64 static const u32 hpd_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 74 static const uint32_t dig_offsets[] = {
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 90 } interrupt_status_offsets[] = { {
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 204 		return RREG32(mmCRTC_STATUS_FRAME_COUNT + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 267 	*vbl = RREG32(mmCRTC_V_BLANK_START_END + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 268 	*position = RREG32(mmCRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 290 	if (RREG32(mmDC_HPD_INT_STATUS + hpd_offsets[hpd]) &
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 314 	tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 319 	WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 351 			tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 353 			WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 357 		tmp = RREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 359 		WREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 361 		tmp = RREG32(mmDC_HPD_TOGGLE_FILT_CNTL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 368 		WREG32(mmDC_HPD_TOGGLE_FILT_CNTL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 399 		tmp = RREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 401 		WREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 421 		tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 423 			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 431 				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 492 			crtc_enabled = REG_GET_FIELD(RREG32(mmCRTC_CONTROL + crtc_offsets[i]),
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 495 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 496 				tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 498 				WREG32(mmCRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 499 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 1426 static const u32 pin_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 1455 		adev->mode_info.audio.pin[i].offset = pin_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 1788 			adev->mode_info.afmt[i]->offset = dig_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 2991 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 2994 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 2997 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3000 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3020 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3023 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3026 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3029 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3050 		tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3052 		WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3055 		tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3057 		WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3126 	reg = RREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3128 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3131 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3154 	if (RREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id]) &
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3156 		WREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id],
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3200 	tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3202 	WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3215 	tmp = RREG32(mmLB_VBLANK_STATUS + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3217 	WREG32(mmLB_VBLANK_STATUS + crtc_offsets[crtc], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3230 	tmp = RREG32(mmLB_VLINE_STATUS + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3232 	WREG32(mmLB_VLINE_STATUS + crtc_offsets[crtc], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3240 	uint32_t disp_int = RREG32(interrupt_status_offsets[crtc].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3245 		if (disp_int & interrupt_status_offsets[crtc].vblank)
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3257 		if (disp_int & interrupt_status_offsets[crtc].vline)
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3286 	disp_int = RREG32(interrupt_status_offsets[hpd].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v10_0.c <unknown> 3287 	mask = interrupt_status_offsets[hpd].hpd;
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 53 static const u32 crtc_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 64 static const u32 hpd_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 74 static const uint32_t dig_offsets[] = {
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 92 } interrupt_status_offsets[] = { {
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 222 		return RREG32(mmCRTC_STATUS_FRAME_COUNT + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 285 	*vbl = RREG32(mmCRTC_V_BLANK_START_END + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 286 	*position = RREG32(mmCRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 308 	if (RREG32(mmDC_HPD_INT_STATUS + hpd_offsets[hpd]) &
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 332 	tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 337 	WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 369 			tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 371 			WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 375 		tmp = RREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 377 		WREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 379 		tmp = RREG32(mmDC_HPD_TOGGLE_FILT_CNTL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 386 		WREG32(mmDC_HPD_TOGGLE_FILT_CNTL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 416 		tmp = RREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 418 		WREG32(mmDC_HPD_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 437 		tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 439 			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 447 				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 518 			crtc_enabled = REG_GET_FIELD(RREG32(mmCRTC_CONTROL + crtc_offsets[i]),
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 521 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 522 				tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 524 				WREG32(mmCRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 525 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 1452 static const u32 pin_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 1497 		adev->mode_info.audio.pin[i].offset = pin_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 1830 			adev->mode_info.afmt[i]->offset = dig_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3114 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3117 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3120 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3123 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3143 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3146 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3149 		lb_interrupt_mask = RREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3152 		WREG32(mmLB_INTERRUPT_MASK + crtc_offsets[crtc], lb_interrupt_mask);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3173 		tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3175 		WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3178 		tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3180 		WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3249 	reg = RREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3251 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3254 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3277 	if (RREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id]) &
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3279 		WREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id],
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3323 	tmp = RREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3325 	WREG32(mmDC_HPD_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3338 	tmp = RREG32(mmLB_VBLANK_STATUS + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3340 	WREG32(mmLB_VBLANK_STATUS + crtc_offsets[crtc], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3353 	tmp = RREG32(mmLB_VLINE_STATUS + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3355 	WREG32(mmLB_VLINE_STATUS + crtc_offsets[crtc], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3363 	uint32_t disp_int = RREG32(interrupt_status_offsets[crtc].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3369 		if (disp_int & interrupt_status_offsets[crtc].vblank)
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3381 		if (disp_int & interrupt_status_offsets[crtc].vline)
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3410 	disp_int = RREG32(interrupt_status_offsets[hpd].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v11_0.c <unknown> 3411 	mask = interrupt_status_offsets[hpd].hpd;
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 57 static const u32 crtc_offsets[6] =
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 67 static const u32 hpd_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 77 static const uint32_t dig_offsets[] = {
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 93 } interrupt_status_offsets[6] = { {
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 156 		return RREG32(mmCRTC_STATUS_FRAME_COUNT + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 218 	*vbl = RREG32(mmCRTC_V_BLANK_START_END + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 219 	*position = RREG32(mmCRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 242 	if (RREG32(mmDC_HPD1_INT_STATUS + hpd_offsets[hpd]) & DC_HPD1_INT_STATUS__DC_HPD1_SENSE_MASK)
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 265 	tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 270 	WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 295 		tmp = RREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 297 		WREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 306 			tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 308 			WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 340 		tmp = RREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 342 		WREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 388 			crtc_enabled = RREG32(mmCRTC_CONTROL + crtc_offsets[i]) &
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 391 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 392 				tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 394 				WREG32(mmCRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 395 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 1329 static const u32 pin_offsets[7] =
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 1368 		adev->mode_info.audio.pin[i].offset = pin_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 1753 			adev->mode_info.afmt[i]->offset = dig_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2604 	amdgpu_crtc->crtc_offset = crtc_offsets[amdgpu_crtc->crtc_id];
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2894 		dc_hpd_int_cntl = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2896 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type], dc_hpd_int_cntl);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2899 		dc_hpd_int_cntl = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2901 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type], dc_hpd_int_cntl);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2963 	uint32_t disp_int = RREG32(interrupt_status_offsets[crtc].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2969 		if (disp_int & interrupt_status_offsets[crtc].vblank)
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2970 			WREG32(mmVBLANK_STATUS + crtc_offsets[crtc], VBLANK_ACK);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2980 		if (disp_int & interrupt_status_offsets[crtc].vline)
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 2981 			WREG32(mmVLINE_STATUS + crtc_offsets[crtc], VLINE_ACK);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3007 	reg = RREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3009 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3012 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3035 	if (RREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id]) &
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3037 		WREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id],
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3084 	disp_int = RREG32(interrupt_status_offsets[hpd].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3085 	mask = interrupt_status_offsets[hpd].hpd;
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3088 		tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v6_0.c <unknown> 3090 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 54 static const u32 crtc_offsets[6] =
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 64 static const u32 hpd_offsets[] =
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 74 static const uint32_t dig_offsets[] = {
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 90 } interrupt_status_offsets[6] = { {
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 152 		return RREG32(mmCRTC_STATUS_FRAME_COUNT + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 212 	*vbl = RREG32(mmCRTC_V_BLANK_START_END + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 213 	*position = RREG32(mmCRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 235 	if (RREG32(mmDC_HPD1_INT_STATUS + hpd_offsets[hpd]) &
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 259 	tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 264 	WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 289 		tmp = RREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 291 		WREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 300 			tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 302 			WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 334 		tmp = RREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 336 		WREG32(mmDC_HPD1_CONTROL + hpd_offsets[amdgpu_connector->hpd.hpd], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 355 		if (RREG32(mmCRTC_CONTROL + crtc_offsets[i]) & CRTC_CONTROL__CRTC_MASTER_EN_MASK) {
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 356 			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 364 				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 432 			crtc_enabled = REG_GET_FIELD(RREG32(mmCRTC_CONTROL + crtc_offsets[i]),
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 435 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 436 				tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 438 				WREG32(mmCRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 439 				WREG32(mmCRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 1380 static const u32 pin_offsets[7] =
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 1418 		adev->mode_info.audio.pin[i].offset = pin_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 1717 			adev->mode_info.afmt[i]->offset = dig_offsets[i];
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 2623 	amdgpu_crtc->crtc_offset = crtc_offsets[amdgpu_crtc->crtc_id];
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 2986 		dc_hpd_int_cntl = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 2988 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type], dc_hpd_int_cntl);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 2991 		dc_hpd_int_cntl = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 2993 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[type], dc_hpd_int_cntl);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3055 	uint32_t disp_int = RREG32(interrupt_status_offsets[crtc].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3061 		if (disp_int & interrupt_status_offsets[crtc].vblank)
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3062 			WREG32(mmLB_VBLANK_STATUS + crtc_offsets[crtc], LB_VBLANK_STATUS__VBLANK_ACK_MASK);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3072 		if (disp_int & interrupt_status_offsets[crtc].vline)
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3073 			WREG32(mmLB_VLINE_STATUS + crtc_offsets[crtc], LB_VLINE_STATUS__VLINE_ACK_MASK);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3099 	reg = RREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3101 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3104 		WREG32(mmGRPH_INTERRUPT_CONTROL + crtc_offsets[type],
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3127 	if (RREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id]) &
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3129 		WREG32(mmGRPH_INTERRUPT_STATUS + crtc_offsets[crtc_id],
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3176 	disp_int = RREG32(interrupt_status_offsets[hpd].reg);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3177 	mask = interrupt_status_offsets[hpd].hpd;
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3180 		tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+drivers/gpu/drm/amd/amdgpu/dce_v8_0.c <unknown> 3182 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c <unknown> 3936 			ind_start_offsets[*offset_count] = ind_offset;
+drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c <unknown> 3974 	int indirect_start_offsets[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c <unknown> 4016 				indirect_start_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c <unknown> 2752 		indirect_start_offsets[*indirect_start_offsets_count] = indirect_offset;
+drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c <unknown> 2781 	int indirect_start_offsets[] = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};
+drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c <unknown> 2860 		       indirect_start_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 60 static const u32 sdma_offsets[SDMA_MAX_INSTANCE] =
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 210 	u32 wptr = RREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me]) >> 2;
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 226 	WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me], lower_32_bits(ring->wptr) << 2);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 355 		rb_cntl = RREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 357 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 358 		ib_cntl = RREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 360 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 395 		f32_cntl = RREG32(mmSDMA0_F32_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 400 		WREG32(mmSDMA0_F32_CNTL + sdma_offsets[i], f32_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 428 			WREG32(mmSDMA0_GFX_VIRTUAL_ADDR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 429 			WREG32(mmSDMA0_GFX_APE1_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 434 		WREG32(mmSDMA0_TILING_CONFIG + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 437 		WREG32(mmSDMA0_SEM_WAIT_FAIL_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 441 		rb_cntl = RREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 448 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 451 		WREG32(mmSDMA0_GFX_RB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 452 		WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 453 		WREG32(mmSDMA0_GFX_IB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 454 		WREG32(mmSDMA0_GFX_IB_OFFSET + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 457 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_HI + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 459 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_LO + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 464 		WREG32(mmSDMA0_GFX_RB_BASE + sdma_offsets[i], ring->gpu_addr >> 8);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 465 		WREG32(mmSDMA0_GFX_RB_BASE_HI + sdma_offsets[i], ring->gpu_addr >> 40);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 468 		WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[i], lower_32_bits(ring->wptr) << 2);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 472 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 474 		ib_cntl = RREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c <unknown> 480 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 74 static const u32 sdma_offsets[SDMA_MAX_INSTANCE] =
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 372 		wptr = RREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me]) >> 2;
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 399 		WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me], lower_32_bits(ring->wptr) << 2);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 529 		rb_cntl = RREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 531 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 532 		ib_cntl = RREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 534 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 588 		f32_cntl = RREG32(mmSDMA0_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 595 				WREG32(mmSDMA0_PHASE0_QUANTUM + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 597 				WREG32(mmSDMA0_PHASE1_QUANTUM + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 607 		WREG32(mmSDMA0_CNTL + sdma_offsets[i], f32_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 630 		f32_cntl = RREG32(mmSDMA0_F32_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 635 		WREG32(mmSDMA0_F32_CNTL + sdma_offsets[i], f32_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 666 			WREG32(mmSDMA0_GFX_VIRTUAL_ADDR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 667 			WREG32(mmSDMA0_GFX_APE1_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 672 		WREG32(mmSDMA0_TILING_CONFIG + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 675 		WREG32(mmSDMA0_SEM_WAIT_FAIL_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 679 		rb_cntl = RREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 686 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 690 		WREG32(mmSDMA0_GFX_RB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 692 		WREG32(mmSDMA0_GFX_IB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 693 		WREG32(mmSDMA0_GFX_IB_OFFSET + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 696 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_HI + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 698 		WREG32(mmSDMA0_GFX_RB_RPTR_ADDR_LO + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 703 		WREG32(mmSDMA0_GFX_RB_BASE + sdma_offsets[i], ring->gpu_addr >> 8);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 704 		WREG32(mmSDMA0_GFX_RB_BASE_HI + sdma_offsets[i], ring->gpu_addr >> 40);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 706 		doorbell = RREG32(mmSDMA0_GFX_DOORBELL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 715 		WREG32(mmSDMA0_GFX_DOORBELL + sdma_offsets[i], doorbell);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 720 		WREG32(mmSDMA0_GFX_RB_WPTR_POLL_ADDR_LO + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 722 		WREG32(mmSDMA0_GFX_RB_WPTR_POLL_ADDR_HI + sdma_offsets[i],
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 724 		wptr_poll_cntl = RREG32(mmSDMA0_GFX_RB_WPTR_POLL_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 727 			WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 736 		WREG32(mmSDMA0_GFX_RB_WPTR_POLL_CNTL + sdma_offsets[i], wptr_poll_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 740 		WREG32(mmSDMA0_GFX_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 742 		ib_cntl = RREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 748 		WREG32(mmSDMA0_GFX_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1453 			temp = data = RREG32(mmSDMA0_CLK_CTRL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1463 				WREG32(mmSDMA0_CLK_CTRL + sdma_offsets[i], data);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1467 			temp = data = RREG32(mmSDMA0_CLK_CTRL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1478 				WREG32(mmSDMA0_CLK_CTRL + sdma_offsets[i], data);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1492 			temp = data = RREG32(mmSDMA0_POWER_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1496 				WREG32(mmSDMA0_POWER_CNTL + sdma_offsets[i], data);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1500 			temp = data = RREG32(mmSDMA0_POWER_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1504 				WREG32(mmSDMA0_POWER_CNTL + sdma_offsets[i], data);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1547 	data = RREG32(mmSDMA0_CLK_CTRL + sdma_offsets[0]);
+drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c <unknown> 1552 	data = RREG32(mmSDMA0_POWER_CNTL + sdma_offsets[0]);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 30 const u32 sdma_offsets[SDMA_MAX_INSTANCE] =
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 51 	return (RREG32(DMA_RB_WPTR + sdma_offsets[me]) & 0x3fffc) >> 2;
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 59 	WREG32(DMA_RB_WPTR + sdma_offsets[me],
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 123 		rb_cntl = RREG32(DMA_RB_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 125 		WREG32(DMA_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 142 		WREG32(DMA_SEM_INCOMPLETE_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 143 		WREG32(DMA_SEM_WAIT_FAIL_TIMER_CNTL + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 151 		WREG32(DMA_RB_CNTL + sdma_offsets[i], rb_cntl);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 154 		WREG32(DMA_RB_RPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 155 		WREG32(DMA_RB_WPTR + sdma_offsets[i], 0);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 159 		WREG32(DMA_RB_RPTR_ADDR_LO + sdma_offsets[i], lower_32_bits(rptr_addr));
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 160 		WREG32(DMA_RB_RPTR_ADDR_HI + sdma_offsets[i], upper_32_bits(rptr_addr) & 0xFF);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 164 		WREG32(DMA_RB_BASE + sdma_offsets[i], ring->gpu_addr >> 8);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 171 		WREG32(DMA_IB_CNTL + sdma_offsets[i], ib_cntl);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 173 		dma_cntl = RREG32(DMA_CNTL + sdma_offsets[i]);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 175 		WREG32(DMA_CNTL + sdma_offsets[i], dma_cntl);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 178 		WREG32(DMA_RB_WPTR + sdma_offsets[i], lower_32_bits(ring->wptr) << 2);
+drivers/gpu/drm/amd/amdgpu/si_dma.c <unknown> 179 		WREG32(DMA_RB_CNTL + sdma_offsets[i], rb_cntl | DMA_RB_ENABLE);
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c <unknown> 5308 		uint64_t dcc_address = afb->address + afb->base.offsets[1];
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c <unknown> 5349 		uint64_t addr = afb->address + fb->offsets[0];
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c <unknown> 5362 		uint64_t luma_addr = afb->address + fb->offsets[0];
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c <unknown> 5363 		uint64_t chroma_addr = afb->address + fb->offsets[1];
+drivers/gpu/drm/amd/display/dc/dce100/dce100_hw_sequencer.c <unknown> 43 static const struct dce100_hw_seq_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce100/dce100_hw_sequencer.c <unknown> 65 	(reg + reg_offsets[id].crtc)
+drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c <unknown> 109 static const struct dce110_timing_generator_offsets dce100_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c <unknown> 1081 				&dce100_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce110/dce110_compressor.c <unknown> 47 static const struct dce110_compressor_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce110/dce110_compressor.c <unknown> 81 	cp110->offsets = reg_offsets[crtc_inst];
+drivers/gpu/drm/amd/display/dc/dce110/dce110_compressor.c <unknown> 307 	cp110->offsets = reg_offsets[params->inst];
+drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c <unknown> 99 static const struct dce110_hw_seq_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c <unknown> 115 	(reg + reg_offsets[id].blnd)
+drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c <unknown> 118 	(reg + reg_offsets[id].crtc)
+drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c <unknown> 118 static const struct dce110_timing_generator_offsets dce110_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c <unknown> 1442 				ctx, i, &dce110_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce112/dce112_compressor.c <unknown> 46 static const struct dce112_compressor_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce112/dce112_compressor.c <unknown> 405 		cp110->offsets = reg_offsets[params->inst];
+drivers/gpu/drm/amd/display/dc/dce112/dce112_hw_sequencer.c <unknown> 42 static const struct dce112_hw_seq_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce112/dce112_hw_sequencer.c <unknown> 63 	(reg + reg_offsets[id].crtc)
+drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c <unknown> 119 static const struct dce110_timing_generator_offsets dce112_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c <unknown> 1326 					&dce112_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce120/dce120_hw_sequencer.c <unknown> 54 static const struct dce120_hw_seq_reg_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce120/dce120_hw_sequencer.c <unknown> 76 	(reg + reg_offsets[id].crtc)
+drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c <unknown> 101 static const struct dce110_timing_generator_offsets dce120_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c <unknown> 1172 					&dce120_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c <unknown> 112 static const struct dce110_timing_generator_offsets dce60_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c <unknown> 1036 				ctx, i, &dce60_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c <unknown> 1234 				ctx, i, &dce60_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c <unknown> 1428 				ctx, i, &dce60_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c <unknown> 51 static const struct dce110_timing_generator_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c <unknown> 252 	tg110->derived_offsets = reg_offsets[instance];
+drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c <unknown> 114 static const struct dce110_timing_generator_offsets dce80_tg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c <unknown> 1047 				ctx, i, &dce80_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c <unknown> 1247 				ctx, i, &dce80_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c <unknown> 1443 				ctx, i, &dce80_tg_offsets[i]);
+drivers/gpu/drm/amd/display/dc/dce80/dce80_timing_generator.c <unknown> 51 static const struct dce110_timing_generator_offsets reg_offsets[] = {
+drivers/gpu/drm/amd/display/dc/dce80/dce80_timing_generator.c <unknown> 234 	tg110->derived_offsets = reg_offsets[instance];
+drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c <unknown> 878 	inst_offset = reg_offsets[pipe_ctx->stream_res.tg->inst].fmt;
+drivers/gpu/drm/amd/display/dc/hdcp/hdcp_msg.c <unknown> 79 static const uint8_t hdcp_i2c_offsets[HDCP_MESSAGE_ID_MAX] = {
+drivers/gpu/drm/amd/display/dc/hdcp/hdcp_msg.c <unknown> 146 	offset = hdcp_i2c_offsets[message_info->msg_id];
+drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h <unknown> 1762 	uint16_t backlight_offsets[NUM_BL_CURVE_SEGS];           // 78B
+drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c <unknown> 80 static const uint8_t hdcp_i2c_offsets[] = {
+drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c <unknown> 184 			sizeof(hdcp_i2c_offsets[0]);
+drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c <unknown> 191 				hdcp_i2c_offsets[msg_id],
+drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c <unknown> 258 			sizeof(hdcp_i2c_offsets[0]);
+drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c <unknown> 262 		hdcp->buf[0] = hdcp_i2c_offsets[msg_id];
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 147 	uint16_t backlight_offsets[NUM_BL_CURVE_SEGS];			/* 0xd0 U16.0 */
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 193 	uint16_t backlight_offsets[NUM_BL_CURVE_SEGS];			/* 0xd0 U16.0 */
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 223 	table->backlight_offsets[0] = params.backlight_lut_array[0];
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 225 	table->backlight_offsets[num_entries-1] =
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 242 		table->backlight_offsets[i] =
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 255 	table->backlight_offsets[0] = params.backlight_lut_array[0];
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 257 	table->backlight_offsets[num_entries-1] =
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 275 		table->backlight_offsets[i] = (big_endian) ?
+drivers/gpu/drm/amd/display/modules/power/power_helpers.c <unknown> 694 		config.backlight_offsets[i] = ram_table.backlight_offsets[i];
+drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c <unknown> 82 	if (fb->offsets[0] % alignment_header) {
+drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c <unknown> 95 	min_size = kfb->afbc_size + fb->offsets[0];
+drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c <unknown> 252 	offset = fb->offsets[plane];
+drivers/gpu/drm/arm/malidp_drv.c <unknown> 283 	if (mode_cmd->offsets[0] != 0) {
+drivers/gpu/drm/arm/malidp_mw.c <unknown> 174 		mw_state->addrs[i] = obj->paddr + fb->offsets[i];
+drivers/gpu/drm/armada/armada_plane.c <unknown> 54 	addrs[0][0] = addr + fb->offsets[0] + y * fb->pitches[0] +
+drivers/gpu/drm/armada/armada_plane.c <unknown> 62 		addrs[0][i] = addr + fb->offsets[i] + y * fb->pitches[i] +
+drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c <unknown> 65 	unsigned int offsets[ATMEL_HLCDC_LAYER_MAX_PLANES];
+drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c <unknown> 452 		state->dscrs[i]->addr = gem->paddr + state->offsets[i];
+drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c <unknown> 691 		hstate->offsets[i] = offset + fb->offsets[i];
+drivers/gpu/drm/drm_client_modeset.c <unknown> 368 	offsets[idx].x = hoffset;
+drivers/gpu/drm/drm_client_modeset.c <unknown> 369 	offsets[idx].y = voffset;
+drivers/gpu/drm/drm_client_modeset.c <unknown> 853 		struct drm_client_offset *offset = &offsets[i];
+drivers/gpu/drm/drm_fb_cma_helper.c <unknown> 84 	paddr = obj->paddr + fb->offsets[plane];
+drivers/gpu/drm/drm_framebuffer.c <unknown> 217 		if ((uint64_t) height * r->pitches[i] + r->offsets[i] > UINT_MAX)
+drivers/gpu/drm/drm_framebuffer.c <unknown> 277 		if (r->offsets[i]) {
+drivers/gpu/drm/drm_framebuffer.c <unknown> 603 		r->offsets[i] = 0;
+drivers/gpu/drm/drm_framebuffer.c <unknown> 609 		r->offsets[i] = fb->offsets[i];
+drivers/gpu/drm/drm_framebuffer.c <unknown> 1195 		drm_printf_indent(p, indent + 1, "offset[%u]=%u\n", i, fb->offsets[i]);
+drivers/gpu/drm/drm_gem_framebuffer_helper.c <unknown> 175 			 + mode_cmd->offsets[i];
+drivers/gpu/drm/drm_gem_framebuffer_helper.c <unknown> 358 			dma_buf_map_incr(&data[i], fb->offsets[i]);
+drivers/gpu/drm/drm_gem_framebuffer_helper.c <unknown> 558 	afbc_fb->offset = mode_cmd->offsets[0];
+drivers/gpu/drm/drm_ioc32.c <unknown> 878 	u32 offsets[4];
+drivers/gpu/drm/drm_modeset_helper.c <unknown> 91 		fb->offsets[i] = mode_cmd->offsets[i];
+drivers/gpu/drm/exynos/exynos_drm_fb.c <unknown> 109 				     mode_cmd->offsets[i];
+drivers/gpu/drm/exynos/exynos_drm_fb.c <unknown> 150 	return exynos_gem->dma_addr + fb->offsets[index];
+drivers/gpu/drm/i915/display/intel_display.c <unknown> 1255  * Add the x/y offsets derived from fb->offsets[] to the user
+drivers/gpu/drm/i915/display/intel_display.c <unknown> 10551 						     fb->offsets[2] + 16,
+drivers/gpu/drm/i915/display/intel_display.c <unknown> 11628 	if (mode_cmd->offsets[0] != 0) {
+drivers/gpu/drm/i915/display/intel_display.c <unknown> 11631 			    mode_cmd->offsets[0]);
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 376 	if (alignment != 0 && fb->offsets[color_plane] % alignment) {
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 379 			    fb->offsets[color_plane], color_plane);
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 388 			    fb->offsets[color_plane])) {
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 391 			    fb->offsets[color_plane], fb->pitches[color_plane],
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 402 				    fb->offsets[color_plane], 0);
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 547 			    color_plane, fb->base.offsets[color_plane]);
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 568 			    color_plane, fb->base.offsets[color_plane]);
+drivers/gpu/drm/i915/display/intel_fb.c <unknown> 798 			if (IS_ALIGNED(fb->base.offsets[i], 64))
+drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c <unknown> 332 		offsets[count] = count * 64 + 4 * (count % 16);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c <unknown> 377 						err = over->set(&ctx, offsets[n], ~values[n]);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c <unknown> 386 						err = write->set(&ctx, offsets[n], values[n]);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c <unknown> 397 						err = read->get(&ctx, offsets[n], &found);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c <unknown> 409 							       ~values[n], offsets[n]);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 22 	const unsigned int offsets[] = { 8, 3, 0 };
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 44 	err = __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 49 	err = __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 61 	err = __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 83 		u64 reloc = read_reloc(map, offsets[i], mask);
+drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c <unknown> 87 			       eb->engine->name, i, offsets[i], reloc, i);
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 78 static const u8 gen8_xcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 113 static const u8 gen9_xcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 197 static const u8 gen12_xcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 229 static const u8 gen8_rcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 266 static const u8 gen9_rcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 350 static const u8 gen11_rcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 391 static const u8 gen12_rcs_offsets[] = {
+drivers/gpu/drm/i915/gt/intel_lrc.c <unknown> 487 static const u8 xehp_rcs_offsets[] = {
+drivers/gpu/drm/i915/i915_reg.h <unknown> 254 #define _MMIO_PIPE2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->pipe_offsets[pipe] - \
+drivers/gpu/drm/i915/i915_reg.h <unknown> 255 					      INTEL_INFO(dev_priv)->pipe_offsets[PIPE_A] + (reg) + \
+drivers/gpu/drm/i915/i915_reg.h <unknown> 257 #define _TRANS2(tran, reg)		(INTEL_INFO(dev_priv)->trans_offsets[(tran)] - \
+drivers/gpu/drm/i915/i915_reg.h <unknown> 258 					 INTEL_INFO(dev_priv)->trans_offsets[TRANSCODER_A] + (reg) + \
+drivers/gpu/drm/i915/i915_reg.h <unknown> 261 #define _CURSOR2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->cursor_offsets[(pipe)] - \
+drivers/gpu/drm/i915/i915_reg.h <unknown> 262 					      INTEL_INFO(dev_priv)->cursor_offsets[PIPE_A] + (reg) + \
+drivers/gpu/drm/i915/intel_device_info.h <unknown> 214 	int pipe_offsets[I915_MAX_TRANSCODERS];
+drivers/gpu/drm/i915/intel_device_info.h <unknown> 215 	int trans_offsets[I915_MAX_TRANSCODERS];
+drivers/gpu/drm/i915/intel_device_info.h <unknown> 216 	int cursor_offsets[I915_MAX_PIPES];
+drivers/gpu/drm/imx/dcss/dcss-plane.c <unknown> 225 		p1_ba = cma_obj->paddr + fb->offsets[0] +
+drivers/gpu/drm/imx/dcss/dcss-plane.c <unknown> 232 		p1_ba = cma_obj->paddr + fb->offsets[0] +
+drivers/gpu/drm/imx/dcss/dcss-plane.c <unknown> 238 		p2_ba = cma_obj->paddr + fb->offsets[1] +
+drivers/gpu/drm/imx/ipuv3-plane.c <unknown> 134 	return cma_obj->paddr + fb->offsets[plane] + fb->pitches[plane] * y +
+drivers/gpu/drm/imx/ipuv3-plane.c <unknown> 153 	return cma_obj->paddr + fb->offsets[1] + fb->pitches[1] * y +
+drivers/gpu/drm/imx/ipuv3-plane.c <unknown> 172 	return cma_obj->paddr + fb->offsets[2] + fb->pitches[2] * y +
+drivers/gpu/drm/imx/ipuv3-plane.c <unknown> 451 	    fb->pitches[0] + fb->offsets[0]) {
+drivers/gpu/drm/kmb/kmb_plane.c <unknown> 407 		      addr[Y_PLANE] + fb->offsets[0]);
+drivers/gpu/drm/meson/meson_overlay.c <unknown> 653 		priv->viu.vd1_addr2 = gem->paddr + fb->offsets[2];
+drivers/gpu/drm/meson/meson_overlay.c <unknown> 665 		priv->viu.vd1_addr1 = gem->paddr + fb->offsets[1];
+drivers/gpu/drm/meson/meson_overlay.c <unknown> 677 		priv->viu.vd1_addr0 = gem->paddr + fb->offsets[0];
+drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c <unknown> 1263 				seq_printf(s, "offsets[%d]:%8u ", i,
+drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c <unknown> 1264 							fb->offsets[i]);
+drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c <unknown> 707 		hwpipe = mdp5_pipe_init(pipes[i], offsets[i], caps);
+drivers/gpu/drm/msm/msm_fb.c <unknown> 65 				i, fb->offsets[i], fb->pitches[i]);
+drivers/gpu/drm/msm/msm_fb.c <unknown> 113 	return msm_gem_iova(fb->obj[plane], aspace) + fb->offsets[plane];
+drivers/gpu/drm/msm/msm_fb.c <unknown> 206 			 + mode_cmd->offsets[i];
+drivers/gpu/drm/nouveau/dispnv04/overlay.c <unknown> 177 			nvbo->offset + fb->offsets[1]);
+drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c <unknown> 360 	uint32_t offsets[] = { base, base + 0x1c, base + 0x40, base + 0x5c };
+drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c <unknown> 364 			regs[i][j] = nv_read_ptv(dev, offsets[i]+4*j);
+drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c <unknown> 372 	uint32_t offsets[] = { base, base + 0x1c, base + 0x40, base + 0x5c };
+drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c <unknown> 376 			nv_write_ptv(dev, offsets[i]+4*j, regs[i][j]);
+drivers/gpu/drm/nouveau/nouveau_display.c <unknown> 355 						    mode_cmd->offsets[i],
+drivers/gpu/drm/nouveau/nouveau_display.c <unknown> 363 			if (size + mode_cmd->offsets[i] > nvbo->bo.base.size)
+drivers/gpu/drm/omapdrm/dss/dsi.c <unknown> 1284 	static const u8 offsets[] = { 0, 4, 8, 12, 16 };
+drivers/gpu/drm/omapdrm/dss/dsi.c <unknown> 1298 		unsigned int offset = offsets[i];
+drivers/gpu/drm/omapdrm/dss/dsi.c <unknown> 1318 		unsigned int offset = offsets[i];
+drivers/gpu/drm/omapdrm/dss/dsi.c <unknown> 1446 			if (!in_use[i] || (l & (1 << offsets[i])))
+drivers/gpu/drm/omapdrm/dss/dsi.c <unknown> 1455 				if (!in_use[i] || (l & (1 << offsets[i])))
+drivers/gpu/drm/omapdrm/omap_fb.c <unknown> 89 	offset = fb->offsets[n]
+drivers/gpu/drm/omapdrm/omap_fb.c <unknown> 297 				i, fb->offsets[n], fb->pitches[i]);
+drivers/gpu/drm/omapdrm/omap_fb.c <unknown> 397 		if (size > omap_gem_mmap_size(bos[i]) - mode_cmd->offsets[i]) {
+drivers/gpu/drm/omapdrm/omap_fb.c <unknown> 400 				bos[i]->size - mode_cmd->offsets[i], size);
+drivers/gpu/drm/panel/panel-samsung-s6e63m0.c <unknown> 239 static u8 const s6e63m0_elvss_offsets[S6E63M0_ELVSS_LEVELS] = {
+drivers/gpu/drm/panel/panel-samsung-s6e63m0.c <unknown> 643 	elvss_val = ctx->elvss_pulse + s6e63m0_elvss_offsets[i];
+drivers/gpu/drm/radeon/evergreen.c <unknown> 121 static const u32 crtc_offsets[6] =
+drivers/gpu/drm/radeon/evergreen.c <unknown> 1348 	if (RREG32(EVERGREEN_CRTC_STATUS + crtc_offsets[crtc]) & EVERGREEN_CRTC_V_BLANK)
+drivers/gpu/drm/radeon/evergreen.c <unknown> 1358 	pos1 = RREG32(EVERGREEN_CRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 1359 	pos2 = RREG32(EVERGREEN_CRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 1382 	if (!(RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[crtc]) & EVERGREEN_CRTC_MASTER_EN))
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2515 static const unsigned ni_dig_offsets[] =
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2525 static const unsigned ni_tx_offsets[] =
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2535 static const unsigned evergreen_dp_offsets[] =
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2581 		dig_fe = RREG32(NI_DIG_FE_CNTL + ni_dig_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2595 			dig_be = RREG32(NI_DIG_BE_CNTL + ni_dig_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2603 						   ni_dig_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2605 						    ni_tx_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2638 			     evergreen_dp_offsets[dig_fe]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2646 	       evergreen_dp_offsets[dig_fe], stream_ctrl);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2649 			     evergreen_dp_offsets[dig_fe]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2654 				     evergreen_dp_offsets[dig_fe]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2659 	fifo_ctrl = RREG32(EVERGREEN_DP_STEER_FIFO + evergreen_dp_offsets[dig_fe]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2661 	WREG32(EVERGREEN_DP_STEER_FIFO + evergreen_dp_offsets[dig_fe], fifo_ctrl);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2680 		crtc_enabled = RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i]) & EVERGREEN_CRTC_MASTER_EN;
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2684 				tmp = RREG32(EVERGREEN_CRTC_BLANK_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2687 					WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2689 					WREG32(EVERGREEN_CRTC_BLANK_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2690 					WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2693 				tmp = RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2696 					WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2698 					WREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2699 					WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2721 			WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2722 			tmp = RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2724 			WREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2725 			WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2749 			tmp = RREG32(EVERGREEN_GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2752 				WREG32(EVERGREEN_GRPH_UPDATE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2754 			tmp = RREG32(EVERGREEN_MASTER_UPDATE_LOCK + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2757 				WREG32(EVERGREEN_MASTER_UPDATE_LOCK + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2770 		WREG32(EVERGREEN_GRPH_PRIMARY_SURFACE_ADDRESS_HIGH + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2772 		WREG32(EVERGREEN_GRPH_SECONDARY_SURFACE_ADDRESS_HIGH + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2774 		WREG32(EVERGREEN_GRPH_PRIMARY_SURFACE_ADDRESS + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2776 		WREG32(EVERGREEN_GRPH_SECONDARY_SURFACE_ADDRESS + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2788 			tmp = RREG32(EVERGREEN_MASTER_UPDATE_MODE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2791 				WREG32(EVERGREEN_MASTER_UPDATE_MODE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2793 			tmp = RREG32(EVERGREEN_GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2796 				WREG32(EVERGREEN_GRPH_UPDATE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2798 			tmp = RREG32(EVERGREEN_MASTER_UPDATE_LOCK + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2801 				WREG32(EVERGREEN_MASTER_UPDATE_LOCK + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2804 				tmp = RREG32(EVERGREEN_GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2822 				tmp = RREG32(EVERGREEN_CRTC_BLANK_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2824 				WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2825 				WREG32(EVERGREEN_CRTC_BLANK_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2826 				WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2828 				tmp = RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2830 				WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2831 				WREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 2832 				WREG32(EVERGREEN_CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 3805 		if (RREG32(EVERGREEN_CRTC_CONTROL + crtc_offsets[i]) & EVERGREEN_CRTC_MASTER_EN) {
+drivers/gpu/drm/radeon/evergreen.c <unknown> 3806 			crtc_status[i] = RREG32(EVERGREEN_CRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 3814 				tmp = RREG32(EVERGREEN_CRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4456 		return RREG32(CRTC_STATUS_FRAME_COUNT + crtc_offsets[crtc]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4478 		WREG32(INT_MASK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4480 		WREG32(GRPH_INT_CONTROL + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4578 		    rdev, INT_MASK + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4585 		WREG32(GRPH_INT_CONTROL + crtc_offsets[i], GRPH_PFLIP_INT_MASK);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4601 		    rdev, AFMT_AUDIO_PACKET_CONTROL + crtc_offsets[i],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4622 		afmt_status[i] = RREG32(AFMT_STATUS + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4624 			grph_int[i] = RREG32(GRPH_INT_STATUS + crtc_offsets[i]);
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4631 				WREG32(GRPH_INT_STATUS + crtc_offsets[j],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4637 				WREG32(VBLANK_STATUS + crtc_offsets[j],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4640 				WREG32(VLINE_STATUS + crtc_offsets[j],
+drivers/gpu/drm/radeon/evergreen.c <unknown> 4657 			WREG32_OR(AFMT_AUDIO_PACKET_CONTROL + crtc_offsets[i],
+drivers/gpu/drm/radeon/r600.c <unknown> 102 static const u32 crtc_offsets[2] =
+drivers/gpu/drm/radeon/r600.c <unknown> 1593 		if (RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i]) & AVIVO_CRTC_EN) {
+drivers/gpu/drm/radeon/r600.c <unknown> 1594 			crtc_status[i] = RREG32(AVIVO_D1CRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/radeon/r600.c <unknown> 1602 				tmp = RREG32(AVIVO_D1CRTC_STATUS_HV_COUNT + crtc_offsets[i]);
+drivers/gpu/drm/radeon/radeon_audio.c <unknown> 44 static const u32 pin_offsets[7] =
+drivers/gpu/drm/radeon/radeon_audio.c <unknown> 269 		rdev->audio.pin[i].offset = pin_offsets[i];
+drivers/gpu/drm/radeon/radeon_display.c <unknown> 1497 		static uint32_t eg_offsets[] = {
+drivers/gpu/drm/radeon/radeon_display.c <unknown> 1527 				rdev->mode_info.afmt[i]->offset = eg_offsets[i];
+drivers/gpu/drm/radeon/radeon_dp_mst.c <unknown> 16 	static const int offsets[] = { EVERGREEN_CRTC0_REGISTER_OFFSET,
+drivers/gpu/drm/radeon/radeon_dp_mst.c <unknown> 24 	return offsets[id];
+drivers/gpu/drm/radeon/rs600.c <unknown> 56 static const u32 crtc_offsets[2] =
+drivers/gpu/drm/radeon/rs600.c <unknown> 64 	if (RREG32(AVIVO_D1CRTC_STATUS + crtc_offsets[crtc]) & AVIVO_D1CRTC_V_BLANK)
+drivers/gpu/drm/radeon/rs600.c <unknown> 74 	pos1 = RREG32(AVIVO_D1CRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/radeon/rs600.c <unknown> 75 	pos2 = RREG32(AVIVO_D1CRTC_STATUS_POSITION + crtc_offsets[crtc]);
+drivers/gpu/drm/radeon/rs600.c <unknown> 98 	if (!(RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[crtc]) & AVIVO_CRTC_EN))
+drivers/gpu/drm/radeon/rv515.c <unknown> 45 static const u32 crtc_offsets[2] =
+drivers/gpu/drm/radeon/rv515.c <unknown> 280 		crtc_enabled = RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i]) & AVIVO_CRTC_EN;
+drivers/gpu/drm/radeon/rv515.c <unknown> 283 			tmp = RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 286 				WREG32(AVIVO_D1CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/rv515.c <unknown> 288 				WREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 289 				WREG32(AVIVO_D1CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/rv515.c <unknown> 300 			WREG32(AVIVO_D1CRTC_UPDATE_LOCK + crtc_offsets[i], 1);
+drivers/gpu/drm/radeon/rv515.c <unknown> 301 			tmp = RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 303 			WREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 304 			WREG32(AVIVO_D1CRTC_UPDATE_LOCK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/rv515.c <unknown> 336 			tmp = RREG32(AVIVO_D1GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 339 				WREG32(AVIVO_D1GRPH_UPDATE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 341 			tmp = RREG32(AVIVO_D1MODE_MASTER_UPDATE_LOCK + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 344 				WREG32(AVIVO_D1MODE_MASTER_UPDATE_LOCK + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 370 		WREG32(R_006110_D1GRPH_PRIMARY_SURFACE_ADDRESS + crtc_offsets[i],
+drivers/gpu/drm/radeon/rv515.c <unknown> 372 		WREG32(R_006118_D1GRPH_SECONDARY_SURFACE_ADDRESS + crtc_offsets[i],
+drivers/gpu/drm/radeon/rv515.c <unknown> 380 			tmp = RREG32(AVIVO_D1MODE_MASTER_UPDATE_MODE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 384 				WREG32(AVIVO_D1MODE_MASTER_UPDATE_MODE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 386 			tmp = RREG32(AVIVO_D1GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 389 				WREG32(AVIVO_D1GRPH_UPDATE + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 391 			tmp = RREG32(AVIVO_D1MODE_MASTER_UPDATE_LOCK + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 394 				WREG32(AVIVO_D1MODE_MASTER_UPDATE_LOCK + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/rv515.c <unknown> 397 				tmp = RREG32(AVIVO_D1GRPH_UPDATE + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 422 			tmp = RREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i]);
+drivers/gpu/drm/radeon/rv515.c <unknown> 424 			WREG32(AVIVO_D1CRTC_CONTROL + crtc_offsets[i], tmp);
+drivers/gpu/drm/radeon/si.c <unknown> 141 static const u32 crtc_offsets[] =
+drivers/gpu/drm/radeon/si.c <unknown> 5964 		WREG32(INT_MASK + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/si.c <unknown> 5966 		WREG32(GRPH_INT_CONTROL + crtc_offsets[i], 0);
+drivers/gpu/drm/radeon/si.c <unknown> 6118 		    rdev, INT_MASK + crtc_offsets[i], VBLANK_INT_MASK,
+drivers/gpu/drm/radeon/si.c <unknown> 6124 		WREG32(GRPH_INT_CONTROL + crtc_offsets[i], GRPH_PFLIP_INT_MASK);
+drivers/gpu/drm/radeon/si.c <unknown> 6156 			grph_int[i] = RREG32(GRPH_INT_STATUS + crtc_offsets[i]);
+drivers/gpu/drm/radeon/si.c <unknown> 6163 				WREG32(GRPH_INT_STATUS + crtc_offsets[j],
+drivers/gpu/drm/radeon/si.c <unknown> 6169 				WREG32(VBLANK_STATUS + crtc_offsets[j],
+drivers/gpu/drm/radeon/si.c <unknown> 6172 				WREG32(VLINE_STATUS + crtc_offsets[j],
+drivers/gpu/drm/rcar-du/rcar_du_crtc.c <unknown> 1204 	static const unsigned int mmio_offsets[] = {
+drivers/gpu/drm/rcar-du/rcar_du_crtc.c <unknown> 1256 	rcrtc->mmio_offset = mmio_offsets[hwindex];
+drivers/gpu/drm/rcar-du/rcar_du_kms.c <unknown> 763 	static const unsigned int mmio_offsets[] = {
+drivers/gpu/drm/rcar-du/rcar_du_kms.c <unknown> 826 		rgrp->mmio_offset = mmio_offsets[i];
+drivers/gpu/drm/rcar-du/rcar_du_plane.c <unknown> 353 			dma[i] = gem->paddr + fb->offsets[i];
+drivers/gpu/drm/rcar-du/rcar_du_vsp.c <unknown> 177 			   + fb->offsets[i];
+drivers/gpu/drm/rcar-du/rcar_du_writeback.c <unknown> 236 			    + fb->offsets[i];
+drivers/gpu/drm/rockchip/rockchip_drm_vop.c <unknown> 860 				      fb->offsets[0]);
+drivers/gpu/drm/rockchip/rockchip_drm_vop.c <unknown> 949 	dma_addr = rk_obj->dma_addr + offset + fb->offsets[0];
+drivers/gpu/drm/rockchip/rockchip_drm_vop.c <unknown> 992 		dma_addr = rk_uv_obj->dma_addr + offset + fb->offsets[1];
+drivers/gpu/drm/shmobile/shmob_drm_crtc.c <unknown> 296 	scrtc->dma[0] = gem->paddr + fb->offsets[0]
+drivers/gpu/drm/shmobile/shmob_drm_crtc.c <unknown> 302 		scrtc->dma[1] = gem->paddr + fb->offsets[1]
+drivers/gpu/drm/shmobile/shmob_drm_plane.c <unknown> 48 	splane->dma[0] = gem->paddr + fb->offsets[0]
+drivers/gpu/drm/shmobile/shmob_drm_plane.c <unknown> 54 		splane->dma[1] = gem->paddr + fb->offsets[1]
+drivers/gpu/drm/sti/sti_gdp.c <unknown> 790 	top_field->gam_gdp_pml = (u32)cma_obj->paddr + fb->offsets[0];
+drivers/gpu/drm/sti/sti_hqvdp.c <unknown> 1189 	cmd->top.current_luma = (u32)cma_obj->paddr + fb->offsets[0];
+drivers/gpu/drm/sti/sti_hqvdp.c <unknown> 1190 	cmd->top.current_chroma = (u32)cma_obj->paddr + fb->offsets[1];
+drivers/gpu/drm/sun4i/sun8i_ui_layer.c <unknown> 238 	paddr = gem->paddr + fb->offsets[0];
+drivers/gpu/drm/sun4i/sun8i_vi_layer.c <unknown> 329 		paddr = gem->paddr + fb->offsets[i];
+drivers/gpu/drm/tegra/dc.c <unknown> 754 		window.base[i] = tegra_plane_state->iova[i] + fb->offsets[i];
+drivers/gpu/drm/tegra/fb.c <unknown> 164 		       width * bpp + cmd->offsets[i];
+drivers/gpu/drm/tegra/hub.c <unknown> 638 	base = tegra_plane_state->iova[0] + fb->offsets[0];
+drivers/gpu/drm/tegra/hub.c <unknown> 664 		base = tegra_plane_state->iova[1] + fb->offsets[1];
+drivers/gpu/drm/tegra/hub.c <unknown> 670 		base = tegra_plane_state->iova[2] + fb->offsets[2];
+drivers/gpu/drm/tidss/tidss_dispc.c <unknown> 1965 	return gem->paddr + fb->offsets[0] + x * fb->format->cpp[0] +
+drivers/gpu/drm/tidss/tidss_dispc.c <unknown> 1982 	return gem->paddr + fb->offsets[1] +
+drivers/gpu/drm/tilcdc/tilcdc_crtc.c <unknown> 72 	start = gem->paddr + fb->offsets[0] +
+drivers/gpu/drm/tiny/bochs.c <unknown> 431 			 state->fb->offsets[0] + gpu_addr);
+drivers/gpu/drm/vc4/vc4_drv.h <unknown> 397 	u32 offsets[3];
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 356 		vc4_state->offsets[i] = bo->paddr + fb->offsets[i];
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 685 			vc4_state->offsets[i] += src_y /
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 689 			vc4_state->offsets[i] += vc4_state->src_x /
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 746 		vc4_state->offsets[0] += tiles_t * (tiles_w << tile_size_shift);
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 747 		vc4_state->offsets[0] += subtile_y << 8;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 748 		vc4_state->offsets[0] += utile_y << 4;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 753 			vc4_state->offsets[0] += (tiles_w - tiles_l) <<
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 755 			vc4_state->offsets[0] -= (1 + !tile_y) << 10;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 757 			vc4_state->offsets[0] += tiles_l << tile_size_shift;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 758 			vc4_state->offsets[0] += tile_y << 10;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 802 			vc4_state->offsets[i] += param * tile_w * tile;
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 803 			vc4_state->offsets[i] += src_y /
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 806 			vc4_state->offsets[i] += x_off /
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 950 		vc4_dlist_write(vc4_state, vc4_state->offsets[i]);
+drivers/gpu/drm/vc4/vc4_plane.c <unknown> 1120 	addr = bo->paddr + fb->offsets[0];
+drivers/gpu/drm/vc4/vc4_txp.c <unknown> 315 	TXP_WRITE(TXP_DST_PTR, gem->paddr + fb->offsets[0]);
+drivers/gpu/drm/vc4/vc4_validate.c <unknown> 750 	static const uint32_t shader_reloc_offsets[] = {
+drivers/gpu/drm/vc4/vc4_validate.c <unknown> 825 		uint32_t o = shader_reloc_offsets[i];
+drivers/gpu/drm/vc4/vc4_validate.c <unknown> 875 			uint32_t o = validated_shader->uniform_addr_offsets[uni];
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 67 	uint32_t live_min_clamp_offsets[LIVE_REG_COUNT];
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 227 		clamp_offset = validation_state->live_min_clamp_offsets[clamp_reg];
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 300 	validated_shader->uniform_addr_offsets[o] = num_uniforms;
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 507 		validation_state->live_min_clamp_offsets[lri_mul] = ~0;
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 511 		validation_state->live_min_clamp_offsets[lri_add] = ~0;
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 547 		validation_state->live_min_clamp_offsets[lri_add] =
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 731 		validation_state->live_min_clamp_offsets[i] = ~0;
+drivers/gpu/drm/vc4/vc4_validate_shaders.c <unknown> 821 				validation_state.live_min_clamp_offsets[i] = ~0;
+drivers/gpu/drm/via/via_drv.h <unknown> 91 	const uint32_t *fire_offsets[VIA_FIRE_BUF_SIZE];
+drivers/gpu/drm/via/via_verifier.c <unknown> 588 				dev_priv->fire_offsets[dev_priv->
+drivers/gpu/drm/via/via_verifier.c <unknown> 725 	next_fire = dev_priv->fire_offsets[*fire_count];
+drivers/gpu/drm/via/via_verifier.c <unknown> 744 				next_fire = dev_priv->fire_offsets[*fire_count];
+drivers/gpu/drm/virtio/virtgpu_vq.c <unknown> 1297 		cmd_p->offsets[i] = cpu_to_le32(fb->offsets[i]);
+drivers/gpu/drm/vkms/vkms_plane.c <unknown> 116 	composer->offset = fb->offsets[0];
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 160 static const size_t vmw_binding_shader_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 168 static const size_t vmw_binding_rt_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 171 static const size_t vmw_binding_tex_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 174 static const size_t vmw_binding_cb_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 182 static const size_t vmw_binding_dx_ds_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 185 static const size_t vmw_binding_sr_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 193 static const size_t vmw_binding_so_target_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 196 static const size_t vmw_binding_vb_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 199 static const size_t vmw_binding_ib_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 202 static const size_t vmw_binding_uav_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 205 static const size_t vmw_binding_cs_uav_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 208 static const size_t vmw_binding_so_offsets[] = {
+drivers/gpu/drm/vmwgfx/vmwgfx_binding.c <unknown> 306 	size_t offset = b->offsets[shader_slot] + b->size*slot;
+drivers/gpu/drm/vmwgfx/vmwgfx_surface.c <unknown> 319 		const struct vmw_surface_offset *cur_offset = &srf->offsets[i];
+drivers/gpu/drm/xlnx/zynqmp_disp.c <unknown> 668 static const u32 csc_zero_offsets[] = {
+drivers/gpu/drm/xlnx/zynqmp_disp.c <unknown> 678 static const u32 csc_rgb_to_sdtv_offsets[] = {
+drivers/gpu/drm/xlnx/zynqmp_disp.c <unknown> 688 static const u32 csc_sdtv_to_rgb_offsets[] = {
+drivers/gpu/drm/xlnx/zynqmp_disp.c <unknown> 732 					offsets[i]);
+drivers/gpu/drm/xlnx/zynqmp_disp.c <unknown> 817 		zynqmp_disp_blend_write(disp, reg + i * 4, offsets[i]);
+drivers/gpu/drm/zte/zx_plane.c <unknown> 222 		paddr = cma_obj->paddr + fb->offsets[i];
+drivers/gpu/drm/zte/zx_plane.c <unknown> 394 	paddr = cma_obj->paddr + fb->offsets[0];
+drivers/gpu/ipu-v3/ipu-dc.c <unknown> 347 	static int channel_offsets[] = { 0, 0x1c, 0x38, 0x54, 0x58, 0x5c,
+drivers/gpu/ipu-v3/ipu-dc.c <unknown> 367 		priv->channels[i].base = priv->dc_reg + channel_offsets[i];
+drivers/hsi/clients/cmt_speech.c <unknown> 103 	unsigned int			rx_offsets[CS_MAX_BUFFERS];
+drivers/hsi/clients/cmt_speech.c <unknown> 104 	unsigned int			tx_offsets[CS_MAX_BUFFERS];
+drivers/hsi/clients/cmt_speech.c <unknown> 623 				hi->rx_offsets[hi->rx_slot % hi->rx_bufs]);
+drivers/hsi/clients/cmt_speech.c <unknown> 717 	address = (u32 *)(hi->mmap_base + hi->tx_offsets[hi->tx_slot]);
+drivers/hsi/clients/cmt_speech.c <unknown> 899 		hi->rx_offsets[i] = data_start + i * hi->slot_size;
+drivers/hsi/clients/cmt_speech.c <unknown> 900 		hi->mmap_cfg->rx_offsets[i] = hi->rx_offsets[i];
+drivers/hsi/clients/cmt_speech.c <unknown> 902 					i, hi->rx_offsets[i]);
+drivers/hsi/clients/cmt_speech.c <unknown> 905 		hi->tx_offsets[i] = data_start +
+drivers/hsi/clients/cmt_speech.c <unknown> 907 		hi->mmap_cfg->tx_offsets[i] = hi->tx_offsets[i];
+drivers/hsi/clients/cmt_speech.c <unknown> 909 					i, hi->rx_offsets[i]);
+drivers/iio/adc/xilinx-xadc-core.c <unknown> 462 static const unsigned int xadc_axi_reg_offsets[] = {
+drivers/iio/adc/xilinx-xadc-core.c <unknown> 472 	xadc_read_reg(xadc, xadc_axi_reg_offsets[xadc->ops->type] + reg * 4,
+drivers/iio/adc/xilinx-xadc-core.c <unknown> 482 	xadc_write_reg(xadc, xadc_axi_reg_offsets[xadc->ops->type] + reg * 4,
+drivers/iio/magnetometer/yamaha-yas530.c <unknown> 135 	s8 hard_offsets[3];
+drivers/iio/magnetometer/yamaha-yas530.c <unknown> 302 		(yas5xx->hard_offsets[axis] - c->r[axis]) * coef;
+drivers/iio/magnetometer/yamaha-yas530.c <unknown> 782 	yas5xx->hard_offsets[0] = ox;
+drivers/iio/magnetometer/yamaha-yas530.c <unknown> 783 	yas5xx->hard_offsets[1] = oy1;
+drivers/iio/magnetometer/yamaha-yas530.c <unknown> 784 	yas5xx->hard_offsets[2] = oy2;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 207 		val = *(__be32 *)((void *)out + cnts->offsets[i]);
+drivers/infiniband/hw/mlx5/counters.c <unknown> 238 				    cnts->offsets[i + offset]));
+drivers/infiniband/hw/mlx5/counters.c <unknown> 388 		offsets[j] = basic_q_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 394 			offsets[j] = out_of_seq_q_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 401 			offsets[j] = retrans_q_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 408 			offsets[j] = extended_err_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 415 			offsets[j] = roce_accl_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 422 			offsets[j] = cong_cnts[i].offset;
+drivers/infiniband/hw/mlx5/counters.c <unknown> 429 			offsets[j] = ext_ppcnt_cnts[i].offset;
+drivers/infiniband/hw/mthca/mthca_cmd.c <unknown> 758 		max_off = max(max_off, dev->cmd.dbell_offsets[i]);
+drivers/infiniband/hw/mthca/mthca_cmd.c <unknown> 843 			MTHCA_GET(dev->cmd.dbell_offsets[i], outbox,
+drivers/infiniband/hw/mthca/mthca_dev.h <unknown> 131 	u16                       dbell_offsets[MTHCA_CMD_NUM_DBELL_DWORDS];
+drivers/input/touchscreen/cy8ctma140.c <unknown> 57 	static const u8 contact_offsets[] = { 0x03, 0x09, 0x10, 0x16 };
+drivers/input/touchscreen/cy8ctma140.c <unknown> 66 		buf = &data[contact_offsets[i]];
+drivers/irqchip/irq-crossbar.c <unknown> 47 	writel(cb_no, cb->crossbar_base + cb->register_offsets[irq_no]);
+drivers/irqchip/irq-crossbar.c <unknown> 52 	writew(cb_no, cb->crossbar_base + cb->register_offsets[irq_no]);
+drivers/irqchip/irq-crossbar.c <unknown> 57 	writeb(cb_no, cb->crossbar_base + cb->register_offsets[irq_no]);
+drivers/irqchip/irq-crossbar.c <unknown> 302 		cb->register_offsets[i] = reserved;
+drivers/md/dm-zoned-metadata.c <unknown> 2394 		cc->offsets[i] = -1;
+drivers/md/dm-zoned-metadata.c <unknown> 2570 			cc->offsets[i] = -1;
+drivers/md/dm-zoned-metadata.c <unknown> 2609 //			cc->offsets[i] = -1;
+drivers/md/dm-zoned-metadata.c <unknown> 2782 		int rz_offset = c->offsets[i];
+drivers/md/dm-zoned-metadata.c <unknown> 2806 		c->offsets[i] = -1;
+drivers/md/dm-zoned-metadata.c <unknown> 2858 			if (c->offsets[i] == -1) { i++; continue; }
+drivers/md/dm-zoned-metadata.c <unknown> 2859 			cur_rz_offset = c->offsets[i];
+drivers/md/dm-zoned-metadata.c <unknown> 2868 				int next_rz_offset = c->offsets[j];
+drivers/md/dm-zoned-metadata.c <unknown> 2913 			if (c->offsets[i] == -1) { continue; }
+drivers/md/dm-zoned-metadata.c <unknown> 2914 			cur_rz_offset = c->offsets[i];
+drivers/md/dm-zoned-metadata.c <unknown> 2924 					int next_rz_offset = c->offsets[j];
+drivers/md/dm-zoned-metadata.c <unknown> 3048 			c->offsets[chunk_block & DMZ_BLOCK_MASK_BITS] = zone->wp_block;
+drivers/md/dm-zoned-metadata.c <unknown> 3049 			trace_printk("[DEBUG7] chunk_id: %u c->offsets[%llu] = %u\n", chunk, chunk_block & DMZ_BLOCK_MASK_BITS, zone->wp_block);
+drivers/md/dm-zoned-metadata.c <unknown> 3192 			if (c->offsets[i] == -1) { continue; }
+drivers/md/dm-zoned-metadata.c <unknown> 3199 							c->offsets[i], 1);
+drivers/md/dm-zoned-reclaim.c <unknown> 295 			if (c->offsets[i] == -1) { i++; continue; }
+drivers/md/dm-zoned-reclaim.c <unknown> 296 			cur_rz_offset = c->offsets[i];
+drivers/md/dm-zoned-reclaim.c <unknown> 308 				int next_rz_offset = c->offsets[j];
+drivers/md/dm-zoned-reclaim.c <unknown> 582 			if (c->offsets[i] == -1) { i++; continue; }
+drivers/md/dm-zoned-reclaim.c <unknown> 583 			cur_rz_offset = c->offsets[i];
+drivers/md/dm-zoned-reclaim.c <unknown> 594 					int next_rz_offset = c->offsets[j];
+drivers/md/dm-zoned-reclaim.c <unknown> 1071 					if (c->offsets[i] == -1) continue;
+drivers/md/dm-zoned-reclaim.c <unknown> 1073 					if (c->offsets[i] < min_offset) {
+drivers/md/dm-zoned-reclaim.c <unknown> 1074 						min_offset = c->offsets[i];
+drivers/md/dm-zoned-target.c <unknown> 294 		c_off = c->offsets[chunk_block & DMZ_BLOCK_MASK_BITS];
+drivers/md/dm-zoned-target.c <unknown> 409     c_off = c->offsets[chunk_block & DMZ_BLOCK_MASK_BITS];
+drivers/md/dm-zoned.h <unknown> 108 	int					offsets[DMZ_BLOCK_PER_ZONE];
+drivers/media/i2c/ccs/ccs-core.c <unknown> 43 } ccs_limit_offsets[CCS_L_LAST + 1];
+drivers/media/i2c/ccs/ccs-core.c <unknown> 99 	linfo = &ccs_limits[ccs_limit_offsets[limit].info];
+drivers/media/i2c/ccs/ccs-core.c <unknown> 103 		    ccs_limit_offsets[limit + 1].lim))
+drivers/media/i2c/ccs/ccs-core.c <unknown> 106 	*__ptr = sensor->ccs_limits + ccs_limit_offsets[limit].lim + offset;
+drivers/media/i2c/ccs/ccs-core.c <unknown> 123 	linfo = &ccs_limits[ccs_limit_offsets[limit].info];
+drivers/media/i2c/ccs/ccs-core.c <unknown> 142 	switch (ccs_reg_width(ccs_limits[ccs_limit_offsets[limit].info].reg)) {
+drivers/media/i2c/ccs/ccs-core.c <unknown> 170 	alloc = kzalloc(ccs_limit_offsets[CCS_L_LAST].lim, GFP_KERNEL);
+drivers/media/i2c/ccs/ccs-core.c <unknown> 174 	end = alloc + ccs_limit_offsets[CCS_L_LAST].lim;
+drivers/media/i2c/ccs/ccs-core.c <unknown> 216 		ptr = alloc + ccs_limit_offsets[l].lim;
+drivers/media/i2c/ccs/ccs-core.c <unknown> 3742 			ccs_limit_offsets[l + 1].lim =
+drivers/media/i2c/ccs/ccs-core.c <unknown> 3743 				ALIGN(ccs_limit_offsets[l].lim +
+drivers/media/i2c/ccs/ccs-core.c <unknown> 3746 			ccs_limit_offsets[l].info = i;
+drivers/media/i2c/ccs/ccs-core.c <unknown> 3749 			ccs_limit_offsets[l].lim += ccs_limits[i].size;
+drivers/media/platform/via-camera.c <unknown> 87 	unsigned int cb_offsets[3];	/* offsets into fb mem */
+drivers/media/platform/via-camera.c <unknown> 369 	viafb_dma_copy_out_sg(cam->cb_offsets[bufn], sgt->sgl, sgt->nents);
+drivers/media/platform/via-camera.c <unknown> 433 		cam->cb_offsets[i] = offset;
+drivers/media/usb/dvb-usb/cxusb.c <unknown> 1382 static const int dvico_firmware_id_offsets[] = { 6638, 3204 };
+drivers/media/usb/dvb-usb/cxusb.c <unknown> 1389 		int idoff = dvico_firmware_id_offsets[pos];
+drivers/memory/samsung/exynos-srom.c <unknown> 19 static const unsigned long exynos_srom_offsets[] = {
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1009 		if (!offsets[i])
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1013 		offset = offsets[i];
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1140 		if (!offsets[i])
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1144 		    (offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK0_0 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1145 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK0_1 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1146 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK0_2 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1147 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK0_3 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1148 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK1_0 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1149 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK1_1 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1150 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK1_2 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1151 		     offsets[i] == EMC_PMACRO_OB_DDLL_LONG_DQ_RANK1_3 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1152 		     offsets[i] == EMC_DATA_BRLSHFT_0 ||
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1153 		     offsets[i] == EMC_DATA_BRLSHFT_1)) {
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1154 			value = tegra210_emc_compensate(next, offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1156 				value, offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1158 				(u32)(u64)offsets[i], value);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1159 			emc_writel(emc, value, offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1162 				next->trim_regs[i], offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1163 			emc_writel(emc, next->trim_regs[i], offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1215 			values[i], offsets[i]);
+drivers/memory/tegra/tegra210-emc-cc-r21021.c <unknown> 1216 		mc_writel(emc->mc, values[i], offsets[i]);
+drivers/mfd/qcom-pm8008.c <unknown> 62 static struct regmap_irq_sub_irq_map pm8008_sub_reg_offsets[] = {
+drivers/mfd/rohm-bd70528.c <unknown> 108 static unsigned int bit0_offsets[] = {0};	/* Shutdown */
+drivers/mfd/rohm-bd70528.c <unknown> 109 static unsigned int bit1_offsets[] = {1};	/* Power failure */
+drivers/mfd/rohm-bd70528.c <unknown> 110 static unsigned int bit2_offsets[] = {2};	/* VR FAULT */
+drivers/mfd/rohm-bd70528.c <unknown> 111 static unsigned int bit3_offsets[] = {3};	/* PMU interrupts */
+drivers/mfd/rohm-bd70528.c <unknown> 112 static unsigned int bit4_offsets[] = {4, 5};	/* Charger 1 and Charger 2 */
+drivers/mfd/rohm-bd70528.c <unknown> 113 static unsigned int bit5_offsets[] = {6};	/* RTC */
+drivers/mfd/rohm-bd70528.c <unknown> 114 static unsigned int bit6_offsets[] = {7};	/* GPIO */
+drivers/mfd/rohm-bd70528.c <unknown> 115 static unsigned int bit7_offsets[] = {8};	/* Invalid operation */
+drivers/mfd/rohm-bd70528.c <unknown> 117 static struct regmap_irq_sub_irq_map bd70528_sub_irq_offsets[] = {
+drivers/mfd/rohm-bd70528.c <unknown> 214 	.sub_reg_offsets = &bd70528_sub_irq_offsets[0],
+drivers/mfd/rohm-bd71828.c <unknown> 217 static unsigned int bit0_offsets[] = {11};		/* RTC IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 218 static unsigned int bit1_offsets[] = {10};		/* TEMP IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 219 static unsigned int bit2_offsets[] = {6, 7, 8, 9};	/* BAT MON IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 220 static unsigned int bit3_offsets[] = {5};		/* BAT IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 221 static unsigned int bit4_offsets[] = {4};		/* CHG IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 222 static unsigned int bit5_offsets[] = {3};		/* VSYS IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 223 static unsigned int bit6_offsets[] = {1, 2};		/* DCIN IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 224 static unsigned int bit7_offsets[] = {0};		/* BUCK IRQ */
+drivers/mfd/rohm-bd71828.c <unknown> 226 static struct regmap_irq_sub_irq_map bd718xx_sub_irq_offsets[] = {
+drivers/mfd/rohm-bd71828.c <unknown> 422 	.sub_reg_offsets = &bd718xx_sub_irq_offsets[0],
+drivers/mfd/rohm-bd71828.c <unknown> 439 	.sub_reg_offsets = &bd718xx_sub_irq_offsets[0],
+drivers/misc/cxl/cxl.h <unknown> 756 	__be16 ivte_offsets[4];
+drivers/misc/cxl/native.c <unknown> 644 		ctx->elem->ivte_offsets[r] = cpu_to_be16(ctx->irqs.offset[r]);
+drivers/misc/cxl/native.c <unknown> 883 		ctx->elem->ivte_offsets[r] = cpu_to_be16(ctx->irqs.offset[r]);
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 546 static const u8 brcmnand_cs_offsets[] = {
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 787 	u16 offs = ctrl->reg_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 798 	u16 offs = ctrl->reg_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 834 	u16 offs = ctrl->edu_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 842 	u16 offs = ctrl->edu_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 898 	u16 offs_cs0 = ctrl->reg_offsets[BRCMNAND_CS0_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 899 	u16 offs_cs1 = ctrl->reg_offsets[BRCMNAND_CS1_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 903 		cs_offs = ctrl->cs0_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 905 		cs_offs = ctrl->cs_offsets[reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 927 	if (!ctrl->reg_offsets[reg])
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1135 	u16 offs = ctrl->flash_dma_offsets[dma_reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1143 	u16 offs = ctrl->flash_dma_offsets[dma_reg];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1401 	offset0 = ctrl->reg_offsets[BRCMNAND_OOB_READ_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1402 	offset10 = ctrl->reg_offsets[BRCMNAND_OOB_READ_10_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1420 	offset0 = ctrl->reg_offsets[BRCMNAND_OOB_WRITE_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 1421 	offset10 = ctrl->reg_offsets[BRCMNAND_OOB_WRITE_10_BASE];
+drivers/mtd/nand/raw/brcmnand/brcmnand.c <unknown> 3114 				ctrl->reg_offsets[BRCMNAND_FC_BASE];
+drivers/mtd/nand/raw/fsl_upm.c <unknown> 30 	uint32_t mchip_offsets[NAND_MAX_CHIPS];
+drivers/mtd/nand/raw/fsl_upm.c <unknown> 81 	u32 mar, reg_offs = fun->mchip_offsets[fun->mchip_number];
+drivers/mtd/nand/raw/fsl_upm.c <unknown> 210 			fun->mchip_offsets[i] = be32_to_cpu(prop[i]);
+drivers/mtd/tests/stresstest.c <unknown> 96 	offs = offsets[eb];
+drivers/mtd/tests/stresstest.c <unknown> 101 		offs = offsets[eb] = 0;
+drivers/mtd/tests/stresstest.c <unknown> 112 			offsets[eb + 1] = 0;
+drivers/mtd/tests/stresstest.c <unknown> 121 		offsets[eb++] = mtd->erasesize;
+drivers/mtd/tests/stresstest.c <unknown> 124 	offsets[eb] = offs;
+drivers/mtd/tests/stresstest.c <unknown> 194 		offsets[i] = mtd->erasesize;
+drivers/net/dsa/bcm_sf2.c <unknown> 1244 static const u16 bcm_sf2_4908_reg_offsets[] = {
+drivers/net/dsa/bcm_sf2.c <unknown> 1268 static const u16 bcm_sf2_7445_reg_offsets[] = {
+drivers/net/dsa/bcm_sf2.c <unknown> 1291 static const u16 bcm_sf2_7278_reg_offsets[] = {
+drivers/net/dsa/bcm_sf2.h <unknown> 196 	return readl_relaxed(priv->reg + priv->reg_offsets[off]);
+drivers/net/dsa/bcm_sf2.h <unknown> 201 	writel_relaxed(val, priv->reg + priv->reg_offsets[off]);
+drivers/net/ethernet/8390/ax88796.c <unknown> 95 	u32 reg_offsets[0x20];
+drivers/net/ethernet/8390/ax88796.c <unknown> 899 			ax->reg_offsets[ret] = (mem_size / 0x18) * ret;
+drivers/net/ethernet/8390/ax88796.c <unknown> 923 				ax->reg_offsets[ret] = (mem_size / 0x20) * ret;
+drivers/net/ethernet/8390/etherh.c <unknown> 648 static u32 etherh_regoffsets[16];
+drivers/net/ethernet/8390/etherh.c <unknown> 649 static u32 etherm_regoffsets[16];
+drivers/net/ethernet/8390/etherh.c <unknown> 843 		etherh_regoffsets[i] = i << 2;
+drivers/net/ethernet/8390/etherh.c <unknown> 844 		etherm_regoffsets[i] = i << 5;
+drivers/net/ethernet/8390/hydra.c <unknown> 122     static u32 hydra_offsets[16] = {
+drivers/net/ethernet/8390/mac8390.c <unknown> 481 	static u32 fwrd4_offsets[16] = {
+drivers/net/ethernet/8390/mac8390.c <unknown> 487 	static u32 back4_offsets[16] = {
+drivers/net/ethernet/8390/mac8390.c <unknown> 493 	static u32 fwrd2_offsets[16] = {
+drivers/net/ethernet/8390/mcf8390.c <unknown> 317 	static u32 offsets[] = {
+drivers/net/ethernet/8390/xsurf100.c <unknown> 254 	static u32 reg_offsets[32];
+drivers/net/ethernet/8390/xsurf100.c <unknown> 277 		reg_offsets[reg] = 4 * reg;
+drivers/net/ethernet/8390/zorro8390.c <unknown> 297 	static u32 zorro8390_offsets[16] = {
+drivers/net/ethernet/broadcom/bnx2x/bnx2x_main.c <unknown> 13316 		if (be16_to_cpu(ops_offsets[i]) > num_ops) {
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 73 static int bufferoffsets[NUMDESCRIPTORS] = {128,2048,4096,6144};
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 367 		investigate_write_descriptor(dev,card,i,bufferoffsets[i]);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 369 		investigate_read_descriptor(dev,card,i,bufferoffsets[i]);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 388 		investigate_write_descriptor(dev,card,desc,bufferoffsets[desc]);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 399 			memset(&card->tx_buffer[bufferoffsets[desc]/4],0,1536);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 401 				  &(card->tx_buffer[bufferoffsets[desc] / 4]),
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 584 		card->rx_buffer[i*4 + 2] = cpu_to_le32(address + bufferoffsets[i]);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 609 		card->tx_buffer[i*4 + 2] = cpu_to_le32(address + bufferoffsets[i]);
+drivers/net/ethernet/dec/tulip/xircom_cb.c <unknown> 1085 		investigate_read_descriptor(card->dev,card,i,bufferoffsets[i]);
+drivers/net/ethernet/mellanox/mlx5/core/en_tc.c <unknown> 2661 static int pedit_header_offsets[] = {
+drivers/net/ethernet/mellanox/mlx5/core/en_tc.c <unknown> 2669 #define pedit_header(_ph, _htype) ((void *)(_ph) + pedit_header_offsets[_htype])
+drivers/net/ethernet/mellanox/mlx5/core/lag.c <unknown> 1088 			values[j] += be64_to_cpup((__be64 *)(out + offsets[j]));
+drivers/net/ethernet/mellanox/mlxsw/spectrum_acl_bloom_filter.c <unknown> 62 static const u8 chunk_key_offsets[MLXSW_BLOOM_KEY_CHUNKS] = {2, 20, 38};
+drivers/net/ethernet/mellanox/mlxsw/spectrum_acl_bloom_filter.c <unknown> 139 		       &aentry->ht_key.enc_key[chunk_key_offsets[chunk_index]],
+drivers/net/ethernet/qlogic/qed/qed_debug.c <unknown> 7364 				block_attn_name_offsets[attn_idx_val];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 20 static u16 con_region_offsets[3][NUM_OF_CONNECTION_TYPES_E4] = {
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 26 static u16 task_region_offsets[1][NUM_OF_CONNECTION_TYPES_E4] = {
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1442 	x_val_ptr = &p_ctx[con_region_offsets[0][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1443 	t_val_ptr = &p_ctx[con_region_offsets[1][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1444 	u_val_ptr = &p_ctx[con_region_offsets[2][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1460 	region1_val_ptr = &p_ctx[task_region_offsets[0][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1474 	x_val_ptr = &p_ctx[con_region_offsets[0][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1475 	t_val_ptr = &p_ctx[con_region_offsets[1][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1476 	u_val_ptr = &p_ctx[con_region_offsets[2][ctx_type]];
+drivers/net/ethernet/qlogic/qed/qed_init_fw_funcs.c <unknown> 1496 	region1_val_ptr = &p_ctx[task_region_offsets[0][ctx_type]];
+drivers/net/phy/at803x.c <unknown> 332 	unsigned int i, offsets[] = {
+drivers/net/phy/at803x.c <unknown> 348 			phy_write_mmd(phydev, AT803X_DEVICE_ADDR, offsets[i],
+drivers/net/wireless/ath/carl9170/main.c <unknown> 1871 	__le32 offsets[RW];
+drivers/net/wireless/ath/carl9170/main.c <unknown> 1884 			offsets[j] = cpu_to_le32(AR9170_EEPROM_START +
+drivers/net/wireless/broadcom/b43/main.c <unknown> 3689 static const u16 b43_qos_shm_offsets[] = {
+drivers/net/wireless/broadcom/b43/main.c <unknown> 3714 				      b43_qos_shm_offsets[i]);
+drivers/net/wireless/broadcom/b43/main.c <unknown> 3732 		switch (b43_qos_shm_offsets[i]) {
+drivers/net/wireless/broadcom/b43/main.c <unknown> 3813 			      b43_qos_shm_offsets[queue]);
+drivers/net/wireless/broadcom/b43/tables_nphy.c <unknown> 3486 	const int antswlut0_offsets[] = { 0, 4, 8, }; /* Offsets for values */
+drivers/net/wireless/broadcom/b43/tables_nphy.c <unknown> 3502 				offset += antswlut0_offsets[i];
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c <unknown> 101 	__le32 offsets[TRX_MAX_OFFSET];	/* Offsets of partitions from start of
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c <unknown> 1096 		actual_len = le32_to_cpu(trx->offsets[TRX_OFFSETS_DLFWLEN_IDX]);
+drivers/net/wireless/mediatek/mt7601u/init.c <unknown> 143 		u16 addr = dev->beacon_offsets[i];
+drivers/net/wireless/mediatek/mt7601u/init.c <unknown> 319 	static const u16 beacon_offsets[16] = {
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 82 	u8 tx_pd_vs_rate_offsets[WL1271_INI_RATE_GROUP_COUNT];
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 102 	u8 tx_pd_vs_rate_offsets[WL128X_INI_RATE_GROUP_COUNT];
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 104 	u8 tx_pd_vs_chan_offsets[WL1271_INI_CHANNEL_COUNT_2];
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 134 	u8 tx_pd_vs_rate_offsets[WL1271_INI_RATE_GROUP_COUNT];
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 149 	u8 tx_pd_vs_rate_offsets[WL128X_INI_RATE_GROUP_COUNT];
+drivers/net/wireless/ti/wlcore/ini.h <unknown> 151 	u8 tx_pd_vs_chan_offsets[WL1271_INI_CHANNEL_COUNT_5];
+drivers/pci/controller/pcie-brcmstb.c <unknown> 173 #define IDX_ADDR(pcie)			(pcie->reg_offsets[EXT_CFG_INDEX])
+drivers/pci/controller/pcie-brcmstb.c <unknown> 174 #define DATA_ADDR(pcie)			(pcie->reg_offsets[EXT_CFG_DATA])
+drivers/pci/controller/pcie-brcmstb.c <unknown> 175 #define PCIE_RGR1_SW_INIT_1(pcie)	(pcie->reg_offsets[RGR1_SW_INIT_1])
+drivers/pci/controller/pcie-brcmstb.c <unknown> 220 static const int pcie_offsets[] = {
+drivers/pci/controller/pcie-iproc-msi.c <unknown> 134 	return readl_relaxed(pcie->base + msi->reg_offsets[eq][reg]);
+drivers/pci/controller/pcie-iproc-msi.c <unknown> 143 	writel_relaxed(val, pcie->base + msi->reg_offsets[eq][reg]);
+drivers/pci/controller/pcie-iproc.c <unknown> 413 	return pcie->reg_offsets[reg];
+drivers/pci/controller/pcie-iproc.c <unknown> 1452 	pcie->reg_offsets[0] = (pcie->type == IPROC_PCIE_PAXC_V2) ?
+drivers/pci/controller/pcie-iproc.c <unknown> 1455 		pcie->reg_offsets[reg_idx] = regs[reg_idx] ?
+drivers/pinctrl/renesas/pfc-r8a73a4.c <unknown> 2652 static const unsigned int r8a73a4_portcr_offsets[] = {
+drivers/pinctrl/renesas/pfc-r8a73a4.c <unknown> 2660 	return pfc->windows->virt + r8a73a4_portcr_offsets[pin >> 5] + pin;
+drivers/pinctrl/renesas/pfc-r8a7740.c <unknown> 3680 static const struct r8a7740_portcr_group r8a7740_portcr_offsets[] = {
+drivers/pinctrl/renesas/pfc-r8a7740.c <unknown> 3690 			&r8a7740_portcr_offsets[i];
+drivers/pinctrl/renesas/pfc-sh73a0.c <unknown> 4312 static const unsigned int sh73a0_portcr_offsets[] = {
+drivers/pinctrl/renesas/pfc-sh73a0.c <unknown> 4319 	return pfc->windows->virt + sh73a0_portcr_offsets[pin >> 5] + pin;
+drivers/soc/qcom/llcc-qcom.c <unknown> 594 		drv_data->offsets[i] = i * BANK_OFFSET_STRIDE;
+drivers/spi/spi-bcm63xx.c <unknown> 157 	return readb(bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 164 	return ioread16be(bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 166 	return readw(bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 173 	writeb(value, bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 180 	iowrite16be(value, bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 182 	writew(value, bs->regs + bs->reg_offsets[offset]);
+drivers/spi/spi-bcm63xx.c <unknown> 431 static const unsigned long bcm6348_spi_reg_offsets[] = {
+drivers/spi/spi-bcm63xx.c <unknown> 449 static const unsigned long bcm6358_spi_reg_offsets[] = {
+drivers/spi/spi-bcm63xx.c <unknown> 562 	bs->fifo_size = bs->reg_offsets[SPI_MSG_DATA_SIZE];
+drivers/spi/spi-bcm63xx.c <unknown> 580 	bs->msg_type_shift = bs->reg_offsets[SPI_MSG_TYPE_SHIFT];
+drivers/spi/spi-bcm63xx.c <unknown> 581 	bs->msg_ctl_width = bs->reg_offsets[SPI_MSG_CTL_WIDTH];
+drivers/spi/spi-bcm63xx.c <unknown> 582 	bs->tx_io = (u8 *)(bs->regs + bs->reg_offsets[SPI_MSG_DATA]);
+drivers/spi/spi-bcm63xx.c <unknown> 583 	bs->rx_io = (const u8 *)(bs->regs + bs->reg_offsets[SPI_RX_DATA]);
+drivers/staging/media/atomisp/pci/runtime/debug/src/ia_css_debug.c <unknown> 2243 			short dmem_offset = offsets[idx];
+drivers/staging/media/atomisp/pci/runtime/isp_param/interface/ia_css_isp_param_types.h <unknown> 65 	u32 offsets[IA_CSS_NUM_PARAM_CLASSES];  /** offset wrt hdr in bytes */
+drivers/staging/media/atomisp/pci/runtime/isp_param/src/isp_param.c <unknown> 179 			mem_offsets->array[pclass].ptr = (void *)(fw + memory_offsets->offsets[pclass]);
+drivers/staging/media/atomisp/pci/sh_css_firmware.c <unknown> 167 					  bi->blob.memory_offsets.offsets[IA_CSS_PARAM_CLASS_PARAM]),
+drivers/staging/media/atomisp/pci/sh_css_firmware.c <unknown> 173 		       (void *)(fw + bi->blob.memory_offsets.offsets[IA_CSS_PARAM_CLASS_CONFIG]),
+drivers/staging/media/atomisp/pci/sh_css_firmware.c <unknown> 180 		       (void *)(fw + bi->blob.memory_offsets.offsets[IA_CSS_PARAM_CLASS_STATE]),
+drivers/staging/media/ipu3/ipu3-abi.h <unknown> 1496 	u32 offsets[IMGU_ABI_PARAM_CLASS_NUM];	/* offset wrt hdr in bytes */
+drivers/staging/media/ipu3/ipu3-css-fw.c <unknown> 216 		if (bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_PARAM]
+drivers/staging/media/ipu3/ipu3-css-fw.c <unknown> 219 		    bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_CONFIG]
+drivers/staging/media/ipu3/ipu3-css-fw.c <unknown> 222 		    bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_STATE]
+drivers/staging/media/ipu3/ipu3-css-fw.h <unknown> 71 		u64 imgu_fw_mem_offsets[3]; /* params, config, state */
+drivers/staging/media/ipu3/ipu3-css-params.c <unknown> 2732 		bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_PARAM];
+drivers/staging/media/ipu3/ipu3-css-params.c <unknown> 2812 		bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_PARAM];
+drivers/staging/media/ipu3/ipu3-css.c <unknown> 711 		bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_CONFIG];
+drivers/staging/media/ipu3/ipu3-css.c <unknown> 713 		bi->blob.memory_offsets.offsets[IMGU_ABI_PARAM_CLASS_STATE];
+drivers/staging/netlogic/platform_net.c <unknown> 32 static u32 xlr_gmac_offsets[] = {
+drivers/staging/netlogic/platform_net.c <unknown> 97 				  xlr_gmac_offsets[mac + 4],
+drivers/staging/netlogic/platform_net.c <unknown> 146 		xlr_resource_init(&xlr_net0_res[0], xlr_gmac_offsets[0],
+drivers/staging/netlogic/platform_net.c <unknown> 160 					  xlr_gmac_offsets[mac],
+drivers/staging/netlogic/platform_net.c <unknown> 200 		xlr_resource_init(&xlr_net0_res[mac * 2], xlr_gmac_offsets[mac],
+drivers/tty/serial/amba-pl011.c <unknown> 58 static u16 pl011_std_offsets[REG_ARRAY_SIZE] = {
+drivers/tty/serial/amba-pl011.c <unknown> 144 static u16 pl011_st_offsets[REG_ARRAY_SIZE] = {
+drivers/tty/serial/amba-pl011.c <unknown> 191 static const u16 pl011_zte_offsets[REG_ARRAY_SIZE] = {
+drivers/tty/serial/mxs-auart.c <unknown> 380 static const u16 mxs_asm9260_offsets[REG_ARRAY_SIZE] = {
+drivers/tty/serial/mxs-auart.c <unknown> 392 static const u16 mxs_stmp37xx_offsets[REG_ARRAY_SIZE] = {
+drivers/usb/host/xhci-tegra.c <unknown> 1862 			ctx->ipfs[i] = ipfs_readl(tegra, soc->ipfs.offsets[i]);
+drivers/usb/host/xhci-tegra.c <unknown> 1867 			ctx->fpci[i] = fpci_readl(tegra, soc->fpci.offsets[i]);
+drivers/usb/host/xhci-tegra.c <unknown> 1879 			fpci_writel(tegra, ctx->fpci[i], soc->fpci.offsets[i]);
+drivers/usb/host/xhci-tegra.c <unknown> 1884 			ipfs_writel(tegra, ctx->ipfs[i], soc->ipfs.offsets[i]);
+drivers/video/fbdev/omap2/omapfb/dss/dsi.c <unknown> 1811 	static const u8 offsets[] = { 0, 4, 8, 12, 16 };
+drivers/video/fbdev/omap2/omapfb/dss/dsi.c <unknown> 1825 		unsigned offset = offsets[i];
+drivers/video/fbdev/omap2/omapfb/dss/dsi.c <unknown> 1845 		unsigned offset = offsets[i];
+drivers/video/fbdev/omap2/omapfb/dss/dsi.c <unknown> 2026 			if (!in_use[i] || (l & (1 << offsets[i])))
+drivers/video/fbdev/omap2/omapfb/dss/dsi.c <unknown> 2035 				if (!in_use[i] || (l & (1 << offsets[i])))
+fs/btrfs/zoned.c <unknown> 1163 			alloc_offsets[i] = WP_MISSING_DEV;
+fs/btrfs/zoned.c <unknown> 1174 			alloc_offsets[i] = WP_CONVENTIONAL;
+fs/btrfs/zoned.c <unknown> 1200 			alloc_offsets[i] = WP_MISSING_DEV;
+fs/btrfs/zoned.c <unknown> 1222 			alloc_offsets[i] = WP_MISSING_DEV;
+fs/btrfs/zoned.c <unknown> 1225 			alloc_offsets[i] = 0;
+fs/btrfs/zoned.c <unknown> 1228 			alloc_offsets[i] = fs_info->zone_size;
+fs/btrfs/zoned.c <unknown> 1232 			alloc_offsets[i] =
+fs/btrfs/zoned.c <unknown> 1271 		if (alloc_offsets[0] == WP_MISSING_DEV) {
+fs/btrfs/zoned.c <unknown> 1278 		cache->alloc_offset = alloc_offsets[0];
+fs/ext2/inode.c <unknown> 144  *	return value is the path length and @offsets[n] is the offset of
+fs/ext2/inode.c <unknown> 164 			long i_block, int offsets[4], int *boundary)
+fs/ext2/inode.c <unknown> 178 		offsets[n++] = i_block;
+fs/ext2/inode.c <unknown> 181 		offsets[n++] = EXT2_IND_BLOCK;
+fs/ext2/inode.c <unknown> 182 		offsets[n++] = i_block;
+fs/ext2/inode.c <unknown> 185 		offsets[n++] = EXT2_DIND_BLOCK;
+fs/ext2/inode.c <unknown> 186 		offsets[n++] = i_block >> ptrs_bits;
+fs/ext2/inode.c <unknown> 187 		offsets[n++] = i_block & (ptrs - 1);
+fs/ext2/inode.c <unknown> 190 		offsets[n++] = EXT2_TIND_BLOCK;
+fs/ext2/inode.c <unknown> 191 		offsets[n++] = i_block >> (ptrs_bits * 2);
+fs/ext2/inode.c <unknown> 192 		offsets[n++] = (i_block >> ptrs_bits) & (ptrs - 1);
+fs/ext2/inode.c <unknown> 193 		offsets[n++] = i_block & (ptrs - 1);
+fs/ext2/inode.c <unknown> 510 		branch[n].p = (__le32 *) bh->b_data + offsets[n];
+fs/ext2/inode.c <unknown> 626 	int offsets[4];
+fs/ext2/inode.c <unknown> 1049 				int offsets[4],
+fs/ext2/inode.c <unknown> 1057 	for (k = depth; k > 1 && !offsets[k-1]; k--)
+fs/ext2/inode.c <unknown> 1187 	int offsets[4];
+fs/ext2/inode.c <unknown> 1212 		ext2_free_data(inode, i_data+offsets[0],
+fs/ext2/inode.c <unknown> 1238 	switch (offsets[0]) {
+fs/ext4/indirect.c <unknown> 55  *	return value is the path length and @offsets[n] is the offset of
+fs/ext4/indirect.c <unknown> 76 			      ext4_lblk_t offsets[4], int *boundary)
+fs/ext4/indirect.c <unknown> 87 		offsets[n++] = i_block;
+fs/ext4/indirect.c <unknown> 90 		offsets[n++] = EXT4_IND_BLOCK;
+fs/ext4/indirect.c <unknown> 91 		offsets[n++] = i_block;
+fs/ext4/indirect.c <unknown> 94 		offsets[n++] = EXT4_DIND_BLOCK;
+fs/ext4/indirect.c <unknown> 95 		offsets[n++] = i_block >> ptrs_bits;
+fs/ext4/indirect.c <unknown> 96 		offsets[n++] = i_block & (ptrs - 1);
+fs/ext4/indirect.c <unknown> 99 		offsets[n++] = EXT4_TIND_BLOCK;
+fs/ext4/indirect.c <unknown> 100 		offsets[n++] = i_block >> (ptrs_bits * 2);
+fs/ext4/indirect.c <unknown> 101 		offsets[n++] = (i_block >> ptrs_bits) & (ptrs - 1);
+fs/ext4/indirect.c <unknown> 102 		offsets[n++] = i_block & (ptrs - 1);
+fs/ext4/indirect.c <unknown> 372 		p = branch[i].p = (__le32 *) bh->b_data + offsets[i];
+fs/ext4/indirect.c <unknown> 536 	ext4_lblk_t offsets[4];
+fs/ext4/indirect.c <unknown> 587 			count = count * epb + (epb - offsets[i] - 1);
+fs/ext4/indirect.c <unknown> 805 				  ext4_lblk_t offsets[4], Indirect chain[4],
+fs/ext4/indirect.c <unknown> 813 	for (k = depth; k > 1 && !offsets[k-1]; k--)
+fs/ext4/indirect.c <unknown> 1124 	ext4_lblk_t offsets[4];
+fs/ext4/indirect.c <unknown> 1161 		ext4_free_data(handle, inode, NULL, i_data+offsets[0],
+fs/ext4/indirect.c <unknown> 1197 	switch (offsets[0]) {
+fs/ext4/indirect.c <unknown> 1240 	ext4_lblk_t offsets[4], offsets2[4];
+fs/ext4/indirect.c <unknown> 1263 		ext4_free_data(handle, inode, NULL, i_data + offsets[0],
+fs/ext4/indirect.c <unknown> 1279 			ext4_free_data(handle, inode, NULL, i_data + offsets[0],
+fs/ext4/indirect.c <unknown> 1360 			if (offsets[i] != offsets2[i]) {
+fs/ext4/indirect.c <unknown> 1449 	switch (offsets[0]) {
+fs/ext4/mballoc.c <unknown> 531 	bb = e4b->bd_buddy + EXT4_SB(e4b->bd_sb)->s_mb_offsets[order];
+fs/ext4/mballoc.c <unknown> 804 				     buddy + sbi->s_mb_offsets[min]);
+fs/ext4/mballoc.c <unknown> 3466 	sbi->s_mb_offsets[0] = 0;
+fs/ext4/mballoc.c <unknown> 3473 		sbi->s_mb_offsets[i] = offset;
+fs/minix/itree_common.c <unknown> 97 		branch[n].p = (block_t*) bh->b_data + offsets[n];
+fs/minix/itree_common.c <unknown> 156 	int offsets[DEPTH];
+fs/minix/itree_common.c <unknown> 225 				int offsets[DEPTH],
+fs/minix/itree_common.c <unknown> 233 	for (k = depth; k > 1 && !offsets[k-1]; k--)
+fs/minix/itree_common.c <unknown> 304 	int offsets[DEPTH];
+fs/minix/itree_common.c <unknown> 320 		free_data(inode, idata+offsets[0], idata + DIRECT);
+fs/minix/itree_common.c <unknown> 325 	first_whole = offsets[0] + 1 - DIRECT;
+fs/minix/itree_v1.c <unknown> 25 static int block_to_path(struct inode * inode, long block, int offsets[DEPTH])
+fs/minix/itree_v1.c <unknown> 38 		offsets[n++] = block;
+fs/minix/itree_v1.c <unknown> 40 		offsets[n++] = 7;
+fs/minix/itree_v1.c <unknown> 41 		offsets[n++] = block;
+fs/minix/itree_v1.c <unknown> 44 		offsets[n++] = 8;
+fs/minix/itree_v1.c <unknown> 45 		offsets[n++] = block>>9;
+fs/minix/itree_v1.c <unknown> 46 		offsets[n++] = block & 511;
+fs/minix/itree_v2.c <unknown> 27 static int block_to_path(struct inode * inode, long block, int offsets[DEPTH])
+fs/minix/itree_v2.c <unknown> 41 		offsets[n++] = block;
+fs/minix/itree_v2.c <unknown> 43 		offsets[n++] = DIRCOUNT;
+fs/minix/itree_v2.c <unknown> 44 		offsets[n++] = block;
+fs/minix/itree_v2.c <unknown> 46 		offsets[n++] = DIRCOUNT + 1;
+fs/minix/itree_v2.c <unknown> 47 		offsets[n++] = block / INDIRCOUNT(sb);
+fs/minix/itree_v2.c <unknown> 48 		offsets[n++] = block % INDIRCOUNT(sb);
+fs/minix/itree_v2.c <unknown> 51 		offsets[n++] = DIRCOUNT + 2;
+fs/minix/itree_v2.c <unknown> 52 		offsets[n++] = (block / INDIRCOUNT(sb)) / INDIRCOUNT(sb);
+fs/minix/itree_v2.c <unknown> 53 		offsets[n++] = (block / INDIRCOUNT(sb)) % INDIRCOUNT(sb);
+fs/minix/itree_v2.c <unknown> 54 		offsets[n++] = block % INDIRCOUNT(sb);
+fs/ntfs3/lib/decompress_common.c <unknown> 178 	/* Initialize 'offsets' so that offsets[len] for 1 <= len <=
+fs/ntfs3/lib/decompress_common.c <unknown> 181 	offsets[1] = 0;
+fs/ntfs3/lib/decompress_common.c <unknown> 183 		offsets[len + 1] = offsets[len] + len_counts[len];
+fs/ntfs3/lib/decompress_common.c <unknown> 191 			sorted_syms[offsets[lens[sym]]++] = sym;
+fs/ntfs3/lib/lzx_decompress.c <unknown> 349 				 u32 recent_offsets[])
+fs/ntfs3/lib/lzx_decompress.c <unknown> 450 		recent_offsets[0] = bitstream_read_u32(is);
+fs/ntfs3/lib/lzx_decompress.c <unknown> 451 		recent_offsets[1] = bitstream_read_u32(is);
+fs/ntfs3/lib/lzx_decompress.c <unknown> 452 		recent_offsets[2] = bitstream_read_u32(is);
+fs/ntfs3/lib/lzx_decompress.c <unknown> 455 		if (recent_offsets[0] == 0 || recent_offsets[1] == 0 ||
+fs/ntfs3/lib/lzx_decompress.c <unknown> 456 		    recent_offsets[2] == 0)
+fs/ntfs3/lib/lzx_decompress.c <unknown> 475 				u32 recent_offsets[])
+fs/ntfs3/lib/lzx_decompress.c <unknown> 514 			match_offset = recent_offsets[offset_slot];
+fs/ntfs3/lib/lzx_decompress.c <unknown> 515 			recent_offsets[offset_slot] = recent_offsets[0];
+fs/ntfs3/lib/lzx_decompress.c <unknown> 516 			recent_offsets[0] = match_offset;
+fs/ntfs3/lib/lzx_decompress.c <unknown> 547 			recent_offsets[2] = recent_offsets[1];
+fs/ntfs3/lib/lzx_decompress.c <unknown> 548 			recent_offsets[1] = recent_offsets[0];
+fs/ntfs3/lib/lzx_decompress.c <unknown> 549 			recent_offsets[0] = match_offset;
+fs/ntfs3/lib/lzx_decompress.c <unknown> 599 	u32 recent_offsets[LZX_NUM_RECENT_OFFSETS] = {1, 1, 1};
+fs/proc/base.c <unknown> 1641 	struct proc_timens_offset offsets[2];
+fs/proc/base.c <unknown> 1659 		struct proc_timens_offset *off = &offsets[noffsets];
+fs/sysv/itree.c <unknown> 23 static int block_to_path(struct inode *inode, long block, int offsets[DEPTH])
+fs/sysv/itree.c <unknown> 35 		offsets[n++] = block;
+fs/sysv/itree.c <unknown> 37 		offsets[n++] = DIRECT;
+fs/sysv/itree.c <unknown> 38 		offsets[n++] = block;
+fs/sysv/itree.c <unknown> 40 		offsets[n++] = DIRECT+1;
+fs/sysv/itree.c <unknown> 41 		offsets[n++] = block >> ptrs_bits;
+fs/sysv/itree.c <unknown> 42 		offsets[n++] = block & (indirect_blocks - 1);
+fs/sysv/itree.c <unknown> 44 		offsets[n++] = DIRECT+2;
+fs/sysv/itree.c <unknown> 45 		offsets[n++] = block >> (ptrs_bits * 2);
+fs/sysv/itree.c <unknown> 46 		offsets[n++] = (block >> ptrs_bits) & (indirect_blocks - 1);
+fs/sysv/itree.c <unknown> 47 		offsets[n++] = block & (indirect_blocks - 1);
+fs/sysv/itree.c <unknown> 87 			    int offsets[],
+fs/sysv/itree.c <unknown> 155 		branch[n].p = (sysv_zone_t*) bh->b_data + offsets[n];
+fs/sysv/itree.c <unknown> 210 	int offsets[DEPTH];
+fs/sysv/itree.c <unknown> 281 				int offsets[],
+fs/sysv/itree.c <unknown> 289 	for (k = depth; k > 1 && !offsets[k-1]; k--)
+fs/sysv/itree.c <unknown> 369 	int offsets[DEPTH];
+fs/sysv/itree.c <unknown> 392 		free_data(inode, i_data+offsets[0], i_data + DIRECT);
+fs/ufs/inode.c <unknown> 46 static int ufs_block_to_path(struct inode *inode, sector_t i_block, unsigned offsets[4])
+fs/ufs/inode.c <unknown> 59 		offsets[n++] = i_block;
+fs/ufs/inode.c <unknown> 61 		offsets[n++] = UFS_IND_BLOCK;
+fs/ufs/inode.c <unknown> 62 		offsets[n++] = i_block;
+fs/ufs/inode.c <unknown> 64 		offsets[n++] = UFS_DIND_BLOCK;
+fs/ufs/inode.c <unknown> 65 		offsets[n++] = i_block >> ptrs_bits;
+fs/ufs/inode.c <unknown> 66 		offsets[n++] = i_block & (ptrs - 1);
+fs/ufs/inode.c <unknown> 68 		offsets[n++] = UFS_TIND_BLOCK;
+fs/ufs/inode.c <unknown> 69 		offsets[n++] = i_block >> (ptrs_bits * 2);
+fs/ufs/inode.c <unknown> 70 		offsets[n++] = (i_block >> ptrs_bits) & (ptrs - 1);
+fs/ufs/inode.c <unknown> 71 		offsets[n++] = i_block & (ptrs - 1);
+fs/ufs/inode.c <unknown> 124 static u64 ufs_frag_map(struct inode *inode, unsigned offsets[4], int depth)
+fs/ufs/inode.c <unknown> 401 	unsigned offsets[4];
+fs/ufs/inode.c <unknown> 442 		phys64 = ufs_inode_getfrag(inode, offsets[0], fragment,
+fs/ufs/inode.c <unknown> 446 		phys64 = ufs_inode_getfrag(inode, offsets[0], fragment,
+fs/ufs/inode.c <unknown> 449 			phys64 = ufs_inode_getblock(inode, phys64, offsets[i],
+fs/ufs/inode.c <unknown> 451 		phys64 = ufs_inode_getblock(inode, phys64, offsets[depth - 1],
+fs/ufs/inode.c <unknown> 1123 	unsigned offsets[4];
+fs/ufs/inode.c <unknown> 1141 		if (offsets[depth2] != uspi->s_apb - 1)
+fs/ufs/inode.c <unknown> 1147 		offsets[0] = UFS_IND_BLOCK;
+fs/ufs/inode.c <unknown> 1150 		p = ufs_get_direct_data_ptr(uspi, ufsi, offsets[0]++);
+fs/ufs/inode.c <unknown> 1162 			p = ubh_get_data_ptr(uspi, ubh[i], offsets[i + 1]++);
+fs/ufs/inode.c <unknown> 1165 			free_branch_tail(inode, offsets[i + 1], ubh[i], depth - i - 1);
+fs/ufs/inode.c <unknown> 1167 	for (i = offsets[0]; i <= UFS_TIND_BLOCK; i++) {
+fs/verity/verify.c <unknown> 98 	unsigned int hoffsets[FS_VERITY_MAX_LEVELS];
+fs/verity/verify.c <unknown> 142 		hoffsets[level] = hoffset;
+fs/verity/verify.c <unknown> 152 		unsigned int hoffset = hoffsets[level - 1];
+fs/xfs/libxfs/xfs_alloc.c <unknown> 2767 	static const short	offsets[] = {
+fs/xfs/libxfs/xfs_btree.c <unknown> 847 			*first = offsets[i];
+fs/xfs/libxfs/xfs_btree.c <unknown> 856 			*last = offsets[i + 1] - 1;
+fs/xfs/libxfs/xfs_btree.c <unknown> 1541 	static const short	soffsets[] = {	/* table of offsets (short) */
+fs/xfs/libxfs/xfs_btree.c <unknown> 1554 	static const short	loffsets[] = {	/* table of offsets (long) */
+fs/xfs/libxfs/xfs_ialloc.c <unknown> 2423 	static const short	offsets[] = {	/* field starting offsets */
+include/drm/drm_framebuffer.h <unknown> 168 	unsigned int offsets[DRM_FORMAT_MAX_PLANES];
+include/uapi/drm/drm_mode.h <unknown> 683 	 * So it would consist of Y as offsets[0] and UV as
+include/uapi/drm/drm_mode.h <unknown> 684 	 * offsets[1].  Note that offsets[0] will generally
+include/uapi/drm/drm_mode.h <unknown> 699 	__u32 offsets[4]; /* offset of each plane */
+include/uapi/linux/gpio.h <unknown> 194 	__u32 offsets[GPIO_V2_LINES_MAX];
+include/uapi/linux/gpio.h <unknown> 410 	__u32 lineoffsets[GPIOHANDLES_MAX];
+include/uapi/linux/hsi/cs-protocol.h <unknown> 99 	__u32 rx_offsets[CS_MAX_BUFFERS];
+include/uapi/linux/hsi/cs-protocol.h <unknown> 100 	__u32 tx_offsets[CS_MAX_BUFFERS];
+include/uapi/linux/virtio_gpu.h <unknown> 414 	__le32 offsets[4];
+kernel/kallsyms.c <unknown> 38 extern const int kallsyms_offsets[] __weak;
+kernel/kallsyms.c <unknown> 157 		return kallsyms_relative_base + (u32)kallsyms_offsets[idx];
+kernel/kallsyms.c <unknown> 160 	if (kallsyms_offsets[idx] >= 0)
+kernel/kallsyms.c <unknown> 161 		return kallsyms_offsets[idx];
+kernel/kallsyms.c <unknown> 164 	return kallsyms_relative_base - 1 - kallsyms_offsets[idx];
+kernel/sys.c <unknown> 1923 	static const unsigned char offsets[] = {
+kernel/sys.c <unknown> 1942 		u64 val = *(u64 *)((char *)prctl_map + offsets[i]);
+kernel/time/namespace.c <unknown> 381 		struct proc_timens_offset *off = &offsets[i];
+kernel/time/namespace.c <unknown> 419 		struct proc_timens_offset *off = &offsets[i];
+kernel/time/timekeeping.c <unknown> 856 static ktime_t *offsets[TK_OFFS_MAX] = {
+kernel/time/timekeeping.c <unknown> 866 	ktime_t base, *offset = offsets[offs];
+kernel/time/timekeeping.c <unknown> 887 	ktime_t base, *offset = offsets[offs];
+kernel/time/timekeeping.c <unknown> 910 	ktime_t *offset = offsets[offs];
+mm/percpu-vm.c <unknown> 350 	chunk->base_addr = vms[0]->addr - pcpu_group_offsets[0];
+mm/percpu.c <unknown> 276 	return pcpu_unit_offsets[cpu] + (page_idx << PAGE_SHIFT);
+mm/percpu.c <unknown> 1621 	addr += pcpu_unit_offsets[raw_smp_processor_id()];
+mm/percpu.c <unknown> 2635 	alloc_size = ai->nr_groups * sizeof(group_offsets[0]);
+mm/percpu.c <unknown> 2668 		group_offsets[group] = gi->base_offset;
+mm/percpu.c <unknown> 3310 		__per_cpu_offset[cpu] = delta + pcpu_unit_offsets[cpu];
+mm/vmalloc.c <unknown> 3588 		start = offsets[area];
+mm/vmalloc.c <unknown> 3592 		BUG_ON(!IS_ALIGNED(offsets[area], align));
+mm/vmalloc.c <unknown> 3596 		if (start > offsets[last_area])
+mm/vmalloc.c <unknown> 3600 			unsigned long start2 = offsets[area2];
+mm/vmalloc.c <unknown> 3606 	last_end = offsets[last_area] + sizes[last_area];
+mm/vmalloc.c <unknown> 3629 	start = offsets[area];
+mm/vmalloc.c <unknown> 3677 		start = offsets[area];
+mm/vmalloc.c <unknown> 3686 		start = base + offsets[area];
+net/bridge/netfilter/ebtables.c <unknown> 2098 	unsigned int offsets[4];
+net/bridge/netfilter/ebtables.c <unknown> 2120 	offsets[0] = sizeof(struct ebt_entry); /* matches come first */
+net/bridge/netfilter/ebtables.c <unknown> 2121 	memcpy(&offsets[1], &entry->offsets, sizeof(entry->offsets));
+net/bridge/netfilter/ebtables.c <unknown> 2127 	ret = ebt_buf_add(state, &offsets[1],
+net/bridge/netfilter/ebtables.c <unknown> 2128 			sizeof(offsets) - sizeof(offsets[0]));
+net/bridge/netfilter/ebtables.c <unknown> 2140 		if (offsets[i] > *total)
+net/bridge/netfilter/ebtables.c <unknown> 2143 		if (i < 3 && offsets[i] == *total)
+net/bridge/netfilter/ebtables.c <unknown> 2148 		if (offsets[i-1] > offsets[i])
+net/bridge/netfilter/ebtables.c <unknown> 2155 		char *buf = buf_start + offsets[i];
+net/bridge/netfilter/ebtables.c <unknown> 2157 		if (offsets[i] > offsets[j])
+net/bridge/netfilter/ebtables.c <unknown> 2161 		size = offsets[j] - offsets[i];
+net/bridge/netfilter/ebtables.c <unknown> 2168 				offsets_update[i], offsets[j] + new_offset);
+net/bridge/netfilter/ebtables.c <unknown> 2169 			offsets_update[i] = offsets[j] + new_offset;
+net/ipv4/netfilter/arp_tables.c <unknown> 553 			offsets[i] = (void *)iter - entry0;
+net/ipv4/netfilter/ip_tables.c <unknown> 693 			offsets[i] = (void *)iter - entry0;
+net/ipv6/netfilter/ip6_tables.c <unknown> 711 			offsets[i] = (void *)iter - entry0;
+net/mac80211/cfg.c <unknown> 859 		       sizeof(new->cntdwn_counter_offsets[0]));
+net/mac80211/cfg.c <unknown> 861 		new->cntdwn_counter_offsets[0] = cca->counter_offset_presp;
+net/mac80211/cfg.c <unknown> 1016 		       sizeof(new->cntdwn_counter_offsets[0]));
+net/mac80211/cfg.c <unknown> 1019 		new->cntdwn_counter_offsets[0] = cca->counter_offset_beacon;
+net/mac80211/ibss.c <unknown> 148 		presp->cntdwn_counter_offsets[0] = (pos - presp->head);
+net/mac80211/ieee80211_i.h <unknown> 258 	u16 cntdwn_counter_offsets[IEEE80211_MAX_CNTDWN_COUNTERS_NUM];
+net/mac80211/ieee80211_i.h <unknown> 266 	u16 cntdwn_counter_offsets[IEEE80211_MAX_CNTDWN_COUNTERS_NUM];
+net/mac80211/mesh.c <unknown> 898 		bcn->cntdwn_counter_offsets[0] = hdr_len + 6;
+net/mac80211/offchannel.c <unknown> 898 				data[params->csa_offsets[i]] =
+net/mac80211/tx.c <unknown> 4829 		if (bcn_offsets[i]) {
+net/mac80211/tx.c <unknown> 4830 			if (WARN_ON_ONCE(bcn_offsets[i] >= beacon_data_len)) {
+net/mac80211/tx.c <unknown> 4834 			beacon_data[bcn_offsets[i]] = count;
+net/mac80211/tx.c <unknown> 4840 			resp->data[resp_offsets[i]] = count;
+net/mac80211/tx.c <unknown> 4950 	if (!beacon->cntdwn_counter_offsets[0])
+net/mac80211/tx.c <unknown> 4953 	if (WARN_ON_ONCE(beacon->cntdwn_counter_offsets[0] > beacon_data_len))
+net/mac80211/tx.c <unknown> 4956 	if (beacon_data[beacon->cntdwn_counter_offsets[0]] == 1)
+net/mac80211/tx.c <unknown> 5024 			if (beacon->cntdwn_counter_offsets[0]) {
+net/mac80211/tx.c <unknown> 5051 				offs->cntdwn_counter_offs[0] = beacon->cntdwn_counter_offsets[0];
+net/mac80211/tx.c <unknown> 5073 		if (beacon->cntdwn_counter_offsets[0]) {
+net/mac80211/tx.c <unknown> 5097 		if (beacon->cntdwn_counter_offsets[0]) {
+net/mac80211/tx.c <unknown> 5139 			u16 csa_off = beacon->cntdwn_counter_offsets[i];
+net/netfilter/x_tables.c <unknown> 988 		if (offsets[m] > target)
+net/netfilter/x_tables.c <unknown> 990 		else if (offsets[m] < target)
+net/wireless/nl80211.c <unknown> 11513 			if (params.csa_offsets[i] >= params.len)
+sound/firewire/motu/amdtp-motu.c <unknown> 321 		event_offsets[cache_tail] = tick - base_tick;
+sound/firewire/motu/amdtp-motu.c <unknown> 378 		unsigned int tick = (base_tick + event_offsets[cache_head]) % TICKS_PER_SECOND;
+sound/pci/lx6464es/lx_core.c <unknown> 22 static const unsigned long dsp_port_offsets[] = {
+sound/pci/lx6464es/lx_core.c <unknown> 58 	return base_address + dsp_port_offsets[port]*4;
+sound/pci/lx6464es/lx_core.c <unknown> 97 static const unsigned long plx_port_offsets[] = {
+sound/pci/lx6464es/lx_core.c <unknown> 115 	return base_address + plx_port_offsets[port];
+sound/pci/oxygen/xonar_pcm179x.c <unknown> 929 	static const s8 offsets[] = { 2*-18, 2*-12, 2*-6, 0 };
+sound/pci/oxygen/xonar_pcm179x.c <unknown> 937 	offset = offsets[value->value.enumerated.item[0]];
+sound/usb/mixer_scarlett.c <unknown> 159 	int offsets[SND_SCARLETT_OFFSETS_MAX];
+sound/usb/mixer_scarlett.c <unknown> 360 static void scarlett_generate_name(int i, char *dst, int offsets[])
+sound/usb/mixer_scarlett.c <unknown> 362 	if (i > offsets[SCARLETT_OFFSET_MIX])
+sound/usb/mixer_scarlett.c <unknown> 364 			'A'+(i - offsets[SCARLETT_OFFSET_MIX] - 1));
+sound/usb/mixer_scarlett.c <unknown> 365 	else if (i > offsets[SCARLETT_OFFSET_ADAT])
+sound/usb/mixer_scarlett.c <unknown> 366 		sprintf(dst, "ADAT %d", i - offsets[SCARLETT_OFFSET_ADAT]);
+sound/usb/mixer_scarlett.c <unknown> 367 	else if (i > offsets[SCARLETT_OFFSET_SPDIF])
+sound/usb/mixer_scarlett.c <unknown> 368 		sprintf(dst, "SPDIF %d", i - offsets[SCARLETT_OFFSET_SPDIF]);
+sound/usb/mixer_scarlett.c <unknown> 369 	else if (i > offsets[SCARLETT_OFFSET_ANALOG])
+sound/usb/mixer_scarlett.c <unknown> 370 		sprintf(dst, "Analog %d", i - offsets[SCARLETT_OFFSET_ANALOG]);
+sound/usb/mixer_scarlett.c <unknown> 371 	else if (i > offsets[SCARLETT_OFFSET_PCM])
+sound/usb/mixer_scarlett.c <unknown> 372 		sprintf(dst, "PCM %d", i - offsets[SCARLETT_OFFSET_PCM]);
+tools/gpio/gpio-utils.c <unknown> 82 		req.offsets[i] = lines[i];
+tools/perf/tests/dso-data.c <unknown> 60 struct test_data_offset offsets[] = {
+tools/perf/tests/dso-data.c <unknown> 134 		struct test_data_offset *data = &offsets[i];
+tools/perf/ui/browsers/annotate.c <unknown> 196 	target = notes->offsets[cursor->ops.target.offset];
+tools/perf/ui/browsers/annotate.c <unknown> 198 		ui_helpline__printf("WARN: jump target inconsistency, press 'o', notes->offsets[%#x] = NULL\n",
+tools/perf/util/annotate.c <unknown> 1034 		if (notes->offsets[offset])
+tools/perf/util/annotate.c <unknown> 1055 			struct annotation_line *al = notes->offsets[offset];
+tools/perf/util/annotate.c <unknown> 1093 			al = notes->offsets[offset];
+tools/perf/util/annotate.c <unknown> 2649 		struct annotation_line *al = notes->offsets[offset];
+tools/perf/util/annotate.c <unknown> 2657 		al = notes->offsets[dl->ops.target.offset];
+tools/perf/util/annotate.c <unknown> 2695 				notes->offsets[al->offset] = al;
+tools/testing/selftests/gpio/gpio-mockup-cdev.c <unknown> 29 	req.offsets[0] = offset;
+tools/testing/selftests/gpio/gpio-mockup-cdev.c <unknown> 67 	req.lineoffsets[0] = offset;
+/usr/include/drm/drm_mode.h <unknown> 506 	 * So it would consist of Y as offsets[0] and UV as
+/usr/include/drm/drm_mode.h <unknown> 507 	 * offsets[1].  Note that offsets[0] will generally
+/usr/include/drm/drm_mode.h <unknown> 522 	__u32 offsets[4]; /* offset of each plane */
+/usr/include/linux/gpio.h <unknown> 89 	__u32 lineoffsets[GPIOHANDLES_MAX];
+/usr/include/linux/hsi/cs-protocol.h <unknown> 99 	__u32 rx_offsets[CS_MAX_BUFFERS];
+/usr/include/linux/hsi/cs-protocol.h <unknown> 100 	__u32 tx_offsets[CS_MAX_BUFFERS];
