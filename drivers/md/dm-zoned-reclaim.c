@@ -247,7 +247,6 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 	int is_rnd = 0;
 	ktime_t start, end;
     s64 actual_time;
-	int small_chunk, small_chunk_idx;
 	
 	if (c == NULL) {
 		trace_printk("\t\t\t[DEBUGRECL] dmz_reclaim_copy_rnd c == NULL error\n"); 
@@ -290,10 +289,8 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		sector_t i = chunk_block;
 		start = ktime_get();
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
-			cur_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+			if (c->offsets[i] == -1) { i++; continue; }
+			cur_rz_offset = c->offsets[i];
 			chunk_block = i;
 //			i++;
 			break;
@@ -310,9 +307,7 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		if (chunk_block < DMZ_BLOCK_PER_ZONE - 1) {
 			int j = chunk_block + 1;
 			while (j < DMZ_BLOCK_PER_ZONE) {
-				small_chunk = dmz_small_chunk(j);
-				small_chunk_idx = dmz_small_chunk_idx(j);
-				int next_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+				int next_rz_offset = c->offsets[j];
 				if (cur_rz_offset + 1 != next_rz_offset) { break; }
 				cur_rz_offset = next_rz_offset;
 				ret++;
@@ -497,7 +492,6 @@ static int dmz_reclaim_copy_seq(struct dmz_reclaim *zrc,
 	unsigned long flags = 0;
 	int ret, rnd_recl_count = 0, seq_recl_count = 0;
 	int is_rnd = 0;
-	int small_chunk, small_chunk_idx;
 	ktime_t start, end;
     s64 actual_time;
 
@@ -553,12 +547,10 @@ static int dmz_reclaim_copy_seq(struct dmz_reclaim *zrc,
 
 		int i = chunk_block;
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] != -1) { break; }
+			if (c->offsets[i] != -1) { break; }
 			i++;
 		}
-		cur_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+		cur_rz_offset = c->offsets[i];
 		rnd_first_block = i;
 		if (DMZ_BLOCK_PER_ZONE <= i && seq_cont_num <= 0) {
 			trace_printk("[EVAL] rnd_reclaim %llu count %d\n", rnd_recl_block_log, rnd_recl_count);
@@ -572,9 +564,7 @@ static int dmz_reclaim_copy_seq(struct dmz_reclaim *zrc,
 			if (chunk_block != DMZ_BLOCK_PER_ZONE-1) {
 				int j = chunk_block + 1;
 				while (j < DMZ_BLOCK_PER_ZONE) {
-					small_chunk = dmz_small_chunk(j);
-					small_chunk_idx = dmz_small_chunk_idx(j);
-					int next_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+					int next_rz_offset = c->offsets[j];
 					if (cur_rz_offset + 1 != next_rz_offset) { j++; break; }
 					cur_rz_offset = next_rz_offset;
 					ret++;
@@ -777,7 +767,6 @@ static int dmz_reclaim_buf_data(struct dmz_reclaim *zrc, struct dm_zone *dzone, 
 			else {
 				dmz_unlock_chunk_reclaim(c);
 			}
-			dmz_clear_zone_small_chunk(dzone, c);
 			/* chunk list modi */
 			/* rz chunk weight modi */
 			dzone->nr_mapped_chunk -= c->rz_weight;
@@ -884,7 +873,6 @@ again:
 			else {
 				dmz_unlock_chunk_reclaim(c);
 			}
-			dmz_clear_zone_small_chunk(dzone, c);
 			/* chunk list modi */
 	//		dmz_free_zone(zmd, dzone);
 			dmz_free_zone(zmd, bzone);
@@ -993,7 +981,6 @@ again:
 			trace_printk("[TEST] dmz_update_mapped_chunk start\n");
 			dmz_update_mapped_chunk(dzone, c->id);
 			trace_printk("[TEST] dmz_update_mapped_chunk end\n");
-			dmz_clear_zone_small_chunk(dzone, c);
 			trace_printk("[TEST] dmz_map_zone start\n");
 			dmz_map_zone(zmd, szone, chunk, 0);
 			trace_printk("[TEST] dmz_map_zone end\n");
@@ -1085,7 +1072,6 @@ static int dmz_do_reclaim_all_chunk(struct dmz_reclaim *zrc)
 	struct dm_zone *rzone;
 	unsigned long start;
 	int ret;
-	int small_chunk, small_chunk_idx;
 
 	/* Get a data zone */
 	dzone = dmz_get_zone_for_reclaim(zmd, zrc->dev_idx,
@@ -1116,9 +1102,7 @@ static int dmz_do_reclaim_all_chunk(struct dmz_reclaim *zrc)
 			int i = 0;
 			if (max_w_c == NULL) { trace_printk("\t[DEBUGRAC] max_w_c is NULL error2\n"); return 0; }
 			while (i < DMZ_BLOCK_PER_ZONE) {
-				small_chunk = dmz_small_chunk(i);
-				small_chunk_idx = dmz_small_chunk_idx(i);
-				if (max_w_c->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
+				if (max_w_c->offsets[i] == -1) { i++; continue; }
 				min_offset = i;
 				break;
 			}
@@ -1167,7 +1151,6 @@ static int dmz_do_reclaim(struct dmz_reclaim *zrc)
 	struct dm_zone *rzone;
 	unsigned long start;
 	int ret;
-	int small_chunk, small_chunk_idx;
 
 	/* Get a data zone */
 	dzone = dmz_get_zone_for_reclaim(zmd, zrc->dev_idx,
@@ -1202,9 +1185,7 @@ static int dmz_do_reclaim(struct dmz_reclaim *zrc)
 		int i = 0;
 		if (max_w_c == NULL) { trace_printk("\t[DEBUGRECL] max_w_c is NULL error2\n"); }
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (max_w_c->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
+			if (max_w_c->offsets[i] == -1) { i++; continue; }
 			min_offset = i;
 			break;
 		}
@@ -1422,7 +1403,6 @@ static int dmz_do_zone_reclaim(struct dmz_reclaim *zrc, struct dm_zone *zone, st
 	unsigned long start;
 	int ret;
 	unsigned int chunk_id = c->id;
-	int small_chunk, small_chunk_idx;
 
 	start = jiffies;
 	if (!c->szone)
@@ -1431,9 +1411,7 @@ static int dmz_do_zone_reclaim(struct dmz_reclaim *zrc, struct dm_zone *zone, st
 		int min_offset = DMZ_BLOCK_PER_ZONE + 1;
 		int i = 0;
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
+			if (c->offsets[i] == -1) { i++; continue; }
 			min_offset = i;
 			break;
 		}

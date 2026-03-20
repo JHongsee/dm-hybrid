@@ -97,10 +97,7 @@ struct dmz_dev {
 /*modi*/
 #define DMZ_CHUNK_PER_RZ			4
 #define DMZ_BLOCK_PER_ZONE			32768
-#define DMZ_SMALL_CHUNK_PER_ZONE	128
 #define DMZ_ZONE_RECLAIM_WEIGHT		50
-#define dmz_small_chunk(cb) ((cb) / ((DMZ_BLOCK_PER_ZONE)/(DMZ_SMALL_CHUNK_PER_ZONE)))
-#define dmz_small_chunk_idx(cb) ((cb) % ((DMZ_BLOCK_PER_ZONE)/(DMZ_SMALL_CHUNK_PER_ZONE)))
 
 struct dm_chunk {
 	struct list_head	link;
@@ -117,11 +114,6 @@ struct dm_chunk {
 	unsigned int		rz_weight;
 	/* rz chunk weight modi */
 
-	/* small chunk modi */
-	int					offsets[DMZ_SMALL_CHUNK_PER_ZONE][DMZ_BLOCK_PER_ZONE/DMZ_SMALL_CHUNK_PER_ZONE];
-	int					zone_offsets[DMZ_SMALL_CHUNK_PER_ZONE];
-	/* small chunk modi */
-
 	struct dm_zone*		szone;
 
 	/* chunk list modi */
@@ -130,6 +122,8 @@ struct dm_chunk {
 	atomic_t 			refcount;	
 
 	unsigned long		flags;
+
+	int					offsets[DMZ_BLOCK_PER_ZONE];
 	/* chunk list modi */
 
 	/* chunk snapshot modi */
@@ -193,8 +187,6 @@ struct dm_zone {
 
 	unsigned int		free_block;
 
-	int					small_chunks[DMZ_SMALL_CHUNK_PER_ZONE];
-	unsigned int		small_chunks_weight;
 	/*modi*/
 
 	/*
@@ -271,8 +263,6 @@ enum {
  */
 void dmz_set_cache_wp(struct dmz_metadata *zmd, struct dm_zone *rzone, unsigned int nr_blocks);
 void dmz_set_cache_wp_modi(struct dmz_metadata *zmd, struct dm_zone *rzone, unsigned int nr_blocks);
-int dmz_get_small_chunk(struct dm_zone *zone, struct dm_chunk* c, int small_chunk);
-int dmz_get_zone_wp(int zone_offset, int small_chunk_idx);
 int dmz_ctr_metadata(struct dmz_dev *dev, int num_dev,
 		     struct dmz_metadata **zmd, const char *devname);
 void dmz_dtr_metadata(struct dmz_metadata *zmd);
@@ -303,7 +293,6 @@ struct dm_zone *dmz_alloc_zone(struct dmz_metadata *zmd,
 			       unsigned int dev_idx, unsigned long flags);
 struct dm_zone *dmz_alloc_zone_len(struct dmz_metadata *zmd,
 			       unsigned int dev_idx, unsigned long flags, unsigned int nr_blocks);
-void dmz_clear_zone_small_chunk(struct dm_zone *zone, struct dm_chunk *c);
 void dmz_free_zone(struct dmz_metadata *zmd, struct dm_zone *zone);
 
 void dmz_map_zone(struct dmz_metadata *zmd, struct dm_zone *zone,

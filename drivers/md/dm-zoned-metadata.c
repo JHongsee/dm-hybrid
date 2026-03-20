@@ -1503,10 +1503,6 @@ static int dmz_emulate_zones(struct dmz_metadata *zmd, struct dmz_dev *dev)
 		zone->wp_block = 0;
 		/*modi*/
 		spin_lock_init(&zone->wp_lock);
-		zone->small_chunks_weight = 0;
-		for (i = 0; i < DMZ_SMALL_CHUNK_PER_ZONE; i++) {
-			zone->small_chunks[i] = -1;
-		}
 		/*modi*/
 		zmd->nr_cache_zones++;
 		zmd->nr_useable_zones++;
@@ -2731,16 +2727,10 @@ again:
 	init_waitqueue_head(&cc->io_wait);
 	/* chunk IO block modi */
 
-	int i = 0, j = 0;
-	while (i < DMZ_SMALL_CHUNK_PER_ZONE) {
-		cc->zone_offsets[i] = -1;
-		while (j < DMZ_BLOCK_PER_ZONE/DMZ_SMALL_CHUNK_PER_ZONE) {
-			cc->offsets[i][j] = -1;
-			//cc->write_check[i] = -1;
-			j++;
-		}
+	int i = 0;
+	while (i < DMZ_BLOCK_PER_ZONE) {
+		cc->offsets[i] = -1;
 		i++;
-		j = 0;
 	}
 	list_add_tail(&cc->link, &bzone->chunks);
 	/* chunk list modi */
@@ -2888,18 +2878,6 @@ again:
 	return zone;
 }
 
-
-void dmz_clear_zone_small_chunk(struct dm_zone *zone, struct dm_chunk *c) {
-	int i = 0;
-	while (i < DMZ_SMALL_CHUNK_PER_ZONE) {
-		if (zone->small_chunks[i] != c->id) { i++; continue; }
-
-		zone->small_chunks[i] == -1;
-		zone->small_chunks_weight--;
-		i++;
-	}
-}
-
 /*
  * Free a zone.
  * This must be called with the mapping lock held.
@@ -2950,19 +2928,9 @@ void dmz_map_zone(struct dmz_metadata *zmd, struct dm_zone *dzone,
 		cc->id = chunk;
 		cc->weight = 0;
 		int i = 0, j = 0;
-		while (i < DMZ_SMALL_CHUNK_PER_ZONE) {
-			cc->zone_offsets[i] = -1;
-			while (j < DMZ_BLOCK_PER_ZONE/DMZ_SMALL_CHUNK_PER_ZONE) {
-				cc->offsets[i][j] = -1;
-				/* chunk snapshot modi */
-				/*
-				cc->write_check[i] = -1;
-				*/
-				/* chunk snapshot modi */
-				j++;
-			}
+		while (i < DMZ_BLOCK_PER_ZONE) {
+			cc->offsets[i] = -1;
 			i++;
-			j = 0;
 		}
 		/* chunk list modi */
 		cc->rzone = dzone;
@@ -3194,9 +3162,7 @@ int dmz_copy_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 	int i = 0;
 	while (i < DMZ_BLOCK_PER_ZONE) {
 		/* small chunk modi */
-		int small_chunk = dmz_small_chunk(i);
-		int small_chunk_idx = dmz_small_chunk_idx(i);
-		int rz_offset = c->offsets[small_chunk][small_chunk_idx];
+		int rz_offset = c->offsets[i];
 		/* small chunk modi */
 		if (rz_offset == -1) { i++; continue; }
 
@@ -3229,7 +3195,7 @@ int dmz_copy_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 		dmz_release_mblock(zmd, to_mblk);
 		dmz_release_mblock(zmd, from_mblk);
 
-		c->offsets[small_chunk][small_chunk_idx] = -1;
+		c->offsets[i] = -1;
 		i++;
 	}
 
@@ -3279,12 +3245,10 @@ int dmz_copy_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_z
 	int i = 0;
 	while (i < DMZ_BLOCK_PER_ZONE) {
 		/* small chunk modi */
-		int small_chunk = dmz_small_chunk(i);
-		int small_chunk_idx = dmz_small_chunk_idx(i);
-		int rz_offset = snapshot->offsets[small_chunk][small_chunk_idx];
+		int rz_offset = snapshot->offsets[i];
 		/* small chunk modi */
 		if (rz_offset == -1) { i++; continue; }
-		if (c->offsets[small_chunk][small_chunk_idx] != -1) { i++; continue; }
+		if (c->offsets[i] != -1) { i++; continue; }
 
 		from_mblk = dmz_get_bitmap(zmd, from_zone, rz_offset);
 		if (IS_ERR(from_mblk)) {
@@ -3315,7 +3279,7 @@ int dmz_copy_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_z
 		dmz_release_mblock(zmd, to_mblk);
 		dmz_release_mblock(zmd, from_mblk);
 
-		snapshot->offsets[small_chunk][small_chunk_idx] = -1;
+		snapshot->offsets[i] = -1;
 		i++;
 	}
 
@@ -3365,12 +3329,9 @@ int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 		/* Get a valid region from the source zone */
 		int /*rnd_first_block = -1, */cur_rz_offset = -1;
 		int i = chunk_block;
-		int small_chunk, small_chunk_idx;
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
-			cur_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+			if (c->offsets[i] == -1) { i++; continue; }
+			cur_rz_offset = c->offsets[i];
 			break;
 		}
 		if (cur_rz_offset == -1) { return 0; }
@@ -3378,9 +3339,7 @@ int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 		if (i != DMZ_BLOCK_PER_ZONE-1) {
 			int j = i + 1;
 			while (j < DMZ_BLOCK_PER_ZONE) {
-				small_chunk = dmz_small_chunk(j);
-				small_chunk_idx = dmz_small_chunk_idx(j);
-				int next_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+				int next_rz_offset = c->offsets[j];
 				if (cur_rz_offset + 1 != next_rz_offset) { break; }
 				cur_rz_offset = next_rz_offset;
 				ret++;
@@ -3414,7 +3373,6 @@ int dmz_merge_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_
 {
 	unsigned int nr_blocks;
 	int ret;
-	int small_chunk, small_chunk_idx;
 	struct dm_chunk *c = NULL;
 
 	list_for_each_entry(c, &from_zone->chunks, link) {
@@ -3430,11 +3388,9 @@ int dmz_merge_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_
 		int /*rnd_first_block = -1, */cur_rz_offset = -1;
 		int i = chunk_block;
 		while (i < DMZ_BLOCK_PER_ZONE) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (snapshot->offsets[small_chunk][small_chunk_idx] == -1) { i++; continue; }
-			if (c->offsets[small_chunk][small_chunk_idx] != -1) { i++; continue; }
-			cur_rz_offset = snapshot->offsets[small_chunk][small_chunk_idx];
+			if (snapshot->offsets[i] == -1) { i++; continue; }
+			if (c->offsets[i] != -1) { i++; continue; }
+			cur_rz_offset = snapshot->offsets[i];
 			break;
 		}
 		if (cur_rz_offset == -1) { return 0; }
@@ -3442,10 +3398,8 @@ int dmz_merge_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_
 		if (i != DMZ_BLOCK_PER_ZONE-1) {
 			int j = i + 1;
 			while (j < DMZ_BLOCK_PER_ZONE) {
-				small_chunk = dmz_small_chunk(j);
-				small_chunk_idx = dmz_small_chunk_idx(j);
-				int next_rz_offset = snapshot->offsets[small_chunk][small_chunk_idx];
-				if (c->offsets[small_chunk][small_chunk_idx] != -1) { break; }
+				int next_rz_offset = snapshot->offsets[j];
+				if (c->offsets[j] != -1) { break; }
 				if (cur_rz_offset + 1 != next_rz_offset) { break; }
 				cur_rz_offset = next_rz_offset;
 				ret++;
@@ -3479,7 +3433,6 @@ int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zo
 {
 	unsigned int nr_blocks, start_block;
 	int ret;
-	int small_chunk, small_chunk_idx;
 
 	if (c == NULL) {
 		trace_printk("[DEBUG] dmz_merge_valid_blocks_seq c == NULL error\n");
@@ -3493,9 +3446,7 @@ int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zo
 
 		int i = chunk_block;
 		while (i < zmd->zone_nr_blocks) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] != -1) { cur_rz_offset = c->offsets[small_chunk][small_chunk_idx]; break; }
+			if (c->offsets[i] != -1) { cur_rz_offset = c->offsets[i]; break; }
 			i++;
 		}
 //		cur_rz_offset = c->offsets[i];
@@ -3507,9 +3458,7 @@ int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zo
 			if (chunk_block != DMZ_BLOCK_PER_ZONE-1) {
 				int j = chunk_block + 1;
 				while (j < DMZ_BLOCK_PER_ZONE) {
-					small_chunk = dmz_small_chunk(j);
-					small_chunk_idx = dmz_small_chunk_idx(j);
-					int next_rz_offset = c->offsets[small_chunk][small_chunk_idx];
+					int next_rz_offset = c->offsets[j];
 					if (cur_rz_offset + 1 != next_rz_offset) { j++; break; }
 					cur_rz_offset = next_rz_offset;
 					ret++;
@@ -3550,7 +3499,6 @@ int dmz_merge_valid_blocks_seq_for_zone_reclaim(struct dmz_metadata *zmd, struct
 {
 	unsigned int nr_blocks, start_block;
 	int ret;
-	int small_chunk, small_chunk_idx;
 	struct dm_chunk *c = NULL;
 
 	list_for_each_entry(c, &from_zone->chunks, link) {
@@ -3569,10 +3517,8 @@ int dmz_merge_valid_blocks_seq_for_zone_reclaim(struct dmz_metadata *zmd, struct
 
 		int i = chunk_block;
 		while (i < zmd->zone_nr_blocks) {
-			small_chunk = dmz_small_chunk(i);
-			small_chunk_idx = dmz_small_chunk_idx(i);
-			if (c->offsets[small_chunk][small_chunk_idx] != -1) { i++; continue; }
-			if (snapshot->offsets[small_chunk][small_chunk_idx] != -1) { cur_rz_offset = snapshot->offsets[small_chunk][small_chunk_idx]; break; }
+			if (c->offsets[i] != -1) { i++; continue; }
+			if (snapshot->offsets[i] != -1) { cur_rz_offset = snapshot->offsets[i]; break; }
 			i++;
 		}
 //		cur_rz_offset = c->offsets[i];
@@ -3584,10 +3530,8 @@ int dmz_merge_valid_blocks_seq_for_zone_reclaim(struct dmz_metadata *zmd, struct
 			if (chunk_block != DMZ_BLOCK_PER_ZONE-1) {
 				int j = chunk_block + 1;
 				while (j < DMZ_BLOCK_PER_ZONE) {
-					small_chunk = dmz_small_chunk(j);
-					small_chunk_idx = dmz_small_chunk_idx(j);
-					if (c->offsets[small_chunk][small_chunk_idx] != -1) { break; }
-					int next_rz_offset = snapshot->offsets[small_chunk][small_chunk_idx];
+					if (c->offsets[j] != -1) { break; }
+					int next_rz_offset = snapshot->offsets[j];
 					if (cur_rz_offset + 1 != next_rz_offset) { break; }
 					cur_rz_offset = next_rz_offset;
 					ret++;
@@ -3795,24 +3739,6 @@ again:
 	return zone;
 }
 
-int dmz_get_small_chunk(struct dm_zone *zone, struct dm_chunk* c, int small_chunk) {
-	int idx = 0;
-	while (idx < DMZ_SMALL_CHUNK_PER_ZONE) {
-		if (zone->small_chunks[idx] != -1) { idx++; continue; }
-	
-		zone->small_chunks[idx] = c->id;
-		c->zone_offsets[small_chunk] = idx;
-		zone->small_chunks_weight++;
-		trace_printk("[TEST] zone %u small_chunk idx %d chunk %u zone_offsets idx %d\n", zone->id, idx, c->id, small_chunk);
-		return idx;
-	}
-	return -1;
-}
-
-int dmz_get_zone_wp(int zone_offset, int small_chunk_idx) {
-	return zone_offset * DMZ_SMALL_CHUNK_PER_ZONE + small_chunk_idx;
-}
-
 void dmz_set_cache_wp(struct dmz_metadata *zmd, struct dm_zone *rzone, unsigned int nr_blocks) {
 	sector_t start_block = rzone->wp_block;
 	int ret;
@@ -3894,7 +3820,6 @@ int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 	unsigned int zone_nr_blocks = zmd->zone_nr_blocks;
 	struct dmz_mblock *mblk;
 	unsigned int n = 0;
-	int small_chunk, small_chunk_idx;
 
 	trace_printk("[DEBUGINVV] dmz_validate_blocks zone %u nr_blocks %u\n", zone->id, nr_blocks);
 	dmz_zmd_debug(zmd, "=> VALIDATE zone %u, block %llu, %u blocks",
@@ -3927,9 +3852,7 @@ int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 //			spin_lock(&c->snap_lock);
 			/* chunk snapshot modi */
 			/* small chunk modi */
-			small_chunk = dmz_small_chunk(chunk_block);
-			small_chunk_idx = dmz_small_chunk_idx(chunk_block);
-			c->offsets[small_chunk][small_chunk_idx] = wp;
+			c->offsets[chunk_block] = wp;
 			/* small chunk modi */
 			/* chunk snapshot modi */
 //			spin_unlock(&c->snap_lock);
@@ -4076,7 +3999,6 @@ int dmz_invalidate_blocks_modi(struct dmz_metadata *zmd, struct dm_zone *zone,
 	unsigned int count, bit, nr_bits;
 	struct dmz_mblock *mblk;
 	unsigned int n = 0;
-	int small_chunk, small_chunk_idx;
 
 	trace_printk("[DEBUGINVV] dmz_invalidate_blocks_modi zone %u nr_blocks %u\n", zone->id, nr_blocks);
 	dmz_zmd_debug(zmd, "=> INVALIDATE zone %u, block %llu, %u blocks",
@@ -4117,11 +4039,9 @@ int dmz_invalidate_blocks_modi(struct dmz_metadata *zmd, struct dm_zone *zone,
 
 		//int i = chunk_block;
 		while (nr_blocks) {
-			small_chunk = dmz_small_chunk(chunk_block);
-			small_chunk_idx = dmz_small_chunk_idx(chunk_block);
-			if (c->offsets[small_chunk][small_chunk_idx] == -1) { nr_blocks--; chunk_block++; continue; }
+			if (c->offsets[chunk_block] == -1) { nr_blocks--; chunk_block++; continue; }
 
-			int rzone_off = c->offsets[small_chunk][small_chunk_idx];
+			int rzone_off = c->offsets[chunk_block];
 			mblk = dmz_get_bitmap(zmd, zone, rzone_off);
 			if (IS_ERR(mblk))
 				return PTR_ERR(mblk);
