@@ -2182,20 +2182,25 @@ static struct dm_chunk *dmz_get_chunk_for_reclaim_in(struct dmz_metadata *zmd,
 	 * data zone that can be reclaimed.
 	 */
 
+	trace_printk("[TEST] fisrt list start\n");
 	list_for_each_entry(chunk, chunk_list, map_link) {
+		trace_printk("[TEST] chunk %u\n", chunk->id);
 		if (!maxw_c || maxw_c->weight < chunk->weight) {
 			maxw_c = chunk;
 		}
 	}
+	trace_printk("[TEST] fisrt list end\n");
 
 	if (maxw_c && dmz_lock_chunk_reclaim(maxw_c))
 		return maxw_c;
 
+	trace_printk("[TEST] second list start\n");
 	list_for_each_entry(chunk, chunk_list, map_link) {
 		if (dmz_lock_chunk_reclaim(chunk)) {
 			return chunk;
 		}
 	}
+	trace_printk("[TEST] second list end\n");
 
 	return NULL;
 }
@@ -2501,7 +2506,12 @@ again:
 				struct dm_chunk *c;
 				trace_printk("[TEST] chunk erase start\n");
 				list_for_each_entry(c, &(zmd->mapped_chunk_list), map_link) {
-					if (c->id == chunk) { kfree(c); break; }
+					if (c->id == chunk) { 
+						list_del(&c->link);
+						list_del(&c->map_link);
+						kfree(c); 
+						break; 
+					}
 				}
 				trace_printk("[TEST] chunk erase end\n");
 			}
@@ -2554,8 +2564,10 @@ chunk_again:
 //		dmz_wait_for_reclaim(zmd, dzone);
 		in_recl = 1;
 		start2 = ktime_get();
+		trace_printk("[TEST] dmz_wait_chunk_for_reclaim start\n"); 
 		dmz_wait_chunk_for_reclaim(zmd, c);
-		goto chunk_again;
+		trace_printk("[TEST] dmz_wait_chunk_for_reclaim end\n"); 
+		goto retry;
 	}
 	if (in_recl) {
 		end2 = ktime_get();

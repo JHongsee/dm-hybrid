@@ -306,7 +306,6 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		}
 		block = cur_rz_offset;
 		ret = 1;
-		trace_printk("[TEST] chunk_block %u\n", chunk_block);
 		if (chunk_block < DMZ_BLOCK_PER_ZONE - 1) {
 			int j = chunk_block + 1;
 			while (j < DMZ_BLOCK_PER_ZONE) {
@@ -335,6 +334,7 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		nr_blocks = ret;
 		/*modi*/
 		recl_block_log += nr_blocks;
+		trace_printk("[TEST] chunk_block %u nr_blocks %u\n", chunk_block, nr_blocks);
 
 		/*
 		 * If we are writing in a sequential zone, we must make sure
@@ -1258,8 +1258,10 @@ static int dmz_do_reclaim_chunk(struct dmz_reclaim *zrc)
 //	dzone = dmz_get_zone_for_reclaim(zmd, zrc->dev_idx,
 //					 dmz_target_idle(zrc));
 
+	trace_printk("[TEST] dmz_get_chunk_for_reclaim start\n");
 	chunk = dmz_get_chunk_for_reclaim(zmd, zrc->dev_idx,
 					dmz_target_idle(zrc));
+	trace_printk("[TEST] dmz_get_chunk_for_reclaim end chunk %u\n", chunk->id);
 	if (!chunk) {
 		trace_printk("[WRITELEN] do_reclaim fail chunk == NULL\n");
 		return -EBUSY;
@@ -1637,7 +1639,9 @@ static void dmz_reclaim_work(struct work_struct *work)
 //	ret = dmz_do_reclaim(zrc);
 //	ret = dmz_do_reclaim_all_chunk(zrc);
 	start = ktime_get();
+	trace_printk("[TEST] dmz_do_reclaim_chunk start\n");
 	ret = dmz_do_reclaim_chunk(zrc);
+	trace_printk("[TEST] dmz_do_reclaim_chunk end\n");
 	end = ktime_get();
 	actual_time = ktime_to_ns(ktime_sub(end, start));
 	if (ret == 0) {

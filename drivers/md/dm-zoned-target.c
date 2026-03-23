@@ -657,11 +657,13 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 	
 	if (IS_ERR(bzone)) {
 //		trace_printk("\t\t[DEBUG] dmz_handle_buffered_write IS_ERR(bzone)\n");
+		trace_printk("[TEST] dmz_handle_buffered_write IS_ERR(bzone)\n");
 		return PTR_ERR(bzone);
 	}
 
 	if (dmz_is_readonly(bzone)) {
 //		trace_printk("\t\t[DEBUG] dmz_handle_buffered_write dmz_is_readonly(bzone)\n");
+		trace_printk("[TEST] dmz_handle_buffered_write dmz_is_readonly(bzone)\n");
 		return -EROFS;
 	}
 
@@ -675,14 +677,23 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 	start = ktime_get();
 	struct dm_chunk* c;
     list_for_each_entry(c, &(bzone->chunks), link) {
+        trace_printk("[TEST] chunk %u zone %u find\n", c->id, bzone->id);
         if (c->id == chunk_id) { break; }
     }
+    trace_printk("[TEST] list_for_each_entry end\n");
     if (c->id != chunk_id) {
         trace_printk("[DEBUG7] dmz_handle_buffered_write zone %u c->id %u != chunk %u error\n", bzone->id, c->id, chunk_id);
+        trace_printk("[TEST] dmz_handle_buffered_write zone %u c->id %u != chunk %u error\n", bzone->id, c->id, chunk_id);
     }
+    trace_printk("[TEST] small chunk find start\n");
 	small_chunk = dmz_small_chunk(chunk_block);
+    trace_printk("[TEST] small chunk find end small_chunk %u\n", small_chunk);
+    trace_printk("[TEST] small_chunk_idx find start\n");
 	small_chunk_idx = dmz_small_chunk_idx(chunk_block);
+    trace_printk("[TEST] small_chunk_idx find end small_chunk_idx %u\n", small_chunk_idx);
+    trace_printk("[TEST] c_off find start\n");
     c_off = c->offsets[small_chunk][small_chunk_idx];
+    trace_printk("[TEST] c_off find end c_off %d \n", c_off);
 	end = ktime_get();
 	actual_time = ktime_to_ns(ktime_sub(end, start));
 //	trace_printk("[BUFWRITE] find_chunk time %lld ns\n", (long long)actual_time);
@@ -690,27 +701,35 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 	start = ktime_get();
 	if (c_off != -1) {
     	already_chunk = 1;
-        trace_printk("[DEBUG7] buf_overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+        trace_printk("[TEST] buf_overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
                     chunk_id, bzone->id, c_off, chunk_block, nr_blocks);
         ret = dmz_submit_bio(dmz, bzone, bio, c_off, nr_blocks, chunk_id, before_wp);
 		before_wp = c_off;
-		trace_printk("[CDF] chunk %u nr_blocks %u\n", chunk_id, nr_blocks);
+		trace_printk("[TEST] chunk %u nr_blocks %u\n", chunk_id, nr_blocks);
     }
     else {
 		trace_printk("[CHUNKWEIGHT] isdata %d chunk %u nr_blocks %u\n", is_ext4, chunk_id, nr_blocks);
 		if (c->zone_offsets[small_chunk] == -1) {
+			trace_printk("[TEST] wp lock start\n");
 			spin_lock(&bzone->wp_lock);
+			trace_printk("[TEST] wp lock end\n");
+			trace_printk("[TEST] dmz_get_small_chunk chunk %u zone %u start\n", c->id, bzone->id);
 			zone_offset = dmz_get_small_chunk(bzone, c, small_chunk);
+			trace_printk("[TEST] dmz_get_small_chunk end\n");
 			if (zone_offset == -1) {
 				trace_printk("[TEST] no more small chunk in zone %u error\n", bzone->id);
 			}
-			spin_unlock(&zone->wp_lock);
+			trace_printk("[TEST] wp unlock start\n");
+			spin_unlock(&bzone->wp_lock);
+			trace_printk("[TEST] wp unlock end\n");
 		}
 		else {
 			zone_offset = c->zone_offsets[small_chunk];
 		}
 
+		trace_printk("[TEST] dmz_get_zone_wp start\n");
 		before_wp = dmz_get_zone_wp(zone_offset, small_chunk_idx);
+		trace_printk("[TEST] dmz_get_zone_wp end before_wp %u\n", before_wp);
 		/*
 		spin_lock(&bzone->wp_lock);	
         dmz_set_cache_wp(zmd, bzone, nr_blocks);
@@ -723,10 +742,10 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 		}
 		spin_unlock(&bzone->wp_lock);
 		*/
-        trace_printk("[DEBUG7] buffered_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+        trace_printk("[TEST] buffered_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
                     chunk_id, bzone->id, before_wp, chunk_block, nr_blocks);
         ret = dmz_submit_bio(dmz, bzone, bio, before_wp, nr_blocks, chunk_id, before_wp);
-		trace_printk("[CDF] chunk %u nr_blocks %u\n", chunk_id, nr_blocks);
+		trace_printk("[TEST] chunk %u nr_blocks %u\n", chunk_id, nr_blocks);
     }
 	end = ktime_get();
 	actual_time = ktime_to_ns(ktime_sub(end, start));
@@ -741,13 +760,13 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 	 */
 	start = ktime_get();
 //	if (!already_chunk) {
-		trace_printk("[DEBUGINV] dmz_handle_buffered_write dmz_validate_blocks start chunk_id: %u zone_id: %u\n", chunk_id, bzone->id);
+		trace_printk("[TEST] dmz_handle_buffered_write dmz_validate_blocks start chunk_id: %u zone_id: %u\n", chunk_id, bzone->id);
 		ret = dmz_validate_blocks(zmd, bzone, chunk_block, nr_blocks, chunk_id, before_wp);
-		trace_printk("[DEBUGINV] dmz_handle_buffered_write dmz_validate_blocks end\n");
+		trace_printk("[TEST] dmz_handle_buffered_write dmz_validate_blocks end\n");
 		if (ret == 0 && chunk_block < zone->wp_block) {
-			trace_printk("[DEBUGINV] dmz_handle_buffered_write dmz_invalidate_blocks start zone_id: %u\n", zone->id);
+			trace_printk("[TEST] dmz_handle_buffered_write dmz_invalidate_blocks start zone_id: %u\n", zone->id);
 			ret = dmz_invalidate_blocks(zmd, zone, chunk_block, nr_blocks);
-			trace_printk("[DEBUGINV] dmz_handle_buffered_write dmz_invalidate_blocks end\n");
+			trace_printk("[TEST] dmz_handle_buffered_write dmz_invalidate_blocks end\n");
 		}
 //	}
 	end = ktime_get();
