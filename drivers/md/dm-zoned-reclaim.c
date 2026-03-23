@@ -303,7 +303,6 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		}
 		block = cur_rz_offset;
 		ret = 1;
-		trace_printk("[TEST] chunk_block %u\n", chunk_block);
 		if (chunk_block < DMZ_BLOCK_PER_ZONE - 1) {
 			int j = chunk_block + 1;
 			while (j < DMZ_BLOCK_PER_ZONE) {
@@ -330,6 +329,7 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		nr_blocks = ret;
 		/*modi*/
 		recl_block_log += nr_blocks;
+		trace_printk("[SEQTEST] chunk_block %u nr_blocks %u\n", chunk_block, nr_blocks);
 
 		/*
 		 * If we are writing in a sequential zone, we must make sure
@@ -594,6 +594,7 @@ static int dmz_reclaim_copy_seq(struct dmz_reclaim *zrc,
 			return ret;
 		}
 		nr_blocks = ret;
+		trace_printk("[SEQTEST] chunk_block %u nr_blocks %u\n", chunk_block, nr_blocks);
 		/*modi*/
 		if (is_rnd) {
 			rnd_recl_block_log += nr_blocks;
@@ -938,9 +939,9 @@ again:
 		dmz_is_rnd(szone) ? "rnd" : "seq", szone->id);
 
 	/* Flush the random data zone into the sequential zone */
-	trace_printk("[TEST] dmz_reclaim_copy_rnd start szone %u chunk %u weight %u\n", szone->id, c->id, c->weight);
+	trace_printk("[SEQTEST] dmz_reclaim_copy_rnd start szone %u chunk %u weight %u\n", szone->id, c->id, c->weight);
 	ret = dmz_reclaim_copy_rnd(zrc, dzone, szone, c); // dmz_reclaim_copy_rnd
-	trace_printk("[TEST] dmz_reclaim_copy_rnd end ret %d\n", ret);
+	trace_printk("[SEQTEST] dmz_reclaim_copy_rnd end ret %d\n", ret);
 
 	dmz_lock_flush(zmd);
 

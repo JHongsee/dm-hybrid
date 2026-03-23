@@ -495,7 +495,7 @@ static int dmz_handle_direct_write(struct dmz_target *dmz,
 
 		if (c_off != -1) {
 			already_chunk = 1;
-			trace_printk("[DEBUG7] overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+			trace_printk("[SEQTEST] overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
 						chunk, zone->id, c_off, chunk_block, nr_blocks);
 			ret = dmz_submit_bio(dmz, zone, bio, c_off, nr_blocks, chunk, before_wp);
 			before_wp = c_off;
@@ -516,7 +516,7 @@ static int dmz_handle_direct_write(struct dmz_target *dmz,
 			}
 			spin_unlock(&zone->wp_lock);
 			
-			trace_printk("[DEBUG7] direct_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+			trace_printk("[SEQTEST] direct_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
 						chunk, zone->id, before_wp, chunk_block, nr_blocks);
 			ret = dmz_submit_bio(dmz, zone, bio, before_wp, nr_blocks, chunk, before_wp);
 			trace_printk("[CDF] chunk %u nr_blocks %u\n", chunk, nr_blocks);
@@ -533,7 +533,7 @@ static int dmz_handle_direct_write(struct dmz_target *dmz,
 	else {
 //		trace_printk("\t\t[DEBUG] dmz_handle_direct_write seq zone\n");
 //		trace_printk("\t\t[DEBUG] dmz_submit_bio start\n");
-		trace_printk("[TEST] direct_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+		trace_printk("[SEQTEST] direct_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
 						chunk, zone->id, zone->wp_block, chunk_block, nr_blocks);
 		ret = dmz_submit_bio(dmz, zone, bio, chunk_block, nr_blocks, chunk, -1);
 //		trace_printk("\t\t[DEBUG] dmz_submit_bio end\n");
@@ -621,9 +621,7 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 
 	/* Get the buffer zone. One will be allocated if needed */
 	start = ktime_get();
-	trace_printk("[TEST] dmz_get_chunk_buffer chunk %u start\n", chunk_id);
 	bzone = dmz_get_chunk_buffer(zmd, zone, chunk_id, nr_blocks);
-	trace_printk("[TEST] dmz_get_chunk_buffer chunk %u end\n", chunk_id);
 	end = ktime_get();
 	actual_time = ktime_to_ns(ktime_sub(end, start));
 //	trace_printk("[BUFWRITE] dmz_get_chunk_buffer time %lld ns\n", (long long)actual_time);
@@ -662,7 +660,7 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 	start = ktime_get();
 	if (c_off != -1) {
     	already_chunk = 1;
-        trace_printk("[DEBUG7] buf_overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+        trace_printk("[SEQTEST] buf_overwrite chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
                     chunk_id, bzone->id, c_off, chunk_block, nr_blocks);
         ret = dmz_submit_bio(dmz, bzone, bio, c_off, nr_blocks, chunk_id, before_wp);
 		before_wp = c_off;
@@ -681,7 +679,7 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 			bzone->wp_block += nr_blocks;
 		}
 		spin_unlock(&bzone->wp_lock);
-        trace_printk("[DEBUG7] buffered_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
+        trace_printk("[SEQTEST] buffered_write chunk_id: %u zone_id: %u wp: %u start_block: %llu nr_blocks: %u\n",
                     chunk_id, bzone->id, before_wp, chunk_block, nr_blocks);
         ret = dmz_submit_bio(dmz, bzone, bio, before_wp, nr_blocks, chunk_id, before_wp);
 		trace_printk("[CDF] chunk %u nr_blocks %u\n", chunk_id, nr_blocks);
@@ -862,10 +860,8 @@ static void dmz_handle_bio(struct dmz_target *dmz, struct dm_chunk_work *cw,
 	 * mapping for read and discard. If a mapping is obtained,
 	 + the zone returned will be set to active state.
 	 */
-	trace_printk("[TEST2] dmz_get_chunk_mapping chunk %u start\n", chunk_id);
 	zone = dmz_get_chunk_mapping(zmd, chunk_id,
 				     bio_op(bio), nr_blocks);
-	trace_printk("[TEST2] dmz_get_chunk_mapping chunk %u end\n", chunk_id);
 	if (IS_ERR(zone)) {
 		//trace_printk("[BIOCHECK] IS_ERR(zone)\n");
 		ret = PTR_ERR(zone);
