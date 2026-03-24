@@ -329,7 +329,7 @@ static int dmz_reclaim_copy_rnd(struct dmz_reclaim *zrc,
 		nr_blocks = ret;
 		/*modi*/
 		recl_block_log += nr_blocks;
-		trace_printk("[SEQTEST] chunk_block %u nr_blocks %u\n", chunk_block, nr_blocks);
+		trace_printk("[SEQTEST] chunk %u chunk_block %u nr_blocks %u\n", c->id, chunk_block, nr_blocks);
 
 		/*
 		 * If we are writing in a sequential zone, we must make sure
@@ -917,6 +917,8 @@ static int dmz_reclaim_rnd_data(struct dmz_reclaim *zrc, struct dm_zone *dzone, 
 	struct dmz_metadata *zmd = zrc->metadata;
 	int ret;
 	int alloc_flags = DMZ_ALLOC_SEQ;
+	ktime_t start, end;
+	s64 actual_time;
 
 	/* Get a free random or sequential zone */
 	dmz_lock_map(zmd);
@@ -940,8 +942,13 @@ again:
 
 	/* Flush the random data zone into the sequential zone */
 	trace_printk("[SEQTEST] dmz_reclaim_copy_rnd start szone %u chunk %u weight %u\n", szone->id, c->id, c->weight);
+	start = ktime_get();
 	ret = dmz_reclaim_copy_rnd(zrc, dzone, szone, c); // dmz_reclaim_copy_rnd
-	trace_printk("[SEQTEST] dmz_reclaim_copy_rnd end ret %d\n", ret);
+	end = ktime_get();
+	actual_time = ktime_to_ns(ktime_sub(end, start));
+	trace_printk("[SEQTEST] dmz_reclaim_copy_rnd end szone %u chunk %u weight %u time %lld ret %d\n", 
+					szone->id, c->id, c->weight, (long long)actual_time, ret);
+
 
 	dmz_lock_flush(zmd);
 

@@ -2025,7 +2025,7 @@ int dmz_lock_zone_reclaim(struct dm_zone *zone)
 int dmz_lock_chunk_reclaim(struct dm_chunk *chunk)
 {
 	/* Active zones cannot be reclaimed */
-	if (dmz_is_active_chunk(chunk)) {
+	if (dmz_is_active_chunk(chunk) || dmz_chunk_in_zone_reclaim(chunk)) {
 		return 0;
 	}
 
@@ -2497,7 +2497,12 @@ again:
 				struct dm_chunk *c;
 				trace_printk("[TEST] chunk erase start\n");
 				list_for_each_entry(c, &(zmd->mapped_chunk_list), map_link) {
-					if (c->id == chunk) { kfree(c); break; }
+					if (c->id == chunk) { 
+						list_del(&c->link);
+						list_del(&c->map_link);
+						kfree(c); 
+						break; 
+					}
 				}
 				trace_printk("[TEST] chunk erase end\n");
 			}
@@ -2551,7 +2556,7 @@ chunk_again:
 		in_recl = 1;
 		start2 = ktime_get();
 		dmz_wait_chunk_for_reclaim(zmd, c);
-		goto chunk_again;
+		goto retry;
 	}
 	if (in_recl) {
 		end2 = ktime_get();
