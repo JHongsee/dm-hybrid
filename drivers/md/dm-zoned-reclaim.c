@@ -1261,7 +1261,9 @@ static int dmz_do_reclaim_chunk(struct dmz_reclaim *zrc)
 	trace_printk("[TEST] dmz_get_chunk_for_reclaim start\n");
 	chunk = dmz_get_chunk_for_reclaim(zmd, zrc->dev_idx,
 					dmz_target_idle(zrc));
-	trace_printk("[TEST] dmz_get_chunk_for_reclaim end chunk %u\n", chunk->id);
+	if (chunk) {
+		trace_printk("[TEST] dmz_get_chunk_for_reclaim end chunk %u\n", chunk->id);
+	}
 	if (!chunk) {
 		trace_printk("[WRITELEN] do_reclaim fail chunk == NULL\n");
 		return -EBUSY;

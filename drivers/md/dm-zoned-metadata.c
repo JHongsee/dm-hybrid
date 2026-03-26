@@ -2029,7 +2029,7 @@ int dmz_lock_zone_reclaim(struct dm_zone *zone)
 int dmz_lock_chunk_reclaim(struct dm_chunk *chunk)
 {
 	/* Active zones cannot be reclaimed */
-	if (dmz_is_active_chunk(chunk)) {
+	if (dmz_is_active_chunk(chunk) || dmz_chunk_in_zone_reclaim(chunk)) {
 		return 0;
 	}
 
@@ -2197,6 +2197,7 @@ static struct dm_chunk *dmz_get_chunk_for_reclaim_in(struct dmz_metadata *zmd,
 	trace_printk("[TEST] second list start\n");
 	list_for_each_entry(chunk, chunk_list, map_link) {
 		if (dmz_lock_chunk_reclaim(chunk)) {
+			trace_printk("[TEST] chunk %u ref %u\n", chunk->id, atomic_read(&chunk->refcount));
 			return chunk;
 		}
 	}
@@ -2501,6 +2502,7 @@ again:
 				goto out;
 			}
 		}
+		/*
 		else {
 			if (dzone->bzone == NULL) {
 				struct dm_chunk *c;
@@ -2516,6 +2518,7 @@ again:
 				trace_printk("[TEST] chunk erase end\n");
 			}
 		}
+		*/
 
 		/* Repair write pointer if the sequential dzone has error */
 		if (dmz_seq_write_err(dzone)) {
@@ -2550,9 +2553,15 @@ again:
 //	trace_printk("[TEST] chunk_in_recl_test\n");
 	while (c->id == chunk && dmz_chunk_in_zone_reclaim(c)) {
 		dmz_unlock_map(zmd);
+		dmz_unlock_metadata(zmd);
 		trace_printk("[WAIT] wait c %u\n", c->id);
 		wait_event(c->io_wait, !test_bit(DMZ_CHUNK_ZONE_RECLAIM, &c->flags));
-		goto retry;
+		dmz_lock_metadata(zmd);
+		dmz_lock_map(zmd);
+		list_del(&c->link);
+		list_del(&c->map_link);
+		kfree(c);
+		goto again;
 	}
 	trace_printk("[WAIT] no wait c %u\n", c->id);
 //	trace_printk("[TEST] no wait_chunk start\n");
@@ -2567,7 +2576,7 @@ chunk_again:
 		trace_printk("[TEST] dmz_wait_chunk_for_reclaim start\n"); 
 		dmz_wait_chunk_for_reclaim(zmd, c);
 		trace_printk("[TEST] dmz_wait_chunk_for_reclaim end\n"); 
-		goto retry;
+		goto chunk_again;
 	}
 	if (in_recl) {
 		end2 = ktime_get();
