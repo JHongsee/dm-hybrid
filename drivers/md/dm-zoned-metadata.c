@@ -2541,9 +2541,12 @@ again:
 //	trace_printk("[TEST] chunk_in_recl_test\n");
 	while (c->id == chunk && dmz_chunk_in_zone_reclaim(c)) {
 		dmz_unlock_map(zmd);
+		dmz_unlock_metadata(zmd);
 		trace_printk("[WAIT] wait c %u\n", c->id);
 		wait_event(c->io_wait, !test_bit(DMZ_CHUNK_ZONE_RECLAIM, &c->flags));
-		goto retry;
+		dmz_lock_metadata(zmd);
+		dmz_lock_map(zmd);
+		goto again;
 	}
 	trace_printk("[WAIT] no wait c %u\n", c->id);
 //	trace_printk("[TEST] no wait_chunk start\n");
@@ -2556,7 +2559,7 @@ chunk_again:
 		in_recl = 1;
 		start2 = ktime_get();
 		dmz_wait_chunk_for_reclaim(zmd, c);
-		goto retry;
+		goto again;
 	}
 	if (in_recl) {
 		end2 = ktime_get();
