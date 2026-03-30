@@ -189,7 +189,7 @@ static void dmz_clone_endio(struct bio *clone)
 
 //	zone = bioctx->zone;
 	trace_printk("[TEST] zone %u weight %u\n", zone->id, zone->weight);
-	if (zone && !dmz_is_seq(zone) && zrc && /*!atomic_read(&zrc->active_reclaim) && */
+	if (zone && !dmz_is_seq(zone) && zrc && !atomic_read(&zrc->active_reclaim) && 
 					(zone->small_chunks_weight > 96 || zone->weight * 100 / DMZ_BLOCK_PER_ZONE > DMZ_ZONE_RECLAIM_WEIGHT)) {
 //	if (zone->nr_mapped_chunk > DMZ_CHUNK_PER_RZ) {
 		/*

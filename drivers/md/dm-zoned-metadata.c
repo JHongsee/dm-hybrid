@@ -2448,7 +2448,6 @@ struct dm_zone *dmz_get_chunk_mapping(struct dmz_metadata *zmd, unsigned int chu
     s64 actual_time;
 	int in_recl = 0, l_e = 0;
 
-retry:
 	dmz_lock_map(zmd);
 again:
 	/* Get the chunk mapping */
@@ -2556,6 +2555,7 @@ again:
 		dmz_unlock_metadata(zmd);
 		trace_printk("[WAIT] wait c %u\n", c->id);
 		wait_event(c->io_wait, !test_bit(DMZ_CHUNK_ZONE_RECLAIM, &c->flags));
+		trace_printk("[WAIT] wakeup c %u\n", c->id);
 		dmz_lock_metadata(zmd);
 		dmz_lock_map(zmd);
 		list_del(&c->link);
@@ -3974,7 +3974,8 @@ int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 		/* chunk snapshot modi */
 //		spin_lock(&c->snap_lock);
 		/* chunk snapshot modi */
-		
+	
+		/*
 		if (c->weight > zmd->zone_nr_blocks / 2) {
 			zone->nr_mapped_chunk -= c->rz_weight;
 			c->rz_weight = 4;
@@ -3989,7 +3990,7 @@ int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 			trace_printk("[RZW] chunk %u weight %u rz_weight %u zone %u nr_mapped_chunk %u\n", 
 							c->id, c->weight, c->rz_weight, zone->id, zone->nr_mapped_chunk);
 		}
-		
+		*/
 		/* chunk snapshot modi */
 //		spin_unlock(&c->snap_lock);
 		/* chunk snapshot modi */
