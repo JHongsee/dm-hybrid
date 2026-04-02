@@ -571,7 +571,7 @@ static int dmz_handle_direct_write(struct dmz_target *dmz,
 				trace_printk("[DEBUGINV] dmz_handle_bio c->id != chunk error5\n");
 			}
 		*/	
-			ret = dmz_invalidate_blocks_modi(zmd, bzone, chunk_block, nr_blocks, chunk);
+			ret = dmz_invalidate_blocks_modi(zmd, bzone, chunk_block, nr_blocks, chunk, 32768);
 			trace_printk("[DEBUGINV] dmz_handle_direct_write dmz_invalidate_blocks end\n");
 	//		trace_printk("\t\t[DEBUG] dmz_invalidate_blocks end\n");
 		}

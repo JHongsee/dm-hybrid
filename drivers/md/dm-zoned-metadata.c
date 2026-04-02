@@ -1900,7 +1900,7 @@ next:
 /*
  * Set a data chunk mapping.
  */
-static void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk,
+void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk,
 				  unsigned int dzone_id, unsigned int bzone_id)
 {
 	struct dmz_mblock *dmap_mblk = zmd->map_mblk[chunk >> DMZ_MAP_ENTRIES_SHIFT];
@@ -2525,7 +2525,7 @@ again:
 	 * activate the zone (this will prevent reclaim from touching it).
 	 */
 	/* chunk list modi */
-	struct dm_chunk *c;
+	struct dm_chunk *c = NULL;
 	if (!list_empty(&dzone->chunks)) {
 		list_for_each_entry(c, &(dzone->chunks), link) {
 			if (c->id == chunk) { break; }
@@ -2535,6 +2535,9 @@ again:
 		list_for_each_entry(c, &(zmd->mapped_chunk_list), map_link) {
 			if (c->id == chunk) { break; }
 		}
+	}
+	if (c == NULL) {
+		trace_printk("[TEST] c == NULL error\n");
 	}
 //	if (dmz_in_reclaim(zone)) {
 	/* chunk IO block modi */
@@ -3157,11 +3160,12 @@ static int dmz_clear_bits(unsigned long *bitmap, int bit, int nr_bits)
  * Copy the valid blocks bitmap of from_zone to the bitmap of to_zone.
  */
 int dmz_copy_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			  struct dm_zone *to_zone, /*modi*/ struct dm_chunk *c)
+			  struct dm_zone *to_zone, /*modi*/ struct dm_chunk *c, int max_block)
 {
 	struct dmz_mblock *from_mblk, *to_mblk;
 //	sector_t chunk_block = 0;
 	int count = 0;
+	int total = 0;
 
 	if (c == NULL) {
 		trace_printk("[DEBUGRECL] dmz_copy_valid_blocks c == NULL error\n");
@@ -3204,7 +3208,12 @@ int dmz_copy_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 		dmz_release_mblock(zmd, from_mblk);
 
 		c->offsets[i] = -1;
+		c->weight--;
 		i++;
+		total++;
+		if (total >= max_block) {
+			break; 
+		}
 	}
 
 	/*
@@ -3324,10 +3333,11 @@ int dmz_copy_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_z
  * starting from chunk_block.
  */
 int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block)
+			   struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block, int max_block)
 {
 	unsigned int nr_blocks;
 	int ret;
+	int total = 0;
 
 	if (c == NULL) {
 		trace_printk("[DEBUG] dmz_merge_valid_blocks c == NULL error\n");
@@ -3366,6 +3376,10 @@ int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 			return ret;
 
 		chunk_block += nr_blocks;
+		total += nr_blocks;
+		if (total >= max_block) {
+			break;
+		}
 		//from_zone->weight -= nr_blocks;
 		//from_zone->free_block += nr_blocks;
 	}
@@ -3437,10 +3451,11 @@ int dmz_merge_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_
 }
 
 int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block)
+			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block, int max_block)
 {
 	unsigned int nr_blocks, start_block;
 	int ret;
+	int total = 0, is_rnd_end = 0;
 
 	if (c == NULL) {
 		trace_printk("[DEBUG] dmz_merge_valid_blocks_seq c == NULL error\n");
@@ -3452,33 +3467,35 @@ int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zo
 		sector_t seq_cont_num = 0, seq_first_block = chunk_block, rnd_cont_num = 0, rnd_first_block = 0;
 		seq_cont_num = dmz_first_valid_block(zmd, seq_zone, &seq_first_block);
 
-		int i = chunk_block;
-		while (i < zmd->zone_nr_blocks) {
-			if (c->offsets[i] != -1) { cur_rz_offset = c->offsets[i]; break; }
-			i++;
-		}
-//		cur_rz_offset = c->offsets[i];
-		if (cur_rz_offset == -1 && seq_cont_num <= 0) { break; }
-		rnd_first_block = i;
-		if (rnd_first_block < seq_first_block) {
-			chunk_block = rnd_first_block;
-			ret = 1;
-			if (chunk_block != DMZ_BLOCK_PER_ZONE-1) {
-				int j = chunk_block + 1;
-				while (j < DMZ_BLOCK_PER_ZONE) {
-					int next_rz_offset = c->offsets[j];
-					if (cur_rz_offset + 1 != next_rz_offset) { j++; break; }
-					cur_rz_offset = next_rz_offset;
-					ret++;
-					j++;
-				}
+		chunk_block = seq_first_block;
+		ret = seq_cont_num;
+
+		if (!is_rnd_end) {
+			int i = chunk_block;
+			while (i < zmd->zone_nr_blocks) {
+				if (c->offsets[i] != -1) { cur_rz_offset = c->offsets[i]; break; }
+				i++;
 			}
-//			from_zone->weight -= ret;
-//			from_zone->free_block += ret;
-		}
-		else {
-			chunk_block = seq_first_block;
-			ret = seq_cont_num;
+//			cur_rz_offset = c->offsets[i];
+			if (cur_rz_offset == -1 && seq_cont_num <= 0) { break; }
+			rnd_first_block = i;
+			if (rnd_first_block < seq_first_block) {
+				chunk_block = rnd_first_block;
+				ret = 1;
+				if (chunk_block != DMZ_BLOCK_PER_ZONE-1) {
+					int j = chunk_block + 1;
+					while (j < DMZ_BLOCK_PER_ZONE) {
+						int next_rz_offset = c->offsets[j];
+						if (cur_rz_offset + 1 != next_rz_offset) { j++; break; }
+						cur_rz_offset = next_rz_offset;
+						ret++;
+						j++;
+					}
+				}
+//				from_zone->weight -= ret;
+//				from_zone->free_block += ret;
+			}
+			total += ret;
 		}
 
 //		ret = dmz_first_valid_block(zmd, from_zone, &chunk_block);
@@ -3495,6 +3512,9 @@ int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zo
 			return ret;
 
 		chunk_block += nr_blocks;
+		if (total >= max_block) {
+			is_rnd_end = 1;
+		}
 	}
 
 //	from_zone->nr_mapped_chunk--;
@@ -4002,11 +4022,12 @@ int dmz_invalidate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 }
 
 int dmz_invalidate_blocks_modi(struct dmz_metadata *zmd, struct dm_zone *zone,
-			  sector_t chunk_block, unsigned int nr_blocks, /*modi*/ unsigned int chunk_id)
+			  sector_t chunk_block, unsigned int nr_blocks, /*modi*/ unsigned int chunk_id, int max_block)
 {
 	unsigned int count, bit, nr_bits;
 	struct dmz_mblock *mblk;
 	unsigned int n = 0;
+	int total = 0;
 
 	trace_printk("[DEBUGINVV] dmz_invalidate_blocks_modi zone %u nr_blocks %u\n", zone->id, nr_blocks);
 	dmz_zmd_debug(zmd, "=> INVALIDATE zone %u, block %llu, %u blocks",
@@ -4069,8 +4090,15 @@ int dmz_invalidate_blocks_modi(struct dmz_metadata *zmd, struct dm_zone *zone,
 			}
 			dmz_release_mblock(zmd, mblk);
 
+			c->offsets[chunk_block] = -1;
+			c->weight -= nr_bits;
+
 			nr_blocks -= nr_bits;
 			chunk_block += nr_bits;
+			total += nr_bits;
+			if (total >= max_block) {
+				break;
+			}
 		}
 	}
 

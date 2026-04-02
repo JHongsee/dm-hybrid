@@ -98,6 +98,7 @@ struct dmz_dev {
 #define DMZ_CHUNK_PER_RZ			4
 #define DMZ_BLOCK_PER_ZONE			32768
 #define DMZ_ZONE_RECLAIM_WEIGHT		50
+#define DMZ_ZONE_RECLAIM_MAX_BLOCK	32768
 
 struct dm_chunk {
 	struct list_head	link;
@@ -359,23 +360,24 @@ struct dm_zone *dmz_get_chunk_mapping(struct dmz_metadata *zmd,
 void dmz_put_chunk_mapping(struct dmz_metadata *zmd, struct dm_zone *zone, unsigned int chunk_id);
 struct dm_zone *dmz_get_chunk_buffer(struct dmz_metadata *zmd,
 				     struct dm_zone *dzone, unsigned int chunk_id, unsigned int nr_blocks);
+void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk, unsigned int dzone_id, unsigned int bzone_id);
 
 int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 			sector_t chunk_block, unsigned int nr_blocks, unsigned int chunk, unsigned int wp);
 int dmz_invalidate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 			  sector_t chunk_block, unsigned int nr_blocks);
 int dmz_invalidate_blocks_modi(struct dmz_metadata *zmd, struct dm_zone *zone,
-			  sector_t chunk_block, unsigned int nr_blocks, unsigned int chunk_id);
+			  sector_t chunk_block, unsigned int nr_blocks, unsigned int chunk_id, int max_block);
 int dmz_block_valid(struct dmz_metadata *zmd, struct dm_zone *zone,
 		    sector_t chunk_block);
 int dmz_first_valid_block(struct dmz_metadata *zmd, struct dm_zone *zone,
 			  sector_t *chunk_block);
 int dmz_copy_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			  struct dm_zone *to_zone, struct dm_chunk *c);
+			  struct dm_zone *to_zone, struct dm_chunk *c, int max_block);
 int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block);
+			   struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block, int max_block);
 int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block);
+			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block, int max_block);
 /* chunk snapshot modi */
 /*
 int dmz_copy_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_zone *from_zone,
