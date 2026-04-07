@@ -122,6 +122,8 @@ struct dm_chunk {
 
 	atomic_t 			refcount;	
 
+	atomic_t 			zone_recl;	
+
 	unsigned long		flags;
 
 	int					offsets[DMZ_BLOCK_PER_ZONE];

@@ -126,6 +126,7 @@ static inline void dmz_bio_endio(struct bio *bio, blk_status_t status/*modi*/, i
 //			if (parent != 2) {
 			    struct dm_chunk *c;
 			    list_for_each_entry(c, &(zone->chunks), link) {
+					trace_printk("[TEST] zone %u c->id %u chunk_id %u\n", zone->id, c->id, chunk_id);
 			        if (c->id == chunk_id) { 
 						/* chunk snapshot modi */
 							/*
@@ -181,6 +182,8 @@ static void dmz_clone_endio(struct bio *clone)
 	struct dm_zone *zone = bioctx->zone;
 	struct dmz_reclaim *zrc = bioctx->dev->reclaim;
 	blk_status_t status = clone->bi_status;
+	int ret;
+	trace_printk("[TEST] dmz_clone_endio start zone %u chunk %u\n", zone->id, bioctx->chunk_id);
 
 	bio_put(clone);
 	//trace_printk("[BIOCHECK] dmz_clone_endio nr_blocks %u\n", bioctx->nr_blocks);
@@ -189,7 +192,7 @@ static void dmz_clone_endio(struct bio *clone)
 
 //	zone = bioctx->zone;
 	trace_printk("[TEST] zone %u weight %u\n", zone->id, zone->weight);
-	if (zone && !dmz_is_seq(zone) && zrc && !atomic_read(&zrc->active_reclaim) && 
+	if (zone && !dmz_is_seq(zone) && zrc && /*!atomic_read(&zrc->active_reclaim) && */
 					(zone->weight * 100 / DMZ_BLOCK_PER_ZONE > DMZ_ZONE_RECLAIM_WEIGHT)) {
 //	if (zone->nr_mapped_chunk > DMZ_CHUNK_PER_RZ) {
 		/*
@@ -206,10 +209,15 @@ static void dmz_clone_endio(struct bio *clone)
 				maxw_c = c;
 			}
 		}
-		test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &maxw_c->flags);
-		trace_printk("[TEST] chunk %u weight %u flag %u refcount %d DMZ_CHUNK_ZONE_RECLAIM %d\n", 
-						maxw_c->id, maxw_c->weight, maxw_c->flags, atomic_read(&maxw_c->refcount), DMZ_CHUNK_ZONE_RECLAIM);
+
+		if (atomic_read(&maxw_c->zone_recl))
+			return;
+
+		ret = test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &maxw_c->flags);
+		trace_printk("[TEST] zone %u chunk %u weight %u flag %u refcount %d DMZ_CHUNK_ZONE_RECLAIM %d ret %d\n", 
+						zone->id, maxw_c->id, maxw_c->weight, maxw_c->flags, atomic_read(&maxw_c->refcount), DMZ_CHUNK_ZONE_RECLAIM, ret);
 		if (atomic_read(&maxw_c->refcount) == 0) {
+			atomic_inc(&maxw_c->zone_recl);
 			zrc->is_zone_reclaim = 1;
 			zrc->recl_zone = zone;
 			zrc->recl_chunk = maxw_c;
@@ -265,6 +273,8 @@ static int dmz_submit_bio(struct dmz_target *dmz, struct dm_zone *zone,
 
 	refcount_inc(&bioctx->ref);
 	submit_bio_noacct(clone);
+
+	trace_printk("[TEST] submit bio zone %u chunk %u\n", zone->id, chunk_id);
 
 	if (bio_op(bio) == REQ_OP_WRITE && dmz_is_seq(zone))
 		zone->wp_block += nr_blocks;
@@ -621,7 +631,9 @@ static int dmz_handle_buffered_write(struct dmz_target *dmz,
 
 	/* Get the buffer zone. One will be allocated if needed */
 	start = ktime_get();
+	trace_printk("[TEST] dmz_get_chunk_buffer start\n");
 	bzone = dmz_get_chunk_buffer(zmd, zone, chunk_id, nr_blocks);
+	trace_printk("[TEST] dmz_get_chunk_buffer end\n");
 	end = ktime_get();
 	actual_time = ktime_to_ns(ktime_sub(end, start));
 //	trace_printk("[BUFWRITE] dmz_get_chunk_buffer time %lld ns\n", (long long)actual_time);
@@ -863,7 +875,7 @@ static void dmz_handle_bio(struct dmz_target *dmz, struct dm_chunk_work *cw,
 	zone = dmz_get_chunk_mapping(zmd, chunk_id,
 				     bio_op(bio), nr_blocks);
 	if (IS_ERR(zone)) {
-		//trace_printk("[BIOCHECK] IS_ERR(zone)\n");
+		trace_printk("[BIOCHECK] IS_ERR(zone)\n");
 		ret = PTR_ERR(zone);
 		goto out;
 	}
@@ -922,7 +934,11 @@ static void dmz_handle_bio(struct dmz_target *dmz, struct dm_chunk_work *cw,
 		dmz_put_chunk_mapping(zmd, zone, chunk_id);
 	}
 out:
-	//trace_printk("[BIOCHECK] dmz_handle_bio nr_blocks %u\n", nr_blocks);
+	/*
+	if (!IS_ERR(zone)) {
+		trace_printk("[TEST] dmz_handle_bio dmz_bio_endio zone %u chunk %u\n", zone->id, chunk_id);
+	}
+	*/
 	dmz_bio_endio(bio, errno_to_blk_status(ret), chunk_id, 0);
 
 	dmz_unlock_metadata(zmd);
