@@ -189,7 +189,7 @@ static void dmz_clone_endio(struct bio *clone)
 
 //	zone = bioctx->zone;
 	trace_printk("[TEST] zone %u weight %u\n", zone->id, zone->weight);
-	if (zone && !dmz_is_seq(zone) && zrc && !atomic_read(&zrc->active_reclaim) && 
+	if (zone && !dmz_is_seq(zone) && zrc && /*!atomic_read(&zrc->active_reclaim) && */
 					(zone->weight * 100 / DMZ_BLOCK_PER_ZONE > DMZ_ZONE_RECLAIM_WEIGHT)) {
 //	if (zone->nr_mapped_chunk > DMZ_CHUNK_PER_RZ) {
 		/*
@@ -206,10 +206,14 @@ static void dmz_clone_endio(struct bio *clone)
 				maxw_c = c;
 			}
 		}
+		if (atomic_read(&maxw_c->zone_recl))
+			return;
+
 		test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &maxw_c->flags);
 		trace_printk("[TEST] chunk %u weight %u flag %u refcount %d DMZ_CHUNK_ZONE_RECLAIM %d\n", 
 						maxw_c->id, maxw_c->weight, maxw_c->flags, atomic_read(&maxw_c->refcount), DMZ_CHUNK_ZONE_RECLAIM);
 		if (atomic_read(&maxw_c->refcount) == 0) {
+			atomic_inc(&maxw_c->zone_recl);
 			zrc->is_zone_reclaim = 1;
 			zrc->recl_zone = zone;
 			zrc->recl_chunk = maxw_c;

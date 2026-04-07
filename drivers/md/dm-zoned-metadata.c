@@ -322,11 +322,21 @@ unsigned int dmz_nr_unmap_chunk_cache_zones(struct dmz_metadata *zmd)
 	unsigned int nr_unmap = nr_avail;
 	int unmap_cnt = 0, map_cnt = 0;
 	list_for_each_entry(zone, unmap_zone_list, link) {
-		nr_unmap -= zone->nr_mapped_chunk;
+		if (zone->nr_mapped_chunk > DMZ_CHUNK_PER_RZ) {
+			nr_unmap -= DMZ_CHUNK_PER_RZ;
+		}
+		else {
+			nr_unmap -= zone->nr_mapped_chunk;
+		}
 		unmap_cnt++;
 	}
 	list_for_each_entry(zone, map_zone_list, link) {
-		nr_unmap -= zone->nr_mapped_chunk;
+		if (zone->nr_mapped_chunk > DMZ_CHUNK_PER_RZ) {
+			nr_unmap -= DMZ_CHUNK_PER_RZ;
+		}
+		else {
+			nr_unmap -= zone->nr_mapped_chunk;
+		}
 		map_cnt++;
 	}
 
@@ -1900,7 +1910,7 @@ next:
 /*
  * Set a data chunk mapping.
  */
-static void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk,
+void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk,
 				  unsigned int dzone_id, unsigned int bzone_id)
 {
 	struct dmz_mblock *dmap_mblk = zmd->map_mblk[chunk >> DMZ_MAP_ENTRIES_SHIFT];
@@ -2066,10 +2076,11 @@ void dmz_unlock_chunk_for_zone_reclaim(struct dm_chunk *chunk)
 //	WARN_ON(!dmz_in_reclaim(zone));
 
 //	clear_bit_unlock(DMZ_CHUNK_ZONE_RECLAIM, &chunk->flags);
-//	smp_mb__after_atomic();
 //	wake_up_bit(&chunk->flags, DMZ_CHUNK_ZONE_RECLAIM);
 	clear_bit(DMZ_CHUNK_ZONE_RECLAIM, &chunk->flags);
-	wake_up_all(&chunk->io_wait);
+	smp_mb__after_atomic();
+	wake_up_bit(&chunk->flags, DMZ_CHUNK_ZONE_RECLAIM);
+//	wake_up_all(&chunk->io_wait);
 }
 /* chunk IO block modi */
 
@@ -2543,7 +2554,7 @@ again:
 		dmz_unlock_map(zmd);
 		dmz_unlock_metadata(zmd);
 		trace_printk("[WAIT] wait c %u\n", c->id);
-		wait_event(c->io_wait, !test_bit(DMZ_CHUNK_ZONE_RECLAIM, &c->flags));
+		wait_on_bit(&c->flags, DMZ_CHUNK_ZONE_RECLAIM, TASK_UNINTERRUPTIBLE);
 		dmz_lock_metadata(zmd);
 		dmz_lock_map(zmd);
 		goto again;
@@ -2692,8 +2703,32 @@ struct dm_zone *dmz_get_chunk_buffer(struct dmz_metadata *zmd,
 	dmz_lock_map(zmd);
 again:
 	bzone = dzone->bzone;
-	if (bzone)
+	if (bzone) {
+		struct dm_chunk *c = NULL;
+		if (!list_empty(&bzone->chunks)) {
+			list_for_each_entry(c, &(bzone->chunks), link) {
+				if (c->id == chunk_id) { break; }
+			}
+		}
+		else {
+			list_for_each_entry(c, &(zmd->mapped_chunk_list), map_link) {
+				if (c->id == chunk_id) { break; }
+			}
+		}
+		if (c == NULL) {
+			trace_printk("[TEST] dmz_get_chunk_buffer c == NULL error\n");
+		}
+
+		while (c->id == chunk_id && dmz_chunk_in_zone_reclaim(c)) {
+			dmz_unlock_map(zmd);
+			dmz_unlock_metadata(zmd);
+			wait_on_bit(&c->flags, DMZ_CHUNK_ZONE_RECLAIM, TASK_UNINTERRUPTIBLE);
+			dmz_lock_metadata(zmd);
+			dmz_lock_map(zmd);
+			goto again;
+		}
 		goto out;
+	}
 
 	/* Allocate a random zone */
 	bzone = dmz_alloc_zone(zmd, 0, alloc_flags/*, nr_blocks*/);
@@ -2745,6 +2780,7 @@ again:
 	list_add_tail(&cc->map_link, &zmd->mapped_chunk_list);
 	cc->rzone = bzone;
 	atomic_set(&cc->refcount, 0);
+	atomic_set(&cc->zone_recl, 0);
 	//dmz_activate_chunk(cc);
 	dmz_activate_chunk(cc);
 	trace_printk("[CHUNKREF] dmz_get_chunk_buffer dmz_activate_chunk chunk %u refcount %u\n", cc->id, atomic_read(&cc->refcount));
@@ -2943,6 +2979,7 @@ void dmz_map_zone(struct dmz_metadata *zmd, struct dm_zone *dzone,
 		/* chunk list modi */
 		cc->rzone = dzone;
 		atomic_set(&cc->refcount, 0);
+		atomic_set(&cc->zone_recl, 0);
 		/* rz chunk weight modi */
 		cc->rz_weight = 1;
 		/* rz chunk weight modi */

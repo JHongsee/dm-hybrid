@@ -119,7 +119,9 @@ struct dm_chunk {
 	/* chunk list modi */
 	struct dm_zone* 	rzone;
 
-	atomic_t 			refcount;	
+	atomic_t 			refcount;
+
+	atomic_t 			zone_recl;
 
 	unsigned long		flags;
 
@@ -359,6 +361,7 @@ struct dm_zone *dmz_get_chunk_mapping(struct dmz_metadata *zmd,
 void dmz_put_chunk_mapping(struct dmz_metadata *zmd, struct dm_zone *zone, unsigned int chunk_id);
 struct dm_zone *dmz_get_chunk_buffer(struct dmz_metadata *zmd,
 				     struct dm_zone *dzone, unsigned int chunk_id, unsigned int nr_blocks);
+void dmz_set_chunk_mapping(struct dmz_metadata *zmd, unsigned int chunk, unsigned int dzone_id, unsigned int bzone_id);
 
 int dmz_validate_blocks(struct dmz_metadata *zmd, struct dm_zone *zone,
 			sector_t chunk_block, unsigned int nr_blocks, unsigned int chunk, unsigned int wp);
