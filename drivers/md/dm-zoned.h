@@ -97,7 +97,7 @@ struct dmz_dev {
 /*modi*/
 #define DMZ_CHUNK_PER_RZ			4
 #define DMZ_BLOCK_PER_ZONE			32768
-#define DMZ_ZONE_RECLAIM_WEIGHT		50
+#define DMZ_ZONE_RECLAIM_WEIGHT		80
 
 struct dm_chunk {
 	struct list_head	link;
@@ -129,11 +129,11 @@ struct dm_chunk {
 	/* chunk list modi */
 
 	/* chunk snapshot modi */
-	/*
+	
 	spinlock_t			snap_lock;
 
 	int					write_check[DMZ_BLOCK_PER_ZONE];
-	*/
+	
 //	struct dm_chunk		*snapshot_c;
 
 	/* chunk IO block modi */
@@ -351,9 +351,9 @@ bool dmz_get_high_weight_c(struct dmz_metadata *zmd,
 /* zone reclaim modi */
 
 /* chunk snapshot modi */
-/*
+
 struct dm_chunk* dmz_get_chunk_snapshot(struct dmz_metadata *zmd, struct dm_chunk *c);
-*/
+
 /* chunk snapshot modi */
 
 struct dm_zone *dmz_get_chunk_mapping(struct dmz_metadata *zmd,
@@ -380,14 +380,16 @@ int dmz_merge_valid_blocks(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 int dmz_merge_valid_blocks_seq(struct dmz_metadata *zmd, struct dm_zone *from_zone,
 			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block);
 /* chunk snapshot modi */
-/*
+
 int dmz_copy_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			  struct dm_zone *to_zone, struct dm_chunk *c);
+			  struct dm_zone *to_zone, struct dm_chunk *snapshot, struct dm_chunk *rc);
 int dmz_merge_valid_blocks_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block);
+			   struct dm_chunk *snapshot, struct dm_zone *to_zone, sector_t chunk_block, struct dm_chunk *rc);
 int dmz_merge_valid_blocks_seq_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_zone *from_zone,
-			   struct dm_zone *seq_zone, struct dm_chunk *c, struct dm_zone *to_zone, sector_t chunk_block);
-*/
+			   struct dm_zone *seq_zone, struct dm_chunk *snapshot, struct dm_zone *to_zone, sector_t chunk_block, struct dm_chunk *rc);
+int dmz_invalidate_blocks_modi_for_zone_reclaim(struct dmz_metadata *zmd, struct dm_zone *zone,
+               sector_t chunk_block, unsigned int nr_blocks, struct dm_chunk *snapshot, struct dm_chunk *rc);
+
 /* chunk snapshot modi */
 
 /*
