@@ -1525,23 +1525,21 @@ static void dmz_reclaim_work(struct work_struct *work)
 	if (zrc->is_zone_reclaim) {
 		trace_printk("[WRITELEN] zone_reclaim start\n");
 		struct dm_zone *zone = zrc->recl_zone;
-		struct dm_chunk *c = zrc->recl_chunk;
-		struct dm_chunk *rc = zrc->recl_chunk;
+		struct dm_chunk *c, *snapshot;
 		/* time debug */
 		start = ktime_get();
 		/* time debug */
 //		bool get_reclaim_zone = dmz_get_high_weight_zone_for_reclaim(zmd, zrc->dev_idx, 
 //						dmz_target_idle(zrc), zone, &c);
-		trace_printk("[SNAP2] dmz_get_high_weight_c start zone %u c %u\n", zone->id, c->id);
+//		trace_printk("[SNAP2] dmz_get_high_weight_c start zone %u c %u\n", zone->id, c->id);
 		
-		test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &rc->flags);
-		bool get_recl_chunk = dmz_get_high_weight_c(zmd, zrc->dev_idx,
-						dmz_target_idle(zrc), zone, &c);
+//		bool get_recl_chunk = dmz_get_high_weight_c(zmd, zrc->dev_idx,
+//						dmz_target_idle(zrc), zone, &c);
 		
-		
-		trace_printk("[SNAP2] dmz_get_high_weight_c end zone %u c %u\n", zone->id, c->id);
+		bool get_recl_chunk = true;
+//		trace_printk("[SNAP2] dmz_get_high_weight_c end zone %u c %u\n", zone->id, c->id);
 	//	bool get_recl_chunk = 1;
-		trace_printk("[TEST] dmz_get_high_weight_c %d end\n", get_recl_chunk);
+//		trace_printk("[TEST] dmz_get_high_weight_c %d end\n", get_recl_chunk);
 //		if (get_reclaim_zone) {
 //		trace_printk("[ZONERECL] zone %u get_recl_chunk %d\n", zone->id, get_recl_chunk);
 		if (get_recl_chunk) {
@@ -1549,28 +1547,35 @@ static void dmz_reclaim_work(struct work_struct *work)
 			if (zone == NULL) { 
 				trace_printk("[WRITELEN] zone_reclaim fail zone == NULL\n");
 				atomic_dec(&zrc->active_reclaim);
-				atomic_dec(&rc->zone_recl);
+//				atomic_dec(&rc->zone_recl);
 				return; 
 			}
 			
 //			list_for_each_entry(c, &zone->chunks, link) {
+			/*
 			if (c == NULL) { 
 				trace_printk("[WRITELEN] zone_reclaim fail chunk == NULL\n");
 				atomic_dec(&zrc->active_reclaim);
 				atomic_dec(&rc->zone_recl);
 				return; 
 			}
+			*/
 				//trace_printk("[DEBUGRZ] dmz_get_high_weight_zone_for_reclaim chunk %u zone %u\n", c->id, zone->id);
 			zrc->kc_throttle.throttle = 100;
-			trace_printk("[SNAP2] dmz_do_zone_reclaim start zone %u c %u\n", zone->id, c->id);
-			ret = dmz_do_zone_reclaim(zrc, zone, c);
+
+			list_for_each_entry(c, &zone->chunks, link) {
+				snapshot = dmz_get_chunk_snapshot(zmd, c);
+				test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &c->flags);
+				trace_printk("[SNAP2] dmz_do_zone_reclaim start zone %u c %u\n", zone->id, c->id);
+				ret = dmz_do_zone_reclaim(zrc, zone, snapshot);
+			}
 			trace_printk("[SNAP2] dmz_do_zone_reclaim end zone %u \n", zone->id);
 //				if (ret) { break; }
 //			}
 			if (ret && ret != -EINTR) {
 				if (!dmz_check_dev(zmd)) {
 					atomic_dec(&zrc->active_reclaim);
-					atomic_dec(&rc->zone_recl);
+					atomic_dec(&c->zone_recl);
 					return;
 				}
 			}

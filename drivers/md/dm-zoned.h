@@ -97,7 +97,7 @@ struct dmz_dev {
 /*modi*/
 #define DMZ_CHUNK_PER_RZ			4
 #define DMZ_BLOCK_PER_ZONE			32768
-#define DMZ_ZONE_RECLAIM_WEIGHT		80
+#define DMZ_ZONE_RECLAIM_WEIGHT		50
 
 struct dm_chunk {
 	struct list_head	link;

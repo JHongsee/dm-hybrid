@@ -218,7 +218,7 @@ static void dmz_clone_endio(struct bio *clone)
 		trace_printk("[TEST] chunk %u weight %u flag %u refcount %d DMZ_CHUNK_ZONE_RECLAIM %d\n", 
 						maxw_c->id, maxw_c->weight, maxw_c->flags, atomic_read(&maxw_c->refcount), DMZ_CHUNK_ZONE_RECLAIM);
 		if (atomic_read(&maxw_c->refcount) == 0) {
-			atomic_inc(&maxw_c->zone_recl);
+//			atomic_inc(&maxw_c->zone_recl);
 //			test_and_set_bit(DMZ_CHUNK_ZONE_RECLAIM, &maxw_c->flags);
 			zrc->is_zone_reclaim = 1;
 			zrc->recl_zone = zone;

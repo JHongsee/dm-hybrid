@@ -2340,6 +2340,7 @@ bool dmz_get_high_weight_zone_for_reclaim(struct dmz_metadata *zmd,
 struct dm_chunk* dmz_get_chunk_snapshot(struct dmz_metadata *zmd, struct dm_chunk *c) {
 	struct dm_chunk *snap;
 	int i = 0;
+	atomic_inc(&c->zone_recl);
 	snap = kmalloc(sizeof(*snap), GFP_KERNEL);
 
 	spin_lock(&c->snap_lock);
